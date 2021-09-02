@@ -1,12 +1,18 @@
 ### 益得毛巾工廠
 #### 環境設置
-1. 輸入以下程式碼
+
+1. 將 php.ini 內 memory_limit 改成 2G
+
+2. 輸入以下程式碼
     ```
     composer install
-    
-    php artisan key:generate
     ```
-2. 將 php.ini 內 memory_size 改成 2G
+3. 複製 .env.example檔案為 .env
 
+4. 輸入以下程式碼
+    ```
+   php artisan key:generate
+    ```
+   
 
 
