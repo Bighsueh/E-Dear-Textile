@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'LoginController@get_login_page');
+Route::get('/', 'LoginController@get_login_page')->name('get_login');
+Route::any('/login', 'LoginController@post_login')->name('post_login');
