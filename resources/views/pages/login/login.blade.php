@@ -8,18 +8,18 @@
                             <span class="fa fa-user-o"></span>
                         </div>
                         <h3 class="text-center mb-4">益得紡織-登入介面</h3>
-                        <form action="{{Route('post_login')}}" method="post" class="login-form">
+                        <form action="{{Route('post_login')}}" method="POST" class="login-form">
                             @csrf
                             <div class="form-group">
                                 <label for="employee_id">員工編號</label>
                                 <br>
-                                <input id="employee_id" type="text" class="form-control rounded-left" placeholder="員工編號"
+                                <input id="employee_id" name="employee_id" type="text" class="form-control rounded-left" placeholder="員工編號"
                                        required>
                             </div>
                             <div class="form-group">
                                 <label for="employee_password">員工密碼</label>
                                 <br>
-                                <input id="employee_password" type="password" class="form-control rounded-left"
+                                <input id="employee_password" name="employee_password" type="password" class="form-control rounded-left"
                                        placeholder="員工密碼" required>
                             </div>
                             <div class="form-group">
