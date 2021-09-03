@@ -13,6 +13,10 @@
     ```
    php artisan key:generate
     ```
+5. 資料庫名稱
+    > EDearTextile
+            >
+
    
 
 
