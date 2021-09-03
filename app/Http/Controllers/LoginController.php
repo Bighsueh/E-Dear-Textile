@@ -21,10 +21,10 @@ class LoginController extends Controller
         $users_table = DB::table('users')->get();
         try {
             $check_account = $users_table
-                            ->where('account', $employee_id)
-                            ->where('password',$employee_password)
-                            ->toArray();
-            if (count($check_account) == 0 ){
+                ->where('account', $employee_id)
+                ->where('password', $employee_password)
+                ->first();
+            if ($check_account === null) {
                 return redirect()->route('get_login');
             };
             dd($check_account);
