@@ -18,7 +18,6 @@ class LoginController extends Controller
     {
         $employee_id = $request->input('employee_id');
         $employee_password = $request->input('employee_password');
-
         $users_table = DB::table('users')->get();
         try {
             $account_info = $users_table
