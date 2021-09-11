@@ -40,11 +40,17 @@ class LoginController extends Controller
                 case 'employee':
                     Session::put('level', 'employee');
             }
+            //go to menu page and need to add condition to check level
+            return view('pages.login.menu');
 
-            dd($level);
 //            return page right here
         } catch (Exception $exception) {
             return redirect()->route('get_login');
         }
+    }
+
+    public function post_menu()
+    {
+
     }
 }
