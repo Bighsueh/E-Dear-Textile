@@ -9,8 +9,21 @@ use mysql_xdevapi\Exception;
 
 class LoginController extends Controller
 {
-    public function get_login_page()
+    public function get_login_page(Request $request)
     {
+        //判斷是否已登入，若有則回傳list page
+        if ($request->session()->has('level')){
+            $level = $request->session()->has('level');
+
+            if ($level === 'manager') {
+//                return 幹部 page
+            }
+            if ($level === 'employee') {
+//                return 員工 page
+            }
+
+        }
+
         return view('pages.login.login');
     }
 
@@ -32,14 +45,8 @@ class LoginController extends Controller
 
 //            使用者權限判斷
             $level = $account_info->level;
-            switch ($level) {
-                case 'admin':
-                    Session::put('level', 'admin');
-                case 'manager':
-                    Session::put('level', 'manager');
-                case 'employee':
-                    Session::put('level', 'employee');
-            }
+            Session::put('level', $level);
+
             //go to menu page and need to add condition to check level
             return view('pages.login.menu');
 
