@@ -16,6 +16,7 @@ class LoginController extends Controller
 
     public function post_login(Request $request)
     {
+
         $employee_id = $request->input('employee_id');
         $employee_password = $request->input('employee_password');
         $users_table = DB::table('users')->get();
@@ -40,6 +41,7 @@ class LoginController extends Controller
                 case 'employee':
                     Session::put('level', 'employee');
             }
+//            dd(Session::get('level'));
             //go to menu page and need to add condition to check level
             return view('pages.login.menu');
 

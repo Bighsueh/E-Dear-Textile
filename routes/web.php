@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('login')->get('/',function(){
 
-Route::get('/', 'LoginController@get_login_page')->name('get_login');
+    Route::post('/menu', 'LoginController@post_menu')->name('post_menu');
+});
+Route::get('/login', 'LoginController@get_login_page')->name('get_login');
 Route::post('/login', 'LoginController@post_login')->name('post_login');
-Route::post('/menu', 'LoginController@post_menu')->name('post_menu');
+
+
