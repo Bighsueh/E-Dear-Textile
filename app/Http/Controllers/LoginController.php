@@ -11,18 +11,6 @@ class LoginController extends Controller
 {
     public function get_login_page(Request $request)
     {
-        //判斷是否已登入，若有則回傳list page
-        if ($request->session()->has('level')){
-            $level = $request->session()->has('level');
-
-            if ($level === 'manager') {
-//                return 幹部 page
-            }
-            if ($level === 'employee') {
-//                return 員工 page
-            }
-
-        }
 
         return view('pages.login.login');
     }
@@ -56,8 +44,17 @@ class LoginController extends Controller
         }
     }
 
-    public function post_menu()
+    public function get_menu_page(Request $request)
     {
+//            get session level
+            $level = $request->session()->has('level');
 
+            if ($level === 'manager') {
+//                return 幹部 page
+                return view('pages.login.menu');
+            }
+            if ($level === 'employee') {
+//                return 員工 page
+            }
     }
 }

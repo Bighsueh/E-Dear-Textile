@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware('login')->get('/',function(){
-
-    Route::post('/menu', 'LoginController@post_menu')->name('post_menu');
+    Route::get('/menu', 'LoginController@get_menu_page')->name('get_menu_page');
 });
 Route::get('/login', 'LoginController@get_login_page')->name('get_login');
 Route::post('/login', 'LoginController@post_login')->name('post_login');
