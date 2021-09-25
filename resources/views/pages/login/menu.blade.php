@@ -3,7 +3,7 @@
     <div style="display: flex" class="container">
         <div class="row justify-content-center">
             <h1 class="text-center mb-12 col-lg-12">選單</h1>
-            @if($job_tickets)
+            @if(isset($job_tickets))
                 <table class="table text-center">
                     <thead class="thead-dark ">
                     <tr>
