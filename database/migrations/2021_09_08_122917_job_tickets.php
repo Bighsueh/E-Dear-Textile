@@ -21,6 +21,8 @@ class JobTickets extends Migration
             $table->string('itemId');
             $table->string('factory');
             $table->string('color');
+            $table->string('wash');
+            //可能還要再加一個欄位
             $table->string('colorId');
             $table->string('cloth');
             $table->string('rollFunc');
