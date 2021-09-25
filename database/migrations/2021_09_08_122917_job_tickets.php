@@ -16,7 +16,17 @@ class JobTickets extends Migration
         Schema::create('job_tickets', function (Blueprint $table) {
             $table->id();
             $table->string('ticket_id');
-            $table->string('content');
+            $table->string('employeeName');
+            $table->string('item');
+            $table->string('itemId');
+            $table->string('factory');
+            $table->string('color');
+            $table->string('colorId');
+            $table->string('cloth');
+            $table->string('rollFunc');
+            $table->string('manager');
+            $table->string('order');
+            $table->string('ps');
         });
     }
 
