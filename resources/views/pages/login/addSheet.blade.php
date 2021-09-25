@@ -1,0 +1,86 @@
+@extends('layouts.masters.manager')
+@section('content')
+    <div class="container">
+        <div class="row mt-3 justify-content-center">
+            <h1 class="text-center col-lg-12 ">工作分配</h1>
+        </div>
+        <form action="{{Route('post_addSheet')}}" method="POST" class="workSheet">
+            @csrf
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ticket_id">派遣單編號</label>
+                    <input type="text" class="form-control" id="ticket_id" placeholder="派遣單編號">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="date">日期</label>
+                    <input type="text" class="form-control" id="date" placeholder="日期">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="employeeName">客戶名稱</label>
+                    <input type="text" class="form-control" id="employeeName" placeholder="客戶名稱">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="item">品項</label>
+                    <input type="text" class="form-control" id="item" placeholder="品項">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="itemId">貨號</label>
+                    <input type="text" class="form-control" id="itemId" placeholder="貨號">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="factory">漂染廠</label>
+                    <input type="text" class="form-control" id="factory" placeholder="漂染廠">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="color">顏色</label>
+                    <input type="text" class="form-control" id="color" placeholder="顏色">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="colorId">色線編號</label>
+                    <input type="text" class="form-control" id="colorId" placeholder="色線編號">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cloth">布單數量</label>
+                    <input type="text" class="form-control" id="cloth" placeholder="布單數量">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="rollFunc">滾邊方式</label>
+                    <input type="text" class="form-control" id="rollFunc" placeholder="滾邊方式">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="manager">派工主管</label>
+                    <input type="text" class="form-control" id="manager" placeholder="派工主管">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="order">訂單數量</label>
+                    <input type="text" class="form-control" id="order" placeholder="訂單數量">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ps">備註</label>
+                <input type="text" class="form-control" id="ps" placeholder="備註">
+            </div>
+            <div style="width:800px; display: flex;" class="column">
+                <button type="button" class="btn_add form-control btn btn-secondary rounded mr-3">QR code</button>
+                <button type="submit" class="btn_add form-control btn btn-secondary rounded mx-3">儲存</button>
+                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">排程</button>
+                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">刪單</button>
+                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">結單</button>
+                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">列印</button>
+            </div>
+        </form>
+
+
+    </div>
+@endsection
+
