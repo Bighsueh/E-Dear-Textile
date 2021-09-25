@@ -18,4 +18,5 @@ Route::post('/login', 'LoginController@post_login')->name('post_login');
 
 Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
 Route::get('/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
-Route::post('/menu/addSheet/post', 'MenuController@post_addSheet')->name('post_addSheet');
+Route::post('/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
+
