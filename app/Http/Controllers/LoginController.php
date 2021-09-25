@@ -20,6 +20,8 @@ class LoginController extends Controller
         $employee_id = $request->input('employee_id');
         $employee_password = $request->input('employee_password');
         $users_table = DB::table('users')->get();
+        // 派遣單查詢
+        $job_tickets = DB::table('job_tickets')->get();
         try {
             $account_info = $users_table
                 ->where('account', $employee_id)
@@ -36,7 +38,7 @@ class LoginController extends Controller
             Session::put('level', $level);
 
             //go to menu page and need to add condition to check level
-            return view('pages.login.menu');
+            return view('pages.login.menu',compact('job_tickets',$job_tickets));
 
 //            return page right here
         } catch (Exception $exception) {
