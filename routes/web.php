@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('login')->get('/',function(){
-    Route::get('/menu', 'LoginController@get_menu_page')->name('get_menu_page');
-});
-Route::get('/login', 'LoginController@get_login_page')->name('get_login');
+
+Route::get('/', 'LoginController@get_login_page')->name('get_login');
 Route::post('/login', 'LoginController@post_login')->name('post_login');
 
-
+Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
+Route::get('/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
+Route::post('/menu/addSheet/post', 'MenuController@post_addSheet')->name('post_addSheet');

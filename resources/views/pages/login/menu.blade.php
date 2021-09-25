@@ -1,6 +1,6 @@
-@extends('layouts.masters.login')
+@extends('layouts.masters.manager')
 @section('content')
-    <div class="container">
+    <div style="display: flex" class="container">
         <div class="row justify-content-center">
             <h1 class="text-center mb-12 col-lg-12">選單</h1>
             <table class="table text-center">
@@ -36,7 +36,7 @@
                 </tr>
 
             </table>
-            <button type="button" class="form-control btn btn-secondary rounded px-3 mb-8">建立新單</button>
+            <button type="button"  onclick="window.location='{{ url(route('get_addSheet')) }}'" class="btn_add form-control btn btn-secondary rounded px-3 mb-8">建立新單</button>
         </div>
     </div>
 @endsection
