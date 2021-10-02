@@ -9,7 +9,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="ticket_id">派遣單編號</label>
-                    <input type="text" name="ticket_id" class="form-control" id="ticket_id" placeholder="派遣單編號">
+                    <input disabled="value" type="text" name="ticket_id" class="form-control" id="ticket_id" placeholder="派遣單編號" value="{{$id->id+1}}">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="date">日期</label>
@@ -43,7 +43,11 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="colorId">色線編號</label>
-                    <input type="text" name="colorId" class="form-control" id="colorId" placeholder="色線編號">
+                    <select id="colorId" name="colorId" class="form-select form-control" aria-label="色線編號">
+                        <option value="聯訪">聯訪</option>
+                        <option value="廣秦">廣秦</option>
+                        <option value="自訂">自訂</option>
+                    </select>
                 </div>
             </div>
             <div class="form-row">
@@ -52,8 +56,8 @@
                     <input type="text" name="wash" class="form-control" id="wash" placeholder="洗標">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="colorId">色線編號2</label>
-                    <input type="text" name="colorId" class="form-control" id="colorId" placeholder="色線編號">
+                    <label for="colorId2">色線編號2</label>
+                    <input type="text" name="colorId2" class="form-control" id="colorId2" placeholder="色線編號">
                 </div>
             </div>
             <div class="form-row">
@@ -76,21 +80,35 @@
                     <input type="text" name="order" class="form-control" id="order" placeholder="訂單數量">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="ps">備註</label>
-                <input type="text" name="ps" class="form-control" id="ps" placeholder="備註">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ps">備註</label>
+                    <input type="text" name="ps" class="form-control" id="ps" placeholder="備註">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="status">狀態</label>
+                    <select id="status" name="status" class="form-select form-control" aria-label="狀態">
+                        <option value="排程中">排程中</option>
+                        <option value="刪單">刪單</option>
+                        <option value="結單">結單</option>
+                        <option value="自訂">自訂</option>
+                    </select>
+                </div>
             </div>
+
             <div style="width:800px; display: flex;" class="column">
-                <button type="button" class="btn_add form-control btn btn-secondary rounded mr-3">QR code</button>
-                <button type="submit" class="btn_add form-control btn btn-secondary rounded mx-3">儲存</button>
-                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">排程</button>
-                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">刪單</button>
-                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">結單</button>
-                <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3">列印</button>
+                <button style="width: 100px;" type="button" class="btn_qrcode form-control btn btn-secondary rounded mr-3">QR code</button>
+                <button style="width: 100px;" type="submit" class="btn_add form-control btn btn-secondary rounded mx-3">儲存</button>
+                <button style="width: 100px;" type="button" class="btn_print form-control btn btn-secondary rounded mx-3">列印</button>
             </div>
         </form>
-
-
     </div>
+
+    <script>
+        const d = new Date()
+        const date = document.getElementById("date");
+        date.value = d.getFullYear() +"/"+(d.getMonth()+1)+"/"+d.getDate();
+    </script>
 @endsection
+
 
