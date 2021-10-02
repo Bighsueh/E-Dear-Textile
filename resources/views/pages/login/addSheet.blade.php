@@ -1,5 +1,6 @@
 @extends('layouts.masters.manager')
 @section('content')
+    <br>
     <div class="container">
 {{--        <div class="row mt-3 justify-content-center">--}}
 {{--            <h1 class="text-center col-lg-12 ">工作分配</h1>--}}
