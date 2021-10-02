@@ -1,6 +1,5 @@
 @extends('layouts.masters.manager')
 @section('content')
-    <br>
     <div style="display: flex" class="container">
         <table class="table">
             <thead class="thead-dark">
@@ -42,4 +41,10 @@
         </table>
 
     </div>
+    <div class=" footer text-center text-lg-start bg-dark text-muted fixed-bottom">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+
+        </div>
+    </div>
+
 @endsection
