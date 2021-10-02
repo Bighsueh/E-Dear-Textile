@@ -21,7 +21,7 @@
                             <h2>{{$job_ticket->employeeName}}</h2>
                         </td>
                         <td>
-                            <h2>{{$job_ticket->ticket_id}}</h2>
+                            <h2>{{$job_ticket->id}}</h2>
                         </td>
                         <td>
                             <h2>{{$job_ticket->item}}</h2>
@@ -34,7 +34,7 @@
                             <h2><button type="button" class="btn btn-lg btn-secondary">結果</button></h2>
                         </td>
                         <td>
-                            <h2>排程中</h2>
+                            <h2>{{$job_ticket->status}}</h2>
                         </td>
                     </tr>
                     @endforeach
