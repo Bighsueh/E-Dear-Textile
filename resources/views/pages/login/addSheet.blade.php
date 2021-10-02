@@ -44,10 +44,10 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="colorId">色線編號</label>
-                    <input class="form-control" list="ColorLines" id="colorId" placeholder="輸入或點擊選取廠商">
+                    <input class="form-control" list="ColorLines" name="colorId" id="colorId" value="" placeholder="輸入或點擊選取廠商">
                     <datalist id="ColorLines">
-                        <option value="聯訪">聯訪</option>
-                        <option value="廣秦">廣秦</option>
+                        <option >聯訪</option>
+                        <option >廣秦</option>
                     </datalist>
                 </div>
             </div>
