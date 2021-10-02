@@ -114,11 +114,6 @@
                 </div>
             </form>
         </div>
-        <footer class=" footer text-center text-lg-start bg-dark text-muted mt-3">
-            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-
-            </div>
-        </footer>
 
         <script>
         const d = new Date()
