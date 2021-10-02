@@ -9,7 +9,8 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="ticket_id">派遣單編號</label>
-                    <input disabled="value" type="text" name="ticket_id" class="form-control" id="ticket_id" placeholder="派遣單編號" value="{{$id->id+1}}">
+                    <input disabled="value" type="text" name="ticket_id" class="form-control" id="ticket_id"
+                           placeholder="派遣單編號" value="{{$id->id+1}}">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="date">日期</label>
@@ -43,11 +44,11 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="colorId">色線編號</label>
-                    <select id="colorId" name="colorId" class="form-select form-control" aria-label="色線編號">
+                    <input class="form-control" list="ColorLines" id="colorId" placeholder="輸入或點擊選取廠商">
+                    <datalist id="ColorLines">
                         <option value="聯訪">聯訪</option>
                         <option value="廣秦">廣秦</option>
-                        <option value="自訂">自訂</option>
-                    </select>
+                    </datalist>
                 </div>
             </div>
             <div class="form-row">
@@ -97,9 +98,15 @@
             </div>
 
             <div style="width:800px; display: flex;" class="column">
-                <button style="width: 100px;" type="button" class="btn_qrcode form-control btn btn-secondary rounded mr-3">QR code</button>
-                <button style="width: 100px;" type="submit" class="btn_add form-control btn btn-secondary rounded mx-3">儲存</button>
-                <button style="width: 100px;" type="button" class="btn_print form-control btn btn-secondary rounded mx-3">列印</button>
+                <button style="width: 100px;" type="button"
+                        class="btn_qrcode form-control btn btn-secondary rounded mr-3">QR code
+                </button>
+                <button style="width: 100px;" type="submit" class="btn_add form-control btn btn-secondary rounded mx-3">
+                    儲存
+                </button>
+                <button style="width: 100px;" type="button"
+                        class="btn_print form-control btn btn-secondary rounded mx-3">列印
+                </button>
             </div>
         </form>
     </div>
@@ -107,7 +114,7 @@
     <script>
         const d = new Date()
         const date = document.getElementById("date");
-        date.value = d.getFullYear() +"/"+(d.getMonth()+1)+"/"+d.getDate();
+        date.value = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
     </script>
 @endsection
 
