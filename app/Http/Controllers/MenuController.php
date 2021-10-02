@@ -16,26 +16,29 @@ class MenuController extends Controller
     // get addSheetUI
     public function get_addSheet()
     {
-        return view('pages.login.addSheet');
+        $id = DB::table('job_tickets')->select('id')->orderBy("id",'desc')->first();
+        return view('pages.login.addSheet',compact('id',$id));
     }
 
     public function post_create_addSheet(Request $request)
     {
         $query = $request->except('_token');
         DB::table('job_tickets')->insert([
-            'ticket_id' =>$query['ticket_id'],
+            'date' =>$query['date'],
             'employeeName' =>$query['employeeName'],
             'item' =>$query['item'],
             'itemId' =>$query['itemId'],
             'factory' =>$query['factory'],
             'color' =>$query['color'],
             'colorId' =>$query['colorId'],
+            'wash' =>$query['wash'],
+            'colorId2' =>$query['colorId2'],
             'cloth' =>$query['cloth'],
             'rollFunc' =>$query['rollFunc'],
             'manager' =>$query['manager'],
             'order' =>$query['order'],
             'ps' =>$query['ps'],
-            'wash' =>$query['wash'],
+            'status' =>$query['status'],
         ]);
         return redirect(route('get_menu'));
     }
