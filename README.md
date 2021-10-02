@@ -17,6 +17,10 @@
     > EDearTextile
             >
 
+#### 問題解決串
+1. 遇到 "Target class [xxxSeeder] does not exist. 解決辦法"
+> composer dump-autoload
+
    
 
 
