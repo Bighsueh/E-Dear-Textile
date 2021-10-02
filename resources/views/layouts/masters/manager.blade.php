@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="text-secondary nav-link" href="#">登出</a>
+                    <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>
                 </li>
                 {{--                <li class="nav-item">--}}
                 {{--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
