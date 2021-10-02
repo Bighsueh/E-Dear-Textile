@@ -88,12 +88,12 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="status">狀態</label>
-                    <select id="status" name="status" class="form-select form-control" aria-label="狀態">
+                    <input class="form-control" list="statuslists" name="status" id="status" placeholder="輸入或點擊選取狀態">
+                    <datalist id="statuslists">
                         <option value="排程中">排程中</option>
                         <option value="刪單">刪單</option>
                         <option value="結單">結單</option>
-                        <option value="自訂">自訂</option>
-                    </select>
+                    </datalist>
                 </div>
             </div>
 
