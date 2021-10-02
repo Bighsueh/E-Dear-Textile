@@ -1,9 +1,9 @@
 @extends('layouts.masters.manager')
 @section('content')
     <div class="container">
-        <div class="row mt-3 justify-content-center">
-            <h1 class="text-center col-lg-12 ">工作分配</h1>
-        </div>
+{{--        <div class="row mt-3 justify-content-center">--}}
+{{--            <h1 class="text-center col-lg-12 ">工作分配</h1>--}}
+{{--        </div>--}}
         <form action="{{Route('post_create_addSheet')}}" method="POST" class="workSheet">
             @csrf
             <div class="form-row">
