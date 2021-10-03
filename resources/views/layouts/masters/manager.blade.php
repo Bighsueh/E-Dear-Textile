@@ -8,7 +8,7 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <title>益得紡織幹部介面</title>
 </head>
-<body class="bg-light">
+<body class="bg-light h-100" style="height: 100%;margin:0;">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">益得紡織-幹部管理介面</a>
@@ -19,7 +19,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="text-light nav-link active" aria-current="page" href="{{Route('get_menu')}}">派遣單列表</a>
+                    <a class="text-light nav-link active" aria-current="page"
+                       href="{{Route('get_menu')}}">派遣單列表</a>
                 </li>
                 <li class="nav-item">
                     <a class="text-light nav-link" href="{{Route('get_addSheet')}}">新增派遣單</a>
@@ -35,14 +36,23 @@
         </div>
     </div>
 </nav>
-<div class="mt-3">
-    @yield('content')
-</div>
-<div class=" footer text-center text-lg-start bg-dark text-muted fixed-bottom">
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+<div class="wrapper "
+     style="min-height: 100%; /*外層高度100%*/
+           margin-bottom: -50px; /*隨footer高度需做調整*/">
+    <div class="content" style="padding-bottom: 50px;">
+
+        <div class="mt-3">
+            @yield('content')
+        </div>
+{{--        <div class="footer text-center text-lg-start bg-dark text-muted"--}}
+{{--                style="position: relative;height: 50px;margin-bottom: -50px">--}}
+
+{{--        </div>--}}
 
     </div>
 </div>
+
+
 </body>
 
 <!-- Bootstrap core JavaScript -->
