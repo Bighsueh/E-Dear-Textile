@@ -101,7 +101,7 @@
                 </div>
 
                 <div style="width:800px; display: flex;" class="column">
-                    <button style="width: 100px;" type="button"
+                    <button style="width: 100px;" type="button" onclick="window.location.href='app://open'"
                             class="btn_qrcode form-control btn btn-secondary rounded mr-3">QR code
                     </button>
                     <button style="width: 100px;" type="submit"
@@ -116,10 +116,10 @@
         </div>
 
         <script>
-        const d = new Date()
-        const date = document.getElementById("date");
-        date.value = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-    </script>
+            const d = new Date()
+            const date = document.getElementById("date");
+            date.value = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+        </script>
 @endsection
 
 
