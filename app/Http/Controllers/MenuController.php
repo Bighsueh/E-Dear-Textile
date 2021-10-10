@@ -11,13 +11,13 @@ class MenuController extends Controller
     {
         // 派遣單查詢
         $job_tickets = DB::table('job_tickets')->get();
-        return view('pages.login.menu',compact('job_tickets',$job_tickets));
+        return view('pages.manager.menu',compact('job_tickets',$job_tickets));
     }
     // get addSheetUI
     public function get_addSheet()
     {
         $id = DB::table('job_tickets')->select('id')->orderBy("id",'desc')->first();
-        return view('pages.login.addSheet',compact('id',$id));
+        return view('pages.manager.addSheet',compact('id',$id));
     }
 
     public function post_create_addSheet(Request $request)

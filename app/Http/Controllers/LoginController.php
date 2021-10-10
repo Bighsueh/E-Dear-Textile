@@ -38,7 +38,7 @@ class LoginController extends Controller
             Session::put('level', $level);
 
             //go to menu page and need to add condition to check level
-            return view('pages.login.menu',compact('job_tickets',$job_tickets));
+            return view('pages.manager.menu',compact('job_tickets',$job_tickets));
 
 //            return page right here
         } catch (Exception $exception) {
@@ -53,7 +53,7 @@ class LoginController extends Controller
 
             if ($level === 'manager') {
 //                return 幹部 page
-                return view('pages.login.menu');
+                return view('pages.manager.menu');
             }
             if ($level === 'employee') {
 //                return 員工 page
