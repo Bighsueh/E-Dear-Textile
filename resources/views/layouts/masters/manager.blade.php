@@ -8,7 +8,7 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <title>益得紡織幹部介面</title>
 </head>
-<body class="bg-light h-100" style="height: 100%;margin:0;">
+<body class="bg-light h-100">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">益得紡織-幹部管理介面</a>
@@ -36,10 +36,8 @@
         </div>
     </div>
 </nav>
-<div class="wrapper "
-     style="min-height: 100%; /*外層高度100%*/
-           margin-bottom: -50px; /*隨footer高度需做調整*/">
-    <div class="content" style="padding-bottom: 50px;">
+<div class="wrapper ">
+    <div class="content">
 
         <div class="mt-3">
             @yield('content')
@@ -57,4 +55,6 @@
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </html>
