@@ -16,8 +16,8 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
+//        dd($request->session()->get('level'));
         if (!$request->session()->has('level')) {
-//            dd($request->session()->get('level'));
             return redirect()->route('get_login');
         }
         return $next($request);
