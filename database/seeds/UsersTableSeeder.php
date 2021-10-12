@@ -16,7 +16,15 @@ class UsersTableSeeder extends Seeder
             'name' =>'yoyo',
             'account' =>'123',
             'password' =>'456',
-            'level' =>'admin',
+            'level' =>'manager',
+        ]);
+
+        DB::table('users')->insert([
+            'user_id' =>'408411455',
+            'name' =>'yoyooo',
+            'account' =>'456',
+            'password' =>'789',
+            'level' =>'employee',
         ]);
     }
 }
