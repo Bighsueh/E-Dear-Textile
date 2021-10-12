@@ -17,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'LoginController@get_login_page')->name('get_login');
 Route::post('/login', 'LoginController@post_login')->name('post_login');
 
-// 幹部
-Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
-Route::get('/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
-Route::post('/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
+// 登入middleware
+Route::group(['middleware' =>['login']],function(){
 
-// 員工
-Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
+    // 幹部
+    Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
+    Route::get('/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
+    Route::post('/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
+
+    // 員工
+    Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
+});
+
 

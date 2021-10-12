@@ -11,7 +11,9 @@ class LoginController extends Controller
 {
     public function get_login_page(Request $request)
     {
-
+        if($request->session()->has('level')){
+            Session::forget('level');
+        }
         return view('pages.login.login');
     }
 
