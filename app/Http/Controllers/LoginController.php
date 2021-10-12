@@ -49,16 +49,13 @@ class LoginController extends Controller
 
 //            get session level
             $level = $request->session()->get('level');
-            // 派遣單查詢
-            $job_tickets = DB::table('job_tickets')->get();
-            //
             if ($level === 'manager') {
 //                return 幹部 page
-                return view('pages.manager.menu',compact('job_tickets',$job_tickets));
+                return redirect()->route('get_menu');
             }
             if ($level === 'employee') {
 //                return 員工 page
-                return view('pages.employee.employeeMenu');
+                return redirect()->route('get_employee_menu');
             }
 
     }
