@@ -20,8 +20,7 @@ class LoginController extends Controller
         $employee_id = $request->input('employee_id');
         $employee_password = $request->input('employee_password');
         $users_table = DB::table('users')->get();
-        // 派遣單查詢
-        $job_tickets = DB::table('job_tickets')->get();
+
         try {
             $account_info = $users_table
                 ->where('account', $employee_id)
@@ -36,9 +35,8 @@ class LoginController extends Controller
 //            使用者權限判斷
             $level = $account_info->level;
             Session::put('level', $level);
-
-            //go to menu page and need to add condition to check level
-            return view('pages.manager.menu',compact('job_tickets',$job_tickets));
+            // use get_menu_page function to check level
+            return $this->get_menu_page($request);
 
 //            return page right here
         } catch (Exception $exception) {
@@ -48,15 +46,20 @@ class LoginController extends Controller
 
     public function get_menu_page(Request $request)
     {
-//            get session level
-            $level = $request->session()->has('level');
 
+//            get session level
+            $level = $request->session()->get('level');
+            // 派遣單查詢
+            $job_tickets = DB::table('job_tickets')->get();
+            //
             if ($level === 'manager') {
 //                return 幹部 page
-                return view('pages.manager.menu');
+                return view('pages.manager.menu',compact('job_tickets',$job_tickets));
             }
             if ($level === 'employee') {
 //                return 員工 page
+                return view('pages.employee.employeeMenu');
             }
+
     }
 }
