@@ -39,14 +39,7 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                             QR Code
                         </button>
-                        <script>
 
-
-                            $('#qrcode').qrcode("http://140.130.36.85");
-
-
-
-                        </script>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -59,7 +52,9 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <div id="qrcode"></div>
+                                        <div id="qrcode">
+
+                                        </div>
 
                                     </div>
                                     <div class="modal-footer">
@@ -76,7 +71,9 @@
         </table>
 
     </div>
-
+    <script>
+        $('#qrcode').qrcode("http://140.130.36.85");
+    </script>
 
 
 @endsection
