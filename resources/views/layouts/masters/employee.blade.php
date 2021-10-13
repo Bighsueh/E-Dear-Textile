@@ -20,7 +20,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="text-light nav-link active" aria-current="page"
-                       href="{{Route('get_menu')}}">派遣單列表</a>
+                       href="{{Route('get_employee_menu')}}">派遣單列表</a>
                 </li>
                 <li class="nav-item">
                     <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>

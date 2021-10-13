@@ -20,7 +20,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="text-light nav-link active" aria-current="page"
-                       href="{{Route('get_menu')}}">派遣單列表</a>
+                       href="{{Route('get_manager_menu')}}">派遣單列表</a>
                 </li>
                 <li class="nav-item">
                     <a class="text-light nav-link" href="{{Route('get_addSheet')}}">新增派遣單</a>
@@ -48,7 +48,7 @@
 {{--        </div>--}}
 
     </div>
-</div>
+</div>w
 
 
 </body>
