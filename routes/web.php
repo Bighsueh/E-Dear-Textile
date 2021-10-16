@@ -23,7 +23,9 @@ Route::group(['middleware' =>['login']],function(){
     // 幹部
     Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
     Route::get('/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
+    Route::get('/menu/list/{id}', 'MenuController@get_list')->name('get_list');
     Route::post('/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
+    Route::patch('/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
 
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
