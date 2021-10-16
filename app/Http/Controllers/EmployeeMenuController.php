@@ -13,4 +13,10 @@ class EmployeeMenuController extends Controller
         $job_tickets = DB::table('job_tickets')->get();
         return view('pages.employee.employeeMenu',compact('job_tickets',$job_tickets));
     }
+
+    public function get_employee_list($id)
+    {
+        $job_tickets = DB::table('job_tickets')->where('id',$id)->first();
+        return view('pages.employee.employeeList',compact('job_tickets',$job_tickets));
+    }
 }

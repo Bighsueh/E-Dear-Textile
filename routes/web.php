@@ -27,6 +27,8 @@ Route::group(['middleware' =>['login']],function(){
 
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
+    // 查看派遣單細項
+    Route::get('/employee/list/{id}', 'EmployeeMenuController@get_employee_list')->name('get_employee_list');
 });
 
 
