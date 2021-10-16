@@ -19,7 +19,7 @@
                         {{$job_ticket->employeeName}}
                     </td>
                     <td>
-                        {{$job_ticket->id}}
+                        <a href="{{Route('get_employee_list',$job_ticket->id)}}" style="text-decoration: none; color: black;">{{$job_ticket->id}}</a>
                     </td>
                     <td>
                         {{$job_ticket->item}}
