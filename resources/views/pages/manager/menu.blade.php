@@ -11,6 +11,7 @@
                 <th>訂單數量</th>
                 <th>回報</th>
                 <th>狀態</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -36,12 +37,12 @@
                         {{$job_ticket->status}}
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#QRcodeModal-{{$job_ticket->id}}">
                             QR Code
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="QRcodeModal-{{$job_ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                         <div class="modal-header">
