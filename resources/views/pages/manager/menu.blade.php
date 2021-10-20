@@ -53,9 +53,9 @@
                                         </div>
                                     <div class="modal-body">
                                         <div class="d-flex justify-content-center">
-                                            <div id="qrcode"></div>
+                                            <div id="qrcode-{{$job_ticket->id}}"></div>
                                             <script>
-                                                $('#qrcode').qrcode("http://140.130.36.85/"+ {{$job_ticket->id}});
+                                                $('#qrcode-{{$job_ticket->id}}').qrcode("http://140.130.36.85/"+ {{$job_ticket->id}});
                                             </script>
                                         </div>
                                     </div>
