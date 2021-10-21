@@ -19,4 +19,19 @@ class EmployeeMenuController extends Controller
         $job_tickets = DB::table('job_tickets')->where('id',$id)->first();
         return view('pages.employee.employeeList',compact('job_tickets',$job_tickets));
     }
+
+    public function post_employee_report(Request $request)
+    {
+        $query = $request->except('_token');
+//        dd($request);
+        $position = $query['report_rd'];
+        $job_tickets = DB::table('job_tickets')->where('id',$query['report_ticket_id'])->first();
+//        dd($job_tickets);
+        return view('pages.employee.employeeReport',compact('job_tickets','position'));
+    }
+
+    public function post_create_employee_report(Request $request)
+    {
+        dd($request);
+    }
 }
