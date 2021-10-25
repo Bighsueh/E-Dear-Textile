@@ -35,30 +35,6 @@
                         </button>
                     </td>
                 </tr>
-                <!-- Modal -->
-                <div class="modal fade" id="QRcodeModal-{{$job_ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header ">
-                                <h5 class="modal-title" id="exampleModalLabel" style="">{{$job_ticket->employeeName}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="d-flex justify-content-center">
-                                    <div id="qrcode-{{$job_ticket->id}}"></div>
-                                    <script>
-                                        $('#qrcode-{{$job_ticket->id}}').qrcode("http://140.130.36.85/"+ {{$job_ticket->id}});
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                {{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             @endforeach
             </tbody>
@@ -66,5 +42,31 @@
         </table>
 
     </div>
+    @foreach($job_tickets as $job_ticket)
+        <!-- Modal -->
+        <div class="modal fade" id="QRcodeModal-{{$job_ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title" id="exampleModalLabel" style="">{{$job_ticket->employeeName}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center">
+                            <div id="qrcode-{{$job_ticket->id}}"></div>
+                            <script>
+                                $('#qrcode-{{$job_ticket->id}}').qrcode("http://140.130.36.85/"+ {{$job_ticket->id}});
+                            </script>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    @endforeach
 @endsection
