@@ -19,6 +19,10 @@ Route::post('/login', 'LoginController@post_login')->name('post_login');
 
 // 登入middleware
 Route::group(['middleware' =>['login']],function(){
+    //QrCode掃描功能
+    //開啟Scanner
+    Route::get('/openScanner/{qr_code_status}', 'ScannerController@OpenScanner')->name('open_scanner');
+
 
     // 幹部
     Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
