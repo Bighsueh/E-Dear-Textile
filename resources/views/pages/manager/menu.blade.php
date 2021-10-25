@@ -36,7 +36,11 @@
                     <td>
                         {{$job_ticket->status}}
                     </td>
-
+                    <td>
+                        <form action="{{url('/openScanner/ManagerToPiping')}}">
+                            <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
