@@ -36,9 +36,14 @@
                     <a class="text-light nav-link active" aria-current="page"
                        href="{{Route('get_employee_menu')}}">派遣單列表</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="text-light nav-link active" aria-current="page"
                     onclick="employeeQrcodeButtonClick()">員工QR code</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-light nav-link active" aria-current="page"
+                       onclick="window.location.href='app://open'">QR code掃描器</a>
                 </li>
                 <li class="nav-item">
                     <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>
