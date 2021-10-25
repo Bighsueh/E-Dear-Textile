@@ -86,7 +86,7 @@
                 <div class="d-flex justify-content-center">
                     <div id="employeeQrcodeImg"></div>
                     <script>
-                        $("#employeeQrcodeImg").qrcode("http://140.130.36.85");
+                        $("#employeeQrcodeImg").qrcode("http://140.130.36.85/user_id/{{\Illuminate\Support\Facades\Session::get('user_id')}}");
                     </script>
                 </div>
             </div>
