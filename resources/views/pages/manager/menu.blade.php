@@ -37,7 +37,7 @@
                         {{$job_ticket->status}}
                     </td>
                     <td>
-                        <form action="{{url('/openScanner/ManagerToPiping')}}">
+                        <form action="{{url('/openScanner/ManagerToPiping/'.$job_ticket->id)}}">
                             <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
                         </form>
                     </td>
