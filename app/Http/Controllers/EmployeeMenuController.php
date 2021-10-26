@@ -9,8 +9,11 @@ class EmployeeMenuController extends Controller
 {
     public function get_employee_menu()
     {
-        // 派遣單查詢
-        $job_tickets = DB::table('job_tickets')->get();
+        // 派遣單查詢,join job_titles 檢查權限
+        $job_tickets = DB::table('job_tickets')
+            ->join('job_titles', 'job_tickets.id', "=", 'job_titles.ticket_id')
+            ->get();
+
         return view('pages.employee.employeeMenu',compact('job_tickets',$job_tickets));
     }
 
