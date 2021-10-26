@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class EmployeeMenuController extends Controller
 {
@@ -13,6 +14,10 @@ class EmployeeMenuController extends Controller
         $job_tickets = DB::table('job_tickets')
             ->join('job_titles', 'job_tickets.id', "=", 'job_titles.ticket_id')
             ->get();
+
+        //重置Session狀態
+        Session::forget('qr_code_status');
+        Session::forget('ticket_info');
 
         return view('pages.employee.employeeMenu',compact('job_tickets',$job_tickets));
     }

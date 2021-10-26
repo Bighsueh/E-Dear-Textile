@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class MenuController extends Controller
 {
@@ -11,6 +12,11 @@ class MenuController extends Controller
     {
         // 派遣單查詢
         $job_tickets = DB::table('job_tickets')->get();
+
+        //重置Session狀態
+        Session::forget('qr_code_status');
+        Session::forget('ticket_info');
+
         return view('pages.manager.menu',compact('job_tickets',$job_tickets));
     }
     // get addSheetUI
