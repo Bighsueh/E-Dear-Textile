@@ -51,10 +51,21 @@ class ScannerController extends Controller
 
         //判斷是否為剪巾掃滾邊
         if($method === 'CutToPiping'){
-
+            //value 為 單號id
+            $user_id = $request->session()->get('user_id');
+            $ticket_id = $value;
+            $this->ManagerToPiping($user_id, $ticket_id);
         }
 
-        return redirect()->route('get_menu');
+
+        //依照level判斷轉址頁面
+        if ($level === 'manager') {
+            return redirect()->route('get_menu');
+        }
+        if ($level === 'employee') {
+            return redirect()->route('get_employee_menu');
+        }
+
     }
    function ManagerToPiping($user_id,$job_ticket_id)
     {
