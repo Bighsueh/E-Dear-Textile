@@ -35,6 +35,13 @@ class ScannerController extends Controller
             $ticket_id = $request->session()->get('ticket_info');
             $this->ManagerToPiping($user_id, $ticket_id);
         }
+        //判斷是否為幹部掃折頭員
+        if ($qr_code_status === 'ManagerToFoldHead') {
+            //value 為 員工id
+            $user_id = $value;
+            $ticket_id = $request->session()->get('ticket_info');
+            $this->ManagerToFoldHead($user_id, $ticket_id);
+        }
         return redirect()->route('get_menu');
     }
    function ManagerToPiping($user_id,$job_ticket_id)
@@ -57,9 +64,24 @@ class ScannerController extends Controller
         }
     }
 
-    public function ManagerToFoldHead(Request $request)
+    function ManagerToFoldHead($user_id,$job_ticket_id)
     {
+        try {
+            $job_titles = DB::table('job_titles');
+            $job_tickets = DB::table('job_tickets');
 
+            //判斷派遣單號(job_ticket_id)是否存在
+            if ($job_tickets->where('id', $job_ticket_id)->first()) {
+                //加入單號
+                $job_titles->insert([
+                    'ticket_id' => $job_ticket_id,
+                    'user_id' => $user_id,
+                    'title' => '折頭',
+                ]);
+            }
+        } catch (Exception $exception) {
+            echo '資料庫寫入錯誤';
+        }
     }
 
     public function CutToPiping(Request $request)
