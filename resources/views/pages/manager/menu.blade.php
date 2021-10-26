@@ -26,7 +26,7 @@
                     </td>
                     <td>
                         {{$job_ticket->item}}
-                    </td>K
+                    </td>
                     <td>
                         {{$job_ticket->order.'打'}}
                     </td>
@@ -38,7 +38,7 @@
                         {{$job_ticket->status}}
                     </td>
                     <td>
-                        K
+
                     </td>
                 </tr>
             @endforeach

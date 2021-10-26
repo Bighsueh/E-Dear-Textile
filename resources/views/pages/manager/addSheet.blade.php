@@ -1,5 +1,6 @@
 @extends('layouts.masters.manager')
 @section('content')
+    {{--   要做防呆 不然授權會出錯 然後沒有筆數的時候要處理 --}}
         <div class="container">
             {{--        <div class="row mt-3 justify-content-center">--}}
             {{--            <h1 class="text-center col-lg-12 ">工作分配</h1>--}}
@@ -101,7 +102,7 @@
                 </div>
 
                 <div style="width:800px; display: flex;" class="column">
-                    <form action="{{url('/openScanner/ManagerToPiping/'.$job_ticket->id)}}">
+                    <form action="{{url('/openScanner/ManagerToPiping/'.$id->id)}}">
                         <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
                     </form>
                     <button style="width: 100px;" type="submit"
