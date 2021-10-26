@@ -87,20 +87,22 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <h5 class="modal-title" id="exampleModalLabel" style="">{{$job_ticket->employeeName}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel" style=""> 此QR Code僅供剪巾員進行掃描  </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="d-flex justify-content-center">
+                            <br>
                             <div id="qrcode-{{$job_ticket->id}}"></div>
                             <script>
-                                $('#qrcode-{{$job_ticket->id}}').qrcode("{{url('/')}}/{{$job_ticket->id}}");
+                                $('#qrcode-{{$job_ticket->id}}').qrcode("{{url('/CutToPiping/')}}/{{$job_ticket->id}}");
                             </script>
                         </div>
                     </div>
                     <div class="modal-footer">
+                        廠商：{{$job_ticket->employeeName}}
                         {{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
                     </div>
                 </div>
