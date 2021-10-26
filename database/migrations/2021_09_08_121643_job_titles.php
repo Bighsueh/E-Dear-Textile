@@ -15,7 +15,6 @@ class JobTitles extends Migration
     {
         Schema::create('job_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('title_id')->autoIncrement();
             $table->string('ticket_id');
             $table->string('user_id');
             $table->string('title');
