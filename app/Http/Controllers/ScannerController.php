@@ -25,8 +25,12 @@ class ScannerController extends Controller
 
     public function AfterScan(Request $request,$method,$value)
     {
-        //判斷是否為幹部掃員工
-        $qr_code_status = $request->session()->get('qr_code_status');
+        $level = $request->session()->get('level');
+        if ($level === "manager") {
+            //判斷是否為幹部掃員工
+            $qr_code_status = $request->session()->get('qr_code_status');
+        }
+
 
         //判斷是否為幹部掃滾邊員
         if ($qr_code_status === 'ManagerToPiping') {
