@@ -102,9 +102,8 @@
             </div>
 
             <div style="width:800px; display: flex;" class="column">
-                <form action="{{url('/openScanner/ManagerToPiping/'.$job_tickets->id)}}">
-                    <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
-                </form>
+
+                <input type="button" class="btn btn-secondary" value="Qrcode授權" onclick="document.getElementById('btn_qrcode').click()"/>
                 <button style="width: 100px;" type="submit"
                         class="btn_add form-control btn btn-secondary rounded mx-3">
                     儲存
@@ -114,6 +113,9 @@
                 </button>
             </div>
         </form>
+    <form action="{{url('/openScanner/ManagerToPiping/'.$job_tickets->id)}}">
+        <input type="submit" id="btn_qrcode" style="display: none" class="btn btn-secondary" value="Qrcode授權"/>
+    </form>
     </div>
 
 @endsection
