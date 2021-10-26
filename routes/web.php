@@ -24,8 +24,6 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/openScanner/{qr_code_status}/{sub_attr?}', 'ScannerController@OpenScanner')->name('open_scanner');
     //掃描後處理
     Route::get('/afterScan/{method}/{value}', 'ScannerController@AfterScan')->name('after_scanner');
-//    //幹部掃滾邊-掃描後授權
-//    Route::get('/ManagerToPiping/{job_ticket_id}', 'ScannerController@ManagerToPiping')->name('manager_to_piping');
 
 
     // 幹部

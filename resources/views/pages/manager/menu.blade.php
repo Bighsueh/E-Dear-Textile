@@ -26,7 +26,7 @@
                     </td>
                     <td>
                         {{$job_ticket->item}}
-                    </td>
+                    </td>K
                     <td>
                         {{$job_ticket->order.'打'}}
                     </td>
@@ -38,9 +38,7 @@
                         {{$job_ticket->status}}
                     </td>
                     <td>
-                        <form action="{{url('/openScanner/ManagerToPiping/'.$job_ticket->id)}}">
-                            <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
-                        </form>
+                        K
                     </td>
                 </tr>
             @endforeach

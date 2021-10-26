@@ -101,9 +101,9 @@
                 </div>
 
                 <div style="width:800px; display: flex;" class="column">
-                    <button style="width: 100px;" type="button" onclick="window.location.href='app://open'"
-                            class="btn_qrcode form-control btn btn-secondary rounded mr-3">QR code
-                    </button>
+                    <form action="{{url('/openScanner/ManagerToPiping/'.$job_ticket->id)}}">
+                        <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
+                    </form>
                     <button style="width: 100px;" type="submit"
                             class="btn_add form-control btn btn-secondary rounded mx-3">
                         儲存
