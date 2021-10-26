@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use mysql_xdevapi\Exception;
 
+
 class ScannerController extends Controller
 {
     public function OpenScanner(Request $request,$qr_code_status,$sub_attr)
@@ -34,8 +35,9 @@ class ScannerController extends Controller
             $ticket_id = $request->session()->get('ticket_info');
             $this->ManagerToPiping($user_id, $ticket_id);
         }
+        return redirect()->route('get_menu');
     }
-    function ManagerToPiping($user_id,$job_ticket_id)
+   function ManagerToPiping($user_id,$job_ticket_id)
     {
         try {
             $job_titles = DB::table('job_titles');
@@ -47,15 +49,12 @@ class ScannerController extends Controller
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
                     'user_id' => $user_id,
-                    'title' => '滾邊'
+                    'title' => '滾邊',
                 ]);
             }
         } catch (Exception $exception) {
-
+            echo '資料庫寫入錯誤';
         }
-
-
-        return redirect()->route('get_menu');
     }
 
     public function ManagerToFoldHead(Request $request)
