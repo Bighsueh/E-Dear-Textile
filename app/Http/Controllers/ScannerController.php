@@ -54,7 +54,7 @@ class ScannerController extends Controller
             //value 為 單號id
             $user_id = $request->session()->get('user_id');
             $ticket_id = $value;
-            $this->ManagerToPiping($user_id, $ticket_id);
+            $this->CutToPiping($user_id, $ticket_id);
         }
 
 
