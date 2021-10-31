@@ -97,7 +97,7 @@
                             <br>
                             <div id="qrcode-{{$job_ticket->id}}"></div>
                             <script>
-                                $('#qrcode-{{$job_ticket->id}}').qrcode("{{url('/afterScan/CutToPiping/')}}/{{$job_ticket->id}}");
+                                $('#qrcode-{{$job_ticket->id}}').qrcode("{{url('/afterScan/CutToPiping/')}}/{{$job_ticket->id}}/{{Illuminate\Support\Facades\Session::get('user_id')}}");
                             </script>
                         </div>
                     </div>

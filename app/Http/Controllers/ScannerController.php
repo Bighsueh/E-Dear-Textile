@@ -23,7 +23,7 @@ class ScannerController extends Controller
         return redirect('app://open');
     }
 
-    public function AfterScan(Request $request,$method,$value)
+    public function AfterScan(Request $request,$method,$value,$sub_attr2 = "")
     {
         $qr_code_status = "";
         $level = $request->session()->get('level');
@@ -54,7 +54,10 @@ class ScannerController extends Controller
             //value 為 單號id
             $user_id = $request->session()->get('user_id');
             $ticket_id = $value;
-            $this->CutToPiping($user_id, $ticket_id);
+
+            //$sub_attr2 為 滾邊員id
+
+            $this->CutToPiping($user_id, $ticket_id,$sub_attr2);
         }
 
 
@@ -109,19 +112,19 @@ class ScannerController extends Controller
         }
     }
 
-    public function CutToPiping($user_id,$job_ticket_id)
+    public function CutToPiping($user_id,$job_ticket_id,$sub_attr2)
     {
         try {
             $job_titles = DB::table('job_titles');
             $job_tickets = DB::table('job_tickets');
-            $authorizer = Session::get('user_id');
+            $authorized_person = Session::get('user_id');
             //判斷派遣單號(job_ticket_id)是否存在
             if ($job_tickets->where('id', $job_ticket_id)->first()) {
                 //加入單號
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
-                    'authorizer' => $authorizer,
-                    'authorized_person' => $user_id,
+                    'authorizer' => $sub_attr2,
+                    'authorized_person' => $authorized_person,
                     'title' => '剪巾',
                 ]);
             }
