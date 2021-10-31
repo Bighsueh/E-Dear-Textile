@@ -79,7 +79,7 @@ class ScannerController extends Controller
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
                     'authorizer' => $authorizer,
-                    'authorized_persion' => $user_id,
+                    'authorized_person' => $user_id,
                     'title' => '滾邊',
                 ]);
             }
@@ -100,7 +100,7 @@ class ScannerController extends Controller
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
                     'authorizer' => $authorizer,
-                    'authorized_persion' => $user_id,
+                    'authorized_person' => $user_id,
                     'title' => '折頭',
                 ]);
             }
@@ -121,7 +121,7 @@ class ScannerController extends Controller
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
                     'authorizer' => $authorizer,
-                    'authorized_persion' => $user_id,
+                    'authorized_person' => $user_id,
                     'title' => '剪巾',
                 ]);
             }
