@@ -16,8 +16,10 @@ class JobTitles extends Migration
         Schema::create('job_titles', function (Blueprint $table) {
             $table->id();
             $table->string('ticket_id');
-            $table->string('user_id');
             $table->string('title');
+            $table->string('user_id');
+            $table->string('authorizer');
+            $table->string('authorized_person');
         });
     }
 
