@@ -18,7 +18,8 @@ class JobReports extends Migration
             $table->string('Piping');
             $table->string('user_id');
             $table->string('ticket_id');
-            $table->string('ccntent');
+            $table->string('piping_order');
+            $table->string('cut_order');
             $table->timestamps();
         });
     }

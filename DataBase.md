@@ -30,6 +30,7 @@ job_reports
 1. Piping 滾邊員  
 2. user_id 使用者id(這裡為剪巾員)  
 3. ticket_id 派遣單id  
-4. ccntent 完成訂單數  
+4. piping_order 滾邊完成訂單數  
 5. created_at 新增日期  
-6. update_at 更新日期
+6. update_at 更新日期  
+7. cut_order 剪巾完成訂單數

@@ -53,7 +53,8 @@ class EmployeeMenuController extends Controller
         $query = $request->except('_token');
         DB::table('job_reports')->insert([
             'Piping'=>$query['Piping'],
-            'ccntent'=>$query['complete_orders'],
+            'piping_order'=>$query['complete_orders'],
+            'cut_order' => $query['cut_complete_orders'],
             'user_id'=>$request->session()->get('user_id'),
             'ticket_id' => $query['ticket_id'],
             'created_at'=>$query['date'],
