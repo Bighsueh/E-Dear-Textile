@@ -19,6 +19,11 @@ job_tickets
 
 
 job_titles
+1. ticket_id 派遣單號
+2. title 授權項目
+3. authorizer 授權人
+4. authorized_person 被授權人
+
 
 
 job_reports
