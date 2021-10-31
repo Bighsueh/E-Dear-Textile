@@ -15,7 +15,7 @@ class JobReportFoldHead extends Migration
     {
         Schema::create('job_foldHead_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('foldHead');
+            $table->string('pickTower');
             $table->string('user_id');
             $table->string('ticket_id');
             $table->string('foldHead_order');
