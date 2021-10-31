@@ -13,9 +13,9 @@ class EmployeeMenuController extends Controller
         // 派遣單查詢,join job_titles 檢查權限 增加一行where指令(不確定是否需要)
         $job_tickets = DB::table('job_tickets')
             ->join('job_titles', 'job_tickets.id', "=", 'job_titles.ticket_id')
-            ->where('job_titles.user_id',session()->get('user_id'))
+            ->where('job_titles.authorized_person',session()->get('user_id'))
             ->get();
-
+//        dd($job_tickets);
         //重置Session狀態
         Session::forget('qr_code_status');
         Session::forget('ticket_info');
@@ -31,12 +31,20 @@ class EmployeeMenuController extends Controller
 
     public function post_employee_report(Request $request)
     {
-        $query = $request->except('_token');
+        $user_id = $request->session()->get('user_id');
+//        dd($user_id);
 //        dd($request);
-        $position = $query['report_rd'];
-        $job_tickets = DB::table('job_tickets')->where('id',$query['report_ticket_id'])->first();
-//        dd($job_tickets);
-        return view('pages.employee.employeeReport',compact('job_tickets','position'));
+        $job_title = DB::table('job_titles')->select('title')->where('authorized_person', $user_id)->Where('ticket_id',$request->ticket_id)->orderBy('id','desc')->first();
+//        dd($job_title);
+        if($job_title->title == "剪巾" || $job_title->title == "折頭") {
+            $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
+            $rolls = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->get();
+//            dd($rolls);
+            return view('pages.employee.employeeReport',compact('job_tickets','job_title','rolls'));
+        }
+        else{
+            return redirect()->route('get_employee_menu');
+        }
     }
 
     public function post_create_employee_report(Request $request)
