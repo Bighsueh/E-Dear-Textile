@@ -17,7 +17,6 @@ class JobTitles extends Migration
             $table->id();
             $table->string('ticket_id');
             $table->string('title');
-            $table->string('user_id');
             $table->string('authorizer');
             $table->string('authorized_person');
         });
