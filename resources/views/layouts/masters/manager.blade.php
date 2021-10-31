@@ -39,6 +39,9 @@
                 <li class="nav-item">
                     <a class="text-light nav-link" href="{{Route('get_addSheet')}}">新增派遣單</a>
                 </li>
+                <li class="nav-item">
+                    <a class="text-light nav-link" href="{{Route('get_employeeList')}}">員工列表</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>

@@ -26,6 +26,14 @@ class MenuController extends Controller
         return view('pages.manager.addSheet',compact('id',$id));
     }
 
+    public function get_employeeList()
+    {
+        $users = DB::table('users')->get();
+
+
+        return view('pages.manager.employeeList',compact('users',$users));
+    }
+
     public function post_create_addSheet(Request $request)
     {
         $query = $request->except('_token');
