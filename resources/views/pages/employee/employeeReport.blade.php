@@ -29,10 +29,10 @@
                         <input type="text" name="complete_orders" class="form-control" id="complete_orders" placeholder="完成數量">
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="roll">滾邊員</label>
-                        <select class="form-select form-control" name="roll" id="roll">
-                                @foreach($rolls as $roll)
-                                     <option value="{{$roll->authorized_person}}">{{$roll->authorized_person}}</option>>
+                        <label for="Piping">滾邊員</label>
+                        <select class="form-select form-control" name="Piping" id="Piping">
+                                @foreach($Pipings as $Piping)
+                                     <option value="{{$Piping->authorized_person}}">{{$Piping->authorized_person}}</option>>
                                 @endforeach
                         </select>
                     </div>

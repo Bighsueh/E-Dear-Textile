@@ -15,7 +15,7 @@ class JobReports extends Migration
     {
         Schema::create('job_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('report_id');
+            $table->string('Piping');
             $table->string('user_id');
             $table->string('ticket_id');
             $table->string('ccntent');

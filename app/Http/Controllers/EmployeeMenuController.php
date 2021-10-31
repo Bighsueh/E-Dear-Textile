@@ -38,9 +38,9 @@ class EmployeeMenuController extends Controller
 //        dd($job_title);
         if($job_title->title == "剪巾" || $job_title->title == "折頭") {
             $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
-            $rolls = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->get();
+            $Pipings = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->get();
 //            dd($rolls);
-            return view('pages.employee.employeeReport',compact('job_tickets','job_title','rolls'));
+            return view('pages.employee.employeeReport',compact('job_tickets','job_title','Pipings'));
         }
         else{
             return redirect()->route('get_employee_menu');
@@ -49,6 +49,16 @@ class EmployeeMenuController extends Controller
 
     public function post_create_employee_report(Request $request)
     {
-        dd($request);
+//        dd($request);
+        $query = $request->except('_token');
+        DB::table('job_reports')->insert([
+            'Piping'=>$query['Piping'],
+            'ccntent'=>$query['complete_orders'],
+            'user_id'=>$request->session()->get('user_id'),
+            'ticket_id' => $query['ticket_id'],
+            'created_at'=>$query['date'],
+            'updated_at'=>$query['date'],
+        ]);
+        return redirect()->route('get_employee_menu');
     }
 }
