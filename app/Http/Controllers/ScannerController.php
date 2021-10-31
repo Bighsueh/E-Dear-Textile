@@ -72,13 +72,14 @@ class ScannerController extends Controller
         try {
             $job_titles = DB::table('job_titles');
             $job_tickets = DB::table('job_tickets');
-
+            $authorizer = Session::get('user_id');
             //判斷派遣單號(job_ticket_id)是否存在
             if ($job_tickets->where('id', $job_ticket_id)->first()) {
                 //加入單號
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
-                    'user_id' => $user_id,
+                    'authorizer' => $authorizer,
+                    'authorized_persion' => $user_id,
                     'title' => '滾邊',
                 ]);
             }
@@ -92,13 +93,14 @@ class ScannerController extends Controller
         try {
             $job_titles = DB::table('job_titles');
             $job_tickets = DB::table('job_tickets');
-
+            $authorizer = Session::get('user_id');
             //判斷派遣單號(job_ticket_id)是否存在
             if ($job_tickets->where('id', $job_ticket_id)->first()) {
                 //加入單號
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
-                    'user_id' => $user_id,
+                    'authorizer' => $authorizer,
+                    'authorized_persion' => $user_id,
                     'title' => '折頭',
                 ]);
             }
@@ -112,13 +114,14 @@ class ScannerController extends Controller
         try {
             $job_titles = DB::table('job_titles');
             $job_tickets = DB::table('job_tickets');
-
+            $authorizer = Session::get('user_id');
             //判斷派遣單號(job_ticket_id)是否存在
             if ($job_tickets->where('id', $job_ticket_id)->first()) {
                 //加入單號
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
-                    'user_id' => $user_id,
+                    'authorizer' => $authorizer,
+                    'authorized_persion' => $user_id,
                     'title' => '剪巾',
                 ]);
             }
