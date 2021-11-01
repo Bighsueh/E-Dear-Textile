@@ -24,7 +24,7 @@
                                 <input type="text" name="ticket_id" style="display: none" class="form-control" value="{{$job_ticket->ticket_id}}"/>
                             </td>
                             <td>
-                                {{$job_ticket->item}}
+                                {{$job_ticket->itemId}}
                             </td>
                             <td>
                                 {{$job_ticket->order.'打'}}

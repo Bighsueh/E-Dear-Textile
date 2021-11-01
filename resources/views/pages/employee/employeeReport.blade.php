@@ -25,8 +25,12 @@
                         <input readonly="readonly" type="text" name="wash" class="form-control" id="wash" placeholder="洗標" value="{{$job_ticket->wash}}">
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="complete_orders">完成數量</label>
+                        <label for="complete_orders">滾邊員完成數量</label>
                         <input type="text" name="complete_orders" class="form-control" id="complete_orders" placeholder="完成數量">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="cut_complete_orders">剪巾員完成數量</label>
+                        <input type="text" name="cut_complete_orders" class="form-control" id="cut_complete_orders" placeholder="完成數量">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="Piping">滾邊員</label>
@@ -48,8 +52,8 @@
                     </div>
                 </form>
             @endforeach
-
         @elseif($job_title->tilte === "折頭")
+{{--      這邊還沒測試過 也還沒做完      --}}
             @foreach($job_tickets as $job_ticket)
                 <form action="{{Route('post_create_employee_report')}}" method="POST" class="workSheet">
                     @csrf
@@ -73,11 +77,11 @@
                         <input readonly="readonly" type="text" name="wash" class="form-control" id="wash" placeholder="洗標" value="{{$job_tickets->wash}}">
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="wash">完成數量</label>
+                        <label for="complete_orders">完成數量</label>
                         <input type="text" name="complete_orders" class="form-control" id="complete_orders" placeholder="完成數量">
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="wash">撿巾員</label>
+                        <label for="pick_cloth_emp">撿巾員</label>
                         <input type="text" name="pick_cloth_emp" class="form-control" id="pick_cloth_emp" placeholder="撿巾員">
                     </div>
                     <div class="form-group col-md-12">
