@@ -95,21 +95,36 @@ class MenuController extends Controller
         $ticket_id = $request->except('_token');
         $job_ticket = DB::table('job_tickets')->where('id',$ticket_id)->first();
         $reports = DB::table('job_reports')->where('ticket_id',$ticket_id)->get();
-        $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id')->get();
+        $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id',$ticket_id)->get();
+//        計算目前回報總數量
         if($reports->count())
         {
             $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
+            $sumPipReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('Piping_order');
         }
         if($foldHeadReports->count())
         {
-            $sumFoldHeadReports = DB::table('foldHeadReports')->where('ticket_id', $ticket_id)->sum('pickTower');
+            $sumFoldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('foldHead_order');
+            $sumPickReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('pickTower_order');
+//            dd($sumPickReports);
         }
-//        dd($foldHeadReports);
-        return view('pages.manager.report',compact('reports','foldHeadReports','job_ticket','sumReports','sumFoldHeadReports'));
+//        dd($sumFoldHeadReports);
+        return view('pages.manager.report',
+            compact('reports','foldHeadReports','job_ticket','sumReports','sumFoldHeadReports','sumPipReports','sumPickReports'));
     }
 
-    public function get_resultDetail($report,$id)
+    public function get_resultDetail($report,$sum1,$sum2,$id)
     {
-        return view('pages.manager.reportDetail');
+        if($report =="cut"){
+            $queries = DB::table('job_reports')->where('ticket_id',$id)->get();
+//            dd($queries);
+            return view('pages.manager.reportDetail',compact('queries','sum1','sum2','report'));
+        }
+        else if($report =="foldHead"){
+            $queries = DB::table('job_foldhead_reports')->where('ticket_id',$id)->get();
+//            dd($query);
+            return view('pages.manager.reportDetail',compact('queries','sum1','sum2','report'));
+        }
+
     }
 }

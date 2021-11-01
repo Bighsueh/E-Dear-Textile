@@ -29,7 +29,7 @@
             <tr>
                 <td>剪巾 回報</td>
                 @if($reports->count())
-                    <td><a href="{{Route('get_resultDetail',["cut",$job_ticket->id])}}"
+                    <td><a href="{{Route('get_resultDetail',["cut",$sumReports,$sumPipReports,$job_ticket->id])}}"
                            style="text-decoration: none; color: black;">{{$sumReports}}</a></td>
                 @else
                     <td>向未回報</td>
@@ -38,7 +38,7 @@
             <tr>
                 <td>折頭 回報</td>
                 @if($foldHeadReports->count())
-                    <td><a href="{{Route('get_resultDetail',["foldHead",$job_ticket->id])}}"
+                    <td><a href="{{Route('get_resultDetail',["foldHead",$sumFoldHeadReports,$sumPickReports,$job_ticket->id])}}"
                            style="text-decoration: none; color: black;">{{$sumFoldHeadReports}}</a></td>
                 @else
                     <td>向未回報</td>
