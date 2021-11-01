@@ -16,31 +16,34 @@
             </thead>
             <tbody>
             @foreach($job_tickets as $job_ticket)
-                <tr>
-                    <td>
-                        {{$job_ticket->employeeName}}
-                    </td>
-                    <td>
-                        <a href="{{Route('get_list',$job_ticket->id)}}"
-                           style="text-decoration: none; color: black;">{{$job_ticket->id}}</a>
-                    </td>
-                    <td>
-                        {{$job_ticket->item}}
-                    </td>
-                    <td>
-                        {{$job_ticket->order.'打'}}
-                    </td>
-                    <td>
-                        {{--結果還沒帶值--}}
-                        <button type="button" class="btn btn-secondary">結果</button>
-                    </td>
-                    <td>
-                        {{$job_ticket->status}}
-                    </td>
-                    <td>
+                <form action="{{Route('get_result')}}" method="POST">
+                    @csrf
+                    <tr>
+                        <td>
+                            {{$job_ticket->employeeName}}
+                        </td>
+                        <td>
+                            <a href="{{Route('get_list',$job_ticket->id)}}"
+                               style="text-decoration: none; color: black;">{{$job_ticket->id}}</a>
+                            <input type="text" name="ticket_id" style="display: none" class="form-control" value="{{$job_ticket->id}}"/>
+                        </td>
+                        <td>
+                            {{$job_ticket->itemId}}
+                        </td>
+                        <td>
+                            {{$job_ticket->order.'打'}}
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-secondary">結果</button>
+                        </td>
+                        <td>
+                            {{$job_ticket->status}}
+                        </td>
+                        <td>
 
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </form>
             @endforeach
             </tbody>
 
