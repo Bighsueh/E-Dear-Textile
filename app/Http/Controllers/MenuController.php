@@ -63,7 +63,7 @@ class MenuController extends Controller
 //        dd($job_tickets);
         return view('pages.manager.list',compact('job_tickets',$job_tickets));
     }
-
+    // 修改
     public function patch_patchSheet(Request $request)
     {
         $query = $request->except('_token');
@@ -87,5 +87,29 @@ class MenuController extends Controller
             'status' =>$query['status'],
         ]);
         return redirect()->route('get_menu');
+    }
+
+    public function get_result(Request $request)
+    {
+//        dd($request);
+        $ticket_id = $request->except('_token');
+        $job_ticket = DB::table('job_tickets')->where('id',$ticket_id)->first();
+        $reports = DB::table('job_reports')->where('ticket_id',$ticket_id)->get();
+        $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id')->get();
+        if($reports->count())
+        {
+            $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
+        }
+        if($foldHeadReports->count())
+        {
+            $sumFoldHeadReports = DB::table('foldHeadReports')->where('ticket_id', $ticket_id)->sum('pickTower');
+        }
+//        dd($foldHeadReports);
+        return view('pages.manager.report',compact('reports','foldHeadReports','job_ticket','sumReports','sumFoldHeadReports'));
+    }
+
+    public function get_resultDetail($report,$id)
+    {
+        return view('pages.manager.reportDetail');
     }
 }
