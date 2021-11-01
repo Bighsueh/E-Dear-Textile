@@ -33,6 +33,7 @@ Route::group(['middleware' =>['login']],function(){
     Route::post('/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
     Route::patch('/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
     Route::post('/menu/result','MenuController@get_result')->name('get_result');
+    Route::get('/menu/result/{report}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
     Route::get('/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
