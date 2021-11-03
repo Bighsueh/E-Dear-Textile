@@ -145,7 +145,7 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
                         <div class="text-center">
-                            請選擇授權對象之為滾邊或折頭<br>
+                            請選擇授權對象為滾邊或折頭<br>
                             (此功能僅供手機端使用)
                         </div>
                     </div>
