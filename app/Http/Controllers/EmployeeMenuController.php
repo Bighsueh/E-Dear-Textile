@@ -36,11 +36,17 @@ class EmployeeMenuController extends Controller
 //        dd($request);
         $job_title = DB::table('job_titles')->select('title')->where('authorized_person', $user_id)->Where('ticket_id',$request->ticket_id)->orderBy('id','desc')->first();
 //        dd($job_title);
-        if($job_title->title == "剪巾" || $job_title->title == "折頭") {
+        if($job_title->title == "剪巾"  ) {
             $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
             $Pipings = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->get();
-//            dd($rolls);
             return view('pages.employee.employeeReport',compact('job_tickets','job_title','Pipings'));
+        }
+        elseif($job_title->title == "折頭"){
+            $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
+//            dd($job_tickets);
+            $foldHeads = DB::table('job_titles')->where('title', "折頭")->Where('ticket_id', $request->ticket_id)->get();
+//            dd($foldHead);
+            return view('pages.employee.employeeReport',compact('job_tickets','job_title','foldHeads'));
         }
         else{
             return redirect()->route('get_employee_menu');
@@ -51,15 +57,31 @@ class EmployeeMenuController extends Controller
     {
 //        dd($request);
         $query = $request->except('_token');
-        DB::table('job_reports')->insert([
-            'Piping'=>$query['Piping'],
-            'piping_order'=>$query['complete_orders'],
-            'cut_order' => $query['cut_complete_orders'],
-            'user_id'=>$request->session()->get('user_id'),
-            'ticket_id' => $query['ticket_id'],
-            'created_at'=>$query['date'],
-            'updated_at'=>$query['date'],
-        ]);
+//        dd($query);
+        if($query['title'] == '剪巾')
+        {
+            DB::table('job_reports')->insert([
+                'Piping'=>$query['Piping'],
+                'piping_order'=>$query['complete_orders'],
+                'cut_order' => $query['cut_complete_orders'],
+                'user_id'=>$request->session()->get('user_id'),
+                'ticket_id' => $query['ticket_id'],
+                'created_at'=>$query['date'],
+                'updated_at'=>$query['date'],
+            ]);
+        }
+        elseif ($query['title'] == '折頭'){
+            DB::table('job_foldhead_reports')->insert([
+                'pickTower'=>$query['pick_cloth_emp'],
+                'foldHead_order'=>$query['complete_orders'],
+                'pickTower_order' => $query['pick_complete_orders'],
+                'user_id'=>$request->session()->get('user_id'),
+                'ticket_id' => $query['ticket_id'],
+                'created_at'=>$query['date'],
+                'updated_at'=>$query['date'],
+            ]);
+        }
+
         return redirect()->route('get_employee_menu');
     }
 }

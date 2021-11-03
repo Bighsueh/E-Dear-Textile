@@ -50,9 +50,10 @@
                             確認
                         </button>
                     </div>
+                    <input type="text" name="title" style="display: none" value="{{$job_title->title}}" class="form-control" id="title">
                 </form>
             @endforeach
-        @elseif($job_title->tilte === "折頭")
+        @elseif($job_title->title === "折頭")
 {{--      這邊還沒測試過 也還沒做完      --}}
             @foreach($job_tickets as $job_ticket)
                 <form action="{{Route('post_create_employee_report')}}" method="POST" class="workSheet">
@@ -60,25 +61,29 @@
                     <div class="form-group col-md-12">
                         <label for="ticket_id">派遣單編號</label>
                         <input readonly="readonly" type="text" name="ticket_id" class="form-control" id="ticket_id"
-                               placeholder="派遣單編號" value="{{$job_tickets->id}}">
+                               placeholder="派遣單編號" value="{{$job_ticket->id}}">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="employeeName">客戶名稱</label>
-                        <input readonly="readonly" type="text" name="employeeName" class="form-control" id="employeeName" value="{{$job_tickets->employeeName}}"
+                        <input readonly="readonly" type="text" name="employeeName" class="form-control" id="employeeName" value="{{$job_ticket->employeeName}}"
                                placeholder="客戶名稱">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="colorId">色線編號</label>
-                        <input readonly="readonly" class="form-control" name="colorId" id="colorId" value="{{$job_tickets->colorId."-".$job_tickets->colorId2}}"
+                        <input readonly="readonly" class="form-control" name="colorId" id="colorId" value="{{$job_ticket->colorId."-".$job_ticket->colorId2}}"
                                placeholder="輸入或點擊選取廠商">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="wash">洗標</label>
-                        <input readonly="readonly" type="text" name="wash" class="form-control" id="wash" placeholder="洗標" value="{{$job_tickets->wash}}">
+                        <input readonly="readonly" type="text" name="wash" class="form-control" id="wash" placeholder="洗標" value="{{$job_ticket->wash}}">
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="complete_orders">完成數量</label>
+                        <label for="complete_orders">折頭員完成數量</label>
                         <input type="text" name="complete_orders" class="form-control" id="complete_orders" placeholder="完成數量">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="pick_complete_orders">撿巾員完成數量</label>
+                        <input type="text" name="pick_complete_orders" class="form-control" id="pick_complete_orders" placeholder="完成數量">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="pick_cloth_emp">撿巾員</label>
@@ -94,7 +99,7 @@
                             確認
                         </button>
                     </div>
-
+                    <input type="text" name="title" style="display: none" value="{{$job_title->title}}" class="form-control" id="title">
                 </form>
             @endforeach
         @endif
