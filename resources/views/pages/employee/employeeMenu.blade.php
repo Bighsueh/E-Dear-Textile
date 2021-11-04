@@ -60,9 +60,9 @@
                     <div class="modal-body">
                         <div class="d-flex justify-content-center">
                             <br>
-                            <div id="qrcode-{{$job_ticket->id}}"></div>
+                            <div id="qrcode-{{$job_ticket->ticket_id}}"></div>
                             <script>
-                                $('#qrcode-{{$job_ticket->id}}').qrcode("{{url('/afterScan/CutToPiping/')}}/{{$job_ticket->id}}/{{Illuminate\Support\Facades\Session::get('user_id')}}");
+                                $('#qrcode-{{$job_ticket->ticket_id}}').qrcode("{{url('/afterScan/CutToPiping/')}}/{{$job_ticket->ticket_id}}/{{Illuminate\Support\Facades\Session::get('user_id')}}");
                             </script>
                         </div>
                     </div>
