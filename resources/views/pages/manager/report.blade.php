@@ -32,7 +32,7 @@
                     <td><a href="{{Route('get_resultDetail',["cut",$sumReports,$sumPipReports,$job_ticket->id])}}"
                            style="text-decoration: none; color: black;">{{$sumReports}}</a></td>
                 @else
-                    <td>向未回報</td>
+                    <td>尚未回報</td>
                 @endif
             </tr>
             <tr>
@@ -41,7 +41,7 @@
                     <td><a href="{{Route('get_resultDetail',["foldHead",$sumFoldHeadReports,$sumPickReports,$job_ticket->id])}}"
                            style="text-decoration: none; color: black;">{{$sumFoldHeadReports}}</a></td>
                 @else
-                    <td>向未回報</td>
+                    <td>尚未回報</td>
                 @endif
             </tr>
         </table>

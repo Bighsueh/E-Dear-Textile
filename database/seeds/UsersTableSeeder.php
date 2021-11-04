@@ -51,5 +51,29 @@ class UsersTableSeeder extends Seeder
             'password' =>'7899cut',
             'level' =>'employee',
         ]);
+//      折頭
+        DB::table('users')->insert([
+            'user_id' =>'408411455head',
+            'name' =>'yoyohead',
+            'account' =>'456head',
+            'password' =>'789head',
+            'level' =>'employee',
+        ]);
+//      折頭2
+        DB::table('users')->insert([
+            'user_id' =>'408411455head2',
+            'name' =>'yoyohead2',
+            'account' =>'4566head',
+            'password' =>'7899head',
+            'level' =>'employee',
+        ]);
+//      撿巾
+        DB::table('users')->insert([
+            'user_id' =>'408411455pick',
+            'name' =>'yoyopick',
+            'account' =>'456pick',
+            'password' =>'789pick',
+            'level' =>'employee',
+        ]);
     }
 }
