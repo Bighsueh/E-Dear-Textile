@@ -21,58 +21,58 @@ class UsersTableSeeder extends Seeder
         ]);
 //      滾邊
         DB::table('users')->insert([
-            'user_id' =>'408411455',
+            'user_id' =>'408411455piping',
             'name' =>'yoyooo',
-            'account' =>'456',
-            'password' =>'789',
+            'account' =>'piping',
+            'password' =>'piping',
             'level' =>'employee',
         ]);
 //      滾邊2
         DB::table('users')->insert([
-            'user_id' =>'4084114552',
+            'user_id' =>'408411455piping2',
             'name' =>'yoyooo2',
-            'account' =>'4566',
-            'password' =>'7899',
+            'account' =>'piping2',
+            'password' =>'piping2',
             'level' =>'employee',
         ]);
 //      剪巾
         DB::table('users')->insert([
             'user_id' =>'408411455cut',
             'name' =>'yoyocut',
-            'account' =>'456cut',
-            'password' =>'789cut',
+            'account' =>'cut',
+            'password' =>'cut',
             'level' =>'employee',
         ]);
 //      剪巾2
         DB::table('users')->insert([
             'user_id' =>'408411455cut2',
             'name' =>'yoyocut2',
-            'account' =>'4566cut',
-            'password' =>'7899cut',
+            'account' =>'cut2',
+            'password' =>'cut2',
             'level' =>'employee',
         ]);
 //      折頭
         DB::table('users')->insert([
             'user_id' =>'408411455head',
             'name' =>'yoyohead',
-            'account' =>'456head',
-            'password' =>'789head',
+            'account' =>'head',
+            'password' =>'head',
             'level' =>'employee',
         ]);
 //      折頭2
         DB::table('users')->insert([
             'user_id' =>'408411455head2',
             'name' =>'yoyohead2',
-            'account' =>'4566head',
-            'password' =>'7899head',
+            'account' =>'head2',
+            'password' =>'head2',
             'level' =>'employee',
         ]);
 //      撿巾
         DB::table('users')->insert([
             'user_id' =>'408411455pick',
             'name' =>'yoyopick',
-            'account' =>'456pick',
-            'password' =>'789pick',
+            'account' =>'pick',
+            'password' =>'pick',
             'level' =>'employee',
         ]);
     }
