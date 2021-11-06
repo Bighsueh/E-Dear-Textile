@@ -34,6 +34,7 @@ Route::group(['middleware' =>['login']],function(){
     Route::patch('/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
     Route::post('/menu/result','MenuController@get_result')->name('get_result');
     Route::get('/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
+    Route::get('/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
     Route::get('/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');

@@ -14,7 +14,7 @@
                     @if($i == 0)
                         <tr>
                             <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">滾邊</td>
-                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">{{$sum2}}打</td>
+                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}"><a href="{{Route('get_resultList',[$queries[$i]->ticket_id,'piping'])}}" style="text-decoration: none; color: black;">{{$sum2}}打</a></td>
                             <td>{{$queries[$i]->Piping}}</td>
                             <td>{{$queries[$i]->piping_order}}打</td>
                         </tr>
@@ -29,7 +29,7 @@
                     @if($i == 0)
                         <tr>
                             <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">剪巾</td>
-                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">{{$sum1}}打</td>
+                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}"><a href="{{Route('get_resultList',[$queries[$i]->ticket_id,'cut'])}}" style="text-decoration: none; color: black;">{{$sum1}}打</a></td>
                             <td>{{$queries[$i]->user_id}}</td>
                             <td>{{$queries[$i]->cut_order}}打</td>
                         </tr>
@@ -45,7 +45,7 @@
                     @if($i == 0)
                         <tr>
                             <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">折頭</td>
-                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">{{$sum1}}打</td>
+                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}"><a href="{{Route('get_resultList',[$queries[$i]->ticket_id,'foldHead'])}}" style="text-decoration: none; color: black;">{{$sum1}}打</a></td>
                             <td>{{$queries[$i]->user_id}}</td>
                             <td>{{$queries[$i]->foldHead_order}}打</td>
                         </tr>
@@ -60,7 +60,7 @@
                     @if($i == 0)
                         <tr>
                             <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">撿巾</td>
-                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}">{{$sum2}}打</td>
+                            <td style="vertical-align : middle;text-align:center;" rowspan="{{$queries->count()}}"><a href="{{Route('get_resultList',[$queries[$i]->ticket_id,'pickTower'])}}" style="text-decoration: none; color: black;">{{$sum2}}打</a></td>
                             <td>{{$queries[$i]->pickTower}}</td>
                             <td>{{$queries[$i]->pickTower_order}}打</td>
                         </tr>

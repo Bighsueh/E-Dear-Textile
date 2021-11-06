@@ -127,4 +127,15 @@ class MenuController extends Controller
         }
 
     }
+
+    public function get_resultList($id,$report)
+    {
+        if ($report == 'cut' || $report == 'piping') {
+            $queries = DB::table('job_reports')->where('ticket_id', $id)->get();
+        } elseif ($report == 'foldHead' || $report == 'pickTower') {
+            $queries = DB::table('job_foldhead_reports')->where('ticket_id', $id)->get();
+        }
+//        dd($queries);
+        return view('pages.manager.reportList',compact('id','report','queries'));
+    }
 }
