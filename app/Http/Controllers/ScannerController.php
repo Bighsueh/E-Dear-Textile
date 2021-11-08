@@ -32,7 +32,7 @@ class ScannerController extends Controller
          * $authorized_person = 被授權人
          *
          * */
-        $user_id = $request->session()->get('user_id');
+        if ($user_id === '') $user_id = $request->session()->get('user_id');
         $level = $request->session()->get('level');
 
         if (!is_null($request->session()->get('ticket_info'))) {
