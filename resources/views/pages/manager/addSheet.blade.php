@@ -102,7 +102,7 @@
                 </div>
 
                 <div style="width:800px; display: flex;" class="column">
-                    <form action="{{url('/openScanner/ManagerToPiping/'.$id->id)}}">
+                    <form action="{{url('/openScanner?method=ManagerToPiping&ticket_id='.$id->id)}}">
                         <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
                     </form>
                     <button style="width: 100px;" type="submit"

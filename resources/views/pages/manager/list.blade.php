@@ -156,8 +156,8 @@
                 </div>
             </div>
         </div>
-        <form id="form_ManagerToFoldHead" action="{{url('/openScanner/ManagerToFoldHead/'.$job_tickets->id)}}"></form>
-        <form id="form_ManagerToPiping" action="{{url('/openScanner/ManagerToPiping/'.$job_tickets->id)}}"></form>
+        <form id="form_ManagerToFoldHead" action="{{url('/openScanner?method=ManagerToFoldHead&ticket_id='.$job_tickets->id)}}"></form>
+        <form id="form_ManagerToPiping" action="{{url('/openScanner?method=ManagerToPiping&ticket_id='.$job_tickets->id)}}"></form>
         <script>
             ;(function () {
                 //滾邊
