@@ -18,20 +18,21 @@ class LoginMiddleware
     {
         //get request uri
         $request_uri = $request->getRequestUri();
-
+        //Session->level
         $level = '';
 
         //check login status
         if (!$request->session()->has('level')) {
-            //if no,return get_login
+            //查無Session->level,return get_login
             return redirect()->route('get_login');
-        } else {
-            //if yes, get session "level"
-            $level = Session::get('level');
         }
+        //get session "level"
+        $level = Session::get('level');
 
-        //check uri contains string of level
-        if (!strpos($request_uri, $level) !== false) {
+        //check uri contains string of level and "Scan"
+        //strpos函數找到值會回傳字串，找不到會回傳false
+        if (!(strpos($request_uri, $level) === false) and !(strpos($request_uri, "Scan") === false)) {
+            //當level跟"Scan"字眼同時找不到則return get_login
             return redirect()->route('get_login');
         }
 
