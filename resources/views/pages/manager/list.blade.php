@@ -156,18 +156,18 @@
                 </div>
             </div>
         </div>
-        <form id="form_ManagerToFoldHead" action="{{url('/openScanner?methods=ManagerToFoldHead&ticket_id='.$job_tickets->id)}}"></form>
-        <form id="form_ManagerToPiping" action="{{url('/openScanner?methods=ManagerToPiping&ticket_id='.$job_tickets->id)}}"></form>
+        <form id="form_ManagerToFoldHead" action="{{url('/openScanner/ManagerToFoldHead/'.$job_tickets->id)}}"></form>
+        <form id="form_ManagerToPiping" action="{{url('/openScanner/ManagerToPiping/'.$job_tickets->id)}}"></form>
         <script>
             ;(function () {
                 //滾邊
                 document.getElementById('btn_piping').addEventListener('click',function(){
-                    window.location.href = "{{url('/openScanner?methods=ManagerToFoldHead&ticket_id='.$job_tickets->id)}}";
+                    document.getElementById('form_ManagerToPiping').submit();
                 });
 
                 //折頭
                 document.getElementById('btn_foldhead').addEventListener('click',function(){
-                    window.location.href = "{{url('/openScanner?methods=ManagerToPiping & ticket_id='.$job_tickets->id)}}";
+                    document.getElementById('form_ManagerToFoldHead').submit();
                 });
             })()
         </script>
