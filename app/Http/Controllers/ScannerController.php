@@ -10,12 +10,13 @@ use mysql_xdevapi\Exception;
 
 class ScannerController extends Controller
 {
-    public function OpenScanner(Request $request, $method, $ticket_id)
+    public function OpenScanner(Request $request)
     {
-        $method = '';
-        $ticket_id = '';
+        dd($request->);
+        $methods = '';
+        $ticket_id = $request->parameters["amp;_ticket_id"];
         //紀錄跳轉Scanner前使用者的狀態
-        Session::put('method', $method);
+        Session::put('method', $methods);
         //紀錄跳轉Scanner前使用的單號
         Session::put('ticket_info', $ticket_id);
 
