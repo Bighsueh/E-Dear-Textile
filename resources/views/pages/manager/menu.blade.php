@@ -31,7 +31,7 @@
                             {{$job_ticket->itemId}}
                         </td>
                         <td>
-                            {{$job_ticket->order.'打'}}
+                            {{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12)."條"}}
                         </td>
                         <td>
                             <button type="submit" class="btn btn-secondary">結果</button>
