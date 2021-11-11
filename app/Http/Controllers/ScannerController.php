@@ -20,7 +20,7 @@ class ScannerController extends Controller
         return redirect('app://open');
     }
 
-    public function AfterScan(Request $request, $ticket_id = '', $method = '', $value = '', $user_id = '')
+    public function AfterScan(Request $request)
     {
         /*
          * $method = 要做的事情
@@ -32,7 +32,16 @@ class ScannerController extends Controller
          * $authorized_person = 被授權人
          *
          * */
-        if ($user_id === '') $user_id = $request->session()->get('user_id');
+        $ticket_id = '';
+        $method = '';
+        $value = '';
+        $user_id = '';
+
+        if (is_null($request->user_id)) {
+            $user_id = $request->session()->get('user_id');
+        } else {
+            $user_id = $request->user_id;
+        }
         $level = $request->session()->get('level');
 
         if (!is_null($request->session()->get('ticket_info'))) {
@@ -46,20 +55,20 @@ class ScannerController extends Controller
             //判斷是否為幹部掃滾邊員(被授權人,單號)
             if ($method === 'ManagerToPiping') $this->ManagerToPiping($user_id, $ticket_id);
 
-            //判斷是否為幹部掃折頭員
+            //判斷是否為幹部掃折頭員(被授權人,單號)
             if ($method === 'ManagerToFoldHead') $this->ManagerToFoldHead($user_id, $ticket_id);
 
             return redirect()->route('get_menu');
         }
 
         if ($level === 'employee') {
-            //判斷是否為剪巾掃滾邊
-            if ($method === 'CutToPiping') {
-                //抓取員工
-                $this->CutToPiping($user_id, $ticket_id);
 
-                return redirect()->route('get_employee_menu');
-            }
+            if ($request->ticket_id !== '') $ticket_id = $request->ticket_id;
+
+            //為剪巾掃滾邊(被授權人,單號)
+            $this->CutToPiping($user_id, $ticket_id);
+
+            return redirect()->route('get_employee_menu');
         }
     }
 
@@ -105,7 +114,7 @@ class ScannerController extends Controller
         }
     }
 
-    public function CutToPiping($job_ticket_id, $authorizer)
+    public function CutToPiping($authorizer, $job_ticket_id)
     {
         try {
             $job_titles = DB::table('job_titles');
