@@ -57,13 +57,13 @@ class EmployeeMenuController extends Controller
     {
 //        dd($request);
         $query = $request->except('_token');
-//        dd($query);
+//        dd($query['pick_complete_bar_orders']+$query['pick_complete_dozen_orders']*12);
         if($query['title'] == '剪巾')
         {
             DB::table('job_reports')->insert([
                 'Piping'=>$query['Piping'],
-                'piping_order'=>$query['complete_orders'],
-                'cut_order' => $query['cut_complete_orders'],
+                'piping_order'=>$query['complete_bar_orders']+$query['complete_dozen_orders']*12,
+                'cut_order' => $query['cut_complete_bar_orders']+$query['cut_complete_dozen_orders']*12,
                 'user_id'=>$request->session()->get('user_id'),
                 'ticket_id' => $query['ticket_id'],
                 'created_at'=>$query['date'],
@@ -73,8 +73,8 @@ class EmployeeMenuController extends Controller
         elseif ($query['title'] == '折頭'){
             DB::table('job_foldhead_reports')->insert([
                 'pickTower'=>$query['pick_cloth_emp'],
-                'foldHead_order'=>$query['complete_orders'],
-                'pickTower_order' => $query['pick_complete_orders'],
+                'foldHead_order'=>$query['complete_bar_orders']+$query['complete_dozen_orders']*12,
+                'pickTower_order' => $query['pick_complete_bar_orders']+$query['pick_complete_dozen_orders']*12,
                 'user_id'=>$request->session()->get('user_id'),
                 'ticket_id' => $query['ticket_id'],
                 'created_at'=>$query['date'],
