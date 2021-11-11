@@ -10,67 +10,60 @@ use mysql_xdevapi\Exception;
 
 class ScannerController extends Controller
 {
-    public function OpenScanner(Request $request,$qr_code_status,$sub_attr)
+    public function OpenScanner(Request $request, $method, $sub_attr)
     {
-        $user_id = $request->session()->get('user_id');
-        $level = $request->session()->get('level');
-
         //紀錄跳轉Scanner前使用者的狀態
-        Session::put('qr_code_status',$qr_code_status);
+        Session::put('method', $method);
         //紀錄跳轉Scanner前使用的單號
         Session::put('ticket_info', $sub_attr);
 
         return redirect('app://open');
     }
 
-    public function AfterScan(Request $request,$method,$value,$sub_attr2 = "")
+    public function AfterScan(Request $request, $ticket_id = '', $method = '', $value = '', $user_id = '')
     {
-        $qr_code_status = "";
+        /*
+         * $method = 要做的事情
+         *      ManagerToPiping 幹部掃滾邊
+         *      ManagerToFoldHead 幹部掃折頭員
+         *      CutToPiping 剪巾掃滾邊
+         *
+         * $authorizer = 授權人
+         * $authorized_person = 被授權人
+         *
+         * */
+        if ($user_id === '') $user_id = $request->session()->get('user_id');
         $level = $request->session()->get('level');
-        if ($level === "manager") {
-            //判斷是否為幹部掃員工
-            $qr_code_status = $request->session()->get('qr_code_status');
-        }
 
-
-        //判斷是否為幹部掃滾邊員
-        if ($qr_code_status === 'ManagerToPiping') {
-            //value 為 員工id
-            $user_id = $value;
+        if (!is_null($request->session()->get('ticket_info'))) {
             $ticket_id = $request->session()->get('ticket_info');
-            $this->ManagerToPiping($user_id, $ticket_id);
         }
 
-        //判斷是否為幹部掃折頭員
-        if ($qr_code_status === 'ManagerToFoldHead') {
-            //value 為 員工id
-            $user_id = $value;
-            $ticket_id = $request->session()->get('ticket_info');
-            $this->ManagerToFoldHead($user_id, $ticket_id);
-        }
-
-        //判斷是否為剪巾掃滾邊
-        if($method === 'CutToPiping'){
-            //value 為 單號id
-            $user_id = $request->session()->get('user_id');
-            $ticket_id = $value;
-
-            //$sub_attr2 為 滾邊員id
-
-            $this->CutToPiping($user_id, $ticket_id,$sub_attr2);
-        }
-
-
-        //依照level判斷轉址頁面
         if ($level === 'manager') {
+            //若判斷是幹部的話就從 Session 讀取 method 狀態
+            $method = $request->session()->get('method');
+
+            //判斷是否為幹部掃滾邊員(被授權人,單號)
+            if ($method === 'ManagerToPiping') $this->ManagerToPiping($user_id, $ticket_id);
+
+            //判斷是否為幹部掃折頭員
+            if ($method === 'ManagerToFoldHead') $this->ManagerToFoldHead($user_id, $ticket_id);
+
             return redirect()->route('get_menu');
         }
-        if ($level === 'employee') {
-            return redirect()->route('get_employee_menu');
-        }
 
+        if ($level === 'employee') {
+            //判斷是否為剪巾掃滾邊
+            if ($method === 'CutToPiping') {
+                //抓取員工
+                $this->CutToPiping($user_id, $ticket_id);
+
+                return redirect()->route('get_employee_menu');
+            }
+        }
     }
-   function ManagerToPiping($user_id,$job_ticket_id)
+
+    function ManagerToPiping($authorized_person, $job_ticket_id)
     {
         try {
             $job_titles = DB::table('job_titles');
@@ -82,7 +75,7 @@ class ScannerController extends Controller
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
                     'authorizer' => $authorizer,
-                    'authorized_person' => $user_id,
+                    'authorized_person' => $authorized_person,
                     'title' => '滾邊',
                 ]);
             }
@@ -91,7 +84,7 @@ class ScannerController extends Controller
         }
     }
 
-    function ManagerToFoldHead($user_id,$job_ticket_id)
+    function ManagerToFoldHead($authorized_person, $job_ticket_id)
     {
         try {
             $job_titles = DB::table('job_titles');
@@ -103,7 +96,7 @@ class ScannerController extends Controller
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
                     'authorizer' => $authorizer,
-                    'authorized_person' => $user_id,
+                    'authorized_person' => $authorized_person,
                     'title' => '折頭',
                 ]);
             }
@@ -112,7 +105,7 @@ class ScannerController extends Controller
         }
     }
 
-    public function CutToPiping($user_id,$job_ticket_id,$sub_attr2)
+    public function CutToPiping($job_ticket_id, $authorizer)
     {
         try {
             $job_titles = DB::table('job_titles');
@@ -123,7 +116,7 @@ class ScannerController extends Controller
                 //加入單號
                 $job_titles->insert([
                     'ticket_id' => $job_ticket_id,
-                    'authorizer' => $sub_attr2,
+                    'authorizer' => $authorizer,
                     'authorized_person' => $authorized_person,
                     'title' => '剪巾',
                 ]);

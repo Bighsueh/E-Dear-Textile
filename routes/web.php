@@ -23,7 +23,7 @@ Route::group(['middleware' =>['login']],function(){
     //開啟Scanner
     Route::get('/openScanner/{qr_code_status}/{sub_attr?}', 'ScannerController@OpenScanner')->name('open_scanner');
     //掃描後處理
-    Route::get('/afterScan/{method}/{value}/{sub_attr2?}', 'ScannerController@AfterScan')->name('after_scanner');
+    Route::get('/afterScan', 'ScannerController@AfterScan')->name('after_scanner');
 
 
     // 幹部

@@ -23,7 +23,10 @@ class MenuController extends Controller
     public function get_addSheet()
     {
         $id = DB::table('job_tickets')->select('id')->orderBy("id",'desc')->first();
-        return view('pages.manager.addSheet',compact('id',$id));
+//        return view('pages.manager.addSheet',compact('id',$id));
+
+        $id = DB::table('job_tickets')->get();
+                return view('pages.manager.addSheet',compact('id',$id));
     }
 
     public function get_employeeList()
