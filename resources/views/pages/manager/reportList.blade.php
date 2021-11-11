@@ -82,5 +82,8 @@
                 </tbody>
             </table>
         @endif
+            <button type="button"
+                    class="btn_print form-control btn btn-secondary rounded mx-3" onclick="window.print()">列印
+            </button>
     </div>
 @endsection

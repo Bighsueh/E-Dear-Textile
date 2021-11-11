@@ -125,7 +125,7 @@
                     儲存
                 </button>
                 <button style="width: 100px;" type="button"
-                        class="btn_print form-control btn btn-secondary rounded mx-3">列印
+                        class="btn_print form-control btn btn-secondary rounded mx-3" onclick="window.print()">列印
                 </button>
             </div>
         </form>
