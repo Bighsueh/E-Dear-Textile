@@ -11,10 +11,11 @@ class LoginController extends Controller
 {
     public function get_login_page(Request $request)
     {
-        if($request->session()->has('level')){
-//            Session::forget('level');
-            Session::flush();
-        }
+        //Session flush
+        Session::flush();
+        //重新產生Session ID
+        $request->session()->regenerate();
+
         return view('pages.login.login');
     }
 
@@ -53,15 +54,15 @@ class LoginController extends Controller
     {
 
 //            get session level
-            $level = $request->session()->get('level');
-            if ($level === 'manager') {
+        $level = $request->session()->get('level');
+        if ($level === 'manager') {
 //                return 幹部 page
-                return redirect()->route('get_menu');
-            }
-            if ($level === 'employee') {
+            return redirect()->route('get_menu');
+        }
+        if ($level === 'employee') {
 //                return 員工 page
-                return redirect()->route('get_employee_menu');
-            }
+            return redirect()->route('get_employee_menu');
+        }
 
     }
 }
