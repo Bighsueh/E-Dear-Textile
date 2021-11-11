@@ -27,15 +27,15 @@ Route::group(['middleware' =>['login']],function(){
 
 
     // 幹部
-    Route::get('/menu', 'MenuController@get_menu')->name('get_menu');
-    Route::get('/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
-    Route::get('/menu/list/{id}', 'MenuController@get_list')->name('get_list');
-    Route::post('/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
-    Route::patch('/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
-    Route::post('/menu/result','MenuController@get_result')->name('get_result');
-    Route::get('/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
-    Route::get('/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
-    Route::get('/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
+    Route::get('/manager/menu', 'MenuController@get_menu')->name('get_menu');
+    Route::get('/manager/menu/addSheet', 'MenuController@get_addSheet')->name('get_addSheet');
+    Route::get('/manager/menu/list/{id}', 'MenuController@get_list')->name('get_list');
+    Route::post('/manager/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
+    Route::patch('/manager/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
+    Route::post('/manager/menu/result','MenuController@get_result')->name('get_result');
+    Route::get('/manager/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
+    Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
+    Route::get('/manager/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
     // 將資料傳入回報的頁面
