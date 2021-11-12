@@ -65,7 +65,7 @@ class EmployeeMenuController extends Controller
 //            dd($job_tickets);
             $foldHeads = DB::table('job_titles')->where('title', "折頭")->Where('ticket_id', $request->ticket_id)->get();
 //            dd($foldHead);
-            return view('pages.employee.employeeReport',compact('job_tickets','job_title','foldHeads','sumFoldHeadReports','sumPickReports','reports'));
+            return view('pages.employee.employeeReport',compact('job_tickets','job_title','foldHeads','sumFoldHeadReports','sumPickReports','foldHeadReports'));
         }
         else{
             return redirect()->route('get_employee_menu');

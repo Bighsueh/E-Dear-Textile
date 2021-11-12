@@ -177,8 +177,10 @@
                                                 <td>{{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12).'條'}}</td>
                                             </tr>
                                             <td>折頭已回報</td>
-                                            @if($reports->count())
+                                            @if($foldHeadReports->count())
                                                 <td>{{(round($sumFoldHeadReports/12-0.5)).'打'.($sumFoldHeadReports%12).'條'}}</td>
+{{--                                                <td>{{$sumFoldHeadReports}}</td>--}}
+
                                             @else
                                                 <td>尚未回報</td>
                                             @endif
