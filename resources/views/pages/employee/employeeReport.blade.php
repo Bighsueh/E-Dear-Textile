@@ -58,10 +58,48 @@
                         <input type="text" readonly="readonly" name="date" class="form-control" id="date" placeholder="日期">
                     </div>
                     <div style="width:800px; display: flex;" class="column">
-                        <button style="width: 100px;" type="submit"
-                                class="btn_add form-control btn btn-secondary rounded mx-3">
+                        <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3" data-toggle="modal" data-target="#reportModal">
                             確認
                         </button>
+                        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">剪巾回報</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table>
+                                            <tr>
+                                                <td>訂單數量</td>
+                                                <td>{{$job_ticket->order}}</td>
+                                            </tr>
+                                            <td>剪巾已回報</td>
+                                            @if($reports->count())
+                                                <td>{{$sumReports}}</td>
+                                            @else
+                                                <td>尚未回報</td>
+                                            @endif
+                                        </table>
+
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button style="width: 100px;" type="submit"--}}
+                                                class="btn_add form-control btn btn-secondary rounded mx-3">
+                                            確認
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+{{--                        <button style="width: 100px;" type="submit"--}}
+{{--                                class="btn_add form-control btn btn-secondary rounded mx-3">--}}
+{{--                            確認--}}
+{{--                        </button>--}}
                     </div>
                     <input type="text" name="title" style="display: none" value="{{$job_title->title}}" class="form-control" id="title">
                 </form>
@@ -119,10 +157,55 @@
                         <input type="text" name="date" class="form-control" id="date" placeholder="日期">
                     </div>
                     <div style="width:800px; display: flex;" class="column">
-                        <button style="width: 100px;" type="submit"
-                                class="btn_add form-control btn btn-secondary rounded mx-3">
+
+                        <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3" data-toggle="modal" data-target="#FoldHeadModal">
                             確認
                         </button>
+                        <div class="modal fade" id="FoldHeadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">折頭回報</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table>
+                                            <tr>
+                                                <td>訂單數量</td>
+                                                <td>{{$job_ticket->order}}</td>
+                                            </tr>
+                                            <td>剪巾已回報</td>
+                                            @if($reports->count())
+                                                <td>{{$sumFoldHeadReports}}</td>
+                                            @else
+                                                <td>尚未回報</td>
+                                            @endif
+                                        </table>
+{{--                                        <tr>--}}
+{{--                                            <td>訂單數量</td>--}}
+{{--                                            <td>{{$job_ticket->order}}</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td>折頭已回報</td>--}}
+{{--                                            <td>{{$sumFoldHeadReports}}</td>--}}
+{{--                                        </tr>--}}
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button style="width: 100px;" type="submit"--}}
+                                                class="btn_add form-control btn btn-secondary rounded mx-3">
+                                            確認
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{{--                        <button style="width: 100px;" type="submit"--}}
+{{--                                class="btn_add form-control btn btn-secondary rounded mx-3">--}}
+{{--                            確認--}}
+{{--                        </button>--}}
                     </div>
                     <input type="text" name="title" style="display: none" value="{{$job_title->title}}" class="form-control" id="title">
                 </form>

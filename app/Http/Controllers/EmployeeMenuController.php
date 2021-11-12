@@ -36,17 +36,36 @@ class EmployeeMenuController extends Controller
 //        dd($request);
         $job_title = DB::table('job_titles')->select('title')->where('authorized_person', $user_id)->Where('ticket_id',$request->ticket_id)->orderBy('id','desc')->first();
 //        dd($job_title);
+
+        $ticket_id = $request->except('_token');
+        $job_ticket = DB::table('job_tickets')->where('id',$ticket_id)->first();
+        $reports = DB::table('job_reports')->where('ticket_id',$ticket_id)->get();
+        $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id',$ticket_id)->get();
+
+//        計算目前回報總數量
+        if($reports->count())
+        {
+            $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
+            $sumPipReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('Piping_order');
+        }
+        if($foldHeadReports->count())
+        {
+            $sumFoldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('foldHead_order');
+            $sumPickReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('pickTower_order');
+//            dd($sumPickReports);
+        }
+
         if($job_title->title == "剪巾"  ) {
             $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
             $Pipings = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->get();
-            return view('pages.employee.employeeReport',compact('job_tickets','job_title','Pipings'));
+            return view('pages.employee.employeeReport',compact('job_tickets','job_title','Pipings','sumReports','sumPipReports','reports'));
         }
         elseif($job_title->title == "折頭"){
             $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
 //            dd($job_tickets);
             $foldHeads = DB::table('job_titles')->where('title', "折頭")->Where('ticket_id', $request->ticket_id)->get();
 //            dd($foldHead);
-            return view('pages.employee.employeeReport',compact('job_tickets','job_title','foldHeads'));
+            return view('pages.employee.employeeReport',compact('job_tickets','job_title','foldHeads','sumFoldHeadReports','sumPickReports','reports'));
         }
         else{
             return redirect()->route('get_employee_menu');
