@@ -13,9 +13,9 @@ class ScannerController extends Controller
     public function download_apk()
     {
         $path = public_path()."\apk\EDearTextileQrcodeScanner.apk";
-        $headers = array([
-            'Contant-Type' => 'application/apk',
-        ]);
+        $headers = [
+            'Content-Type'=>'application/vnd.android.package-archive',
+        ];
         return response()->download($path,'EDearTextileQrcodeScanner.apk',$headers);
     }
     public function OpenScanner(Request $request, $method, $sub_attr)
