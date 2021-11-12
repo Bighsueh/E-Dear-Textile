@@ -87,12 +87,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="order_dozen">訂單數量(打)</label>
-                    <input type="text" name="order_dozen" class="form-control" id="order_dozen" placeholder="訂單數量"
+                    <input type="text" name="order_dozen" class="form-control" id="order_dozen" placeholder="訂單數量(打)"
                            value="{{(round($job_tickets->order/12-0.5))}}">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="order_bar">訂單數量(條)</label>
-                    <input type="text" name="order_bar" class="form-control" id="order_bar" placeholder="訂單數量"
+                    <input type="text" name="order_bar" class="form-control" id="order_bar" placeholder="訂單數量(條)"
                            value="{{($job_tickets->order%12)}}">
                 </div>
             </div>
