@@ -14,6 +14,7 @@ class EmployeeMenuController extends Controller
         $job_tickets = DB::table('job_tickets')
             ->join('job_titles', 'job_tickets.id', "=", 'job_titles.ticket_id')
             ->where('job_titles.authorized_person',session()->get('user_id'))
+            ->where('job_tickets.status','=','排程中')
             ->get();
 //        dd($job_tickets);
         //重置Session狀態
