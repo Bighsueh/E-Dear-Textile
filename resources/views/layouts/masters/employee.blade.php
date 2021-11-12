@@ -46,6 +46,9 @@
                        onclick="window.location.href='app://open'">QR code掃描器</a>
                 </li>
                 <li class="nav-item">
+                    <a class="text-secondary nav-link" href="{{Route('download_apk')}}">掃描器下載</a>
+                </li>
+                <li class="nav-item">
                     <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>
                 </li>
                 {{--                <li class="nav-item">--}}

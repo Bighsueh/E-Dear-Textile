@@ -10,6 +10,11 @@ use mysql_xdevapi\Exception;
 
 class ScannerController extends Controller
 {
+    public function download_apk()
+    {
+        $path = public_path()."\apk\EDearTextileQrcodeScanner.apk";
+        return response()->download($path);
+    }
     public function OpenScanner(Request $request, $method, $sub_attr)
     {
         $method = '';
@@ -24,7 +29,7 @@ class ScannerController extends Controller
 
     public function AfterScan(Request $request)
     {
-        /*
+        /*+
          * $method = 要做的事情
          *      ManagerToPiping 幹部掃滾邊
          *      ManagerToFoldHead 幹部掃折頭員
