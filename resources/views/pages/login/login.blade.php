@@ -28,9 +28,12 @@
                             <button id="btn_submit" type="button"
                                     class="form-control btn btn-secondary rounded submit px-3">登入
                             </button>
-
                         </div>
-
+                        <div class="form-group">
+                            <a id="btn_download_apk" href="{{route('download_apk')}}" class="btn btn-secondary rounded px-3 form-control text-white">
+                                掃描器下載(限Android)
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -121,10 +121,11 @@
 
             <div style="width:800px; display: flex;" class="column">
 
-{{--                <input type="button" class="btn btn-secondary" value="Qrcode授權"--}}
-{{--                       onclick="document.getElementById('btn_qrcode').click()"/>--}}
+                {{--                <input type="button" class="btn btn-secondary" value="Qrcode授權"--}}
+                {{--                       onclick="document.getElementById('btn_qrcode').click()"/>--}}
                 <button type="button" id="QRcodeAuthButton" data-toggle="modal" class="btn btn-secondary"
-                        data-target="#QRcodeAuth">Qrcode授權</button>
+                        data-target="#QRcodeAuth">Qrcode授權
+                </button>
                 <button style="width: 100px;" type="submit"
                         class="btn_add form-control btn btn-secondary rounded mx-3">
                     儲存
@@ -156,8 +157,8 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                        <button type="button" id="btn_piping" class="btn btn-secondary">滾邊員</button>
-                        <button type="button" id="btn_foldhead" class="btn btn-secondary">折頭員</button>
+                    <button type="button" id="btn_piping" class="btn btn-secondary">滾邊員</button>
+                    <button type="button" id="btn_foldhead" class="btn btn-secondary">折頭員</button>
                 </div>
             </div>
         </div>
@@ -166,12 +167,12 @@
         <script>
             ;(function () {
                 //滾邊
-                document.getElementById('btn_piping').addEventListener('click',function(){
+                document.getElementById('btn_piping').addEventListener('click', function () {
                     document.getElementById('form_ManagerToPiping').submit();
                 });
 
                 //折頭
-                document.getElementById('btn_foldhead').addEventListener('click',function(){
+                document.getElementById('btn_foldhead').addEventListener('click', function () {
                     document.getElementById('form_ManagerToFoldHead').submit();
                 });
             })()
