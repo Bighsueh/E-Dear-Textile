@@ -59,7 +59,7 @@
                     </div>
                     <div style="width:800px; display: flex;" class="column">
                         <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3" data-toggle="modal" data-target="#reportModal">
-                            確認
+                            回報
                         </button>
                         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -74,11 +74,11 @@
                                         <table>
                                             <tr>
                                                 <td>訂單數量</td>
-                                                <td>{{$job_ticket->order}}</td>
+                                                <td>{{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12).'條'}}</td>
                                             </tr>
                                             <td>剪巾已回報</td>
                                             @if($reports->count())
-                                                <td>{{$sumReports}}</td>
+                                                <td>{{(round($sumReports/12-0.5)).'打'.($sumReports%12).'條'}}</td>
                                             @else
                                                 <td>尚未回報</td>
                                             @endif
@@ -159,7 +159,7 @@
                     <div style="width:800px; display: flex;" class="column">
 
                         <button type="button" class="btn_add form-control btn btn-secondary rounded mx-3" data-toggle="modal" data-target="#FoldHeadModal">
-                            確認
+                            回報
                         </button>
                         <div class="modal fade" id="FoldHeadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -174,11 +174,11 @@
                                         <table>
                                             <tr>
                                                 <td>訂單數量</td>
-                                                <td>{{$job_ticket->order}}</td>
+                                                <td>{{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12).'條'}}</td>
                                             </tr>
-                                            <td>剪巾已回報</td>
+                                            <td>折頭已回報</td>
                                             @if($reports->count())
-                                                <td>{{$sumFoldHeadReports}}</td>
+                                                <td>{{(round($sumFoldHeadReports/12-0.5)).'打'.($sumFoldHeadReports%12).'條'}}</td>
                                             @else
                                                 <td>尚未回報</td>
                                             @endif

@@ -24,13 +24,13 @@
             </tr>
             <tr>
                 <td>訂單數量</td>
-                <td>{{$job_ticket->order}}</td>
+                <td>{{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12).'條'}}</td>
             </tr>
             <tr>
                 <td>剪巾 回報</td>
                 @if($reports->count())
                     <td><a href="{{Route('get_resultDetail',["cut",$sumReports,$sumPipReports,$job_ticket->id])}}"
-                           style="text-decoration: none; color: black;">{{$sumReports}}</a></td>
+                           style="text-decoration: none; color: black;">{{(round($sumReports/12-0.5)).'打'.($sumReports%12).'條'}}</a></td>
                 @else
                     <td>尚未回報</td>
                 @endif
@@ -39,7 +39,7 @@
                 <td>折頭 回報</td>
                 @if($foldHeadReports->count())
                     <td><a href="{{Route('get_resultDetail',["foldHead",$sumFoldHeadReports,$sumPickReports,$job_ticket->id])}}"
-                           style="text-decoration: none; color: black;">{{$sumFoldHeadReports}}</a></td>
+                           style="text-decoration: none; color: black;">{{(round($sumFoldHeadReports/12-0.5)).'打'.($sumFoldHeadReports%12).'條'}}</a></td>
                 @else
                     <td>尚未回報</td>
                 @endif
