@@ -67,6 +67,8 @@ class MenuController extends Controller
     public function patch_patchSheet(Request $request)
     {
         $query = $request->except('_token');
+        $sum = $query["order_dozen"] * 12 + $query["order_bar"];
+//        dd($sum);
 //        dd($query);
         DB::table('job_tickets')->where('id',$query['ticket_id'])
             ->update([

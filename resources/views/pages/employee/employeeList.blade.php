@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>訂單數量</td>
-                <td>{{$job_tickets->order}}</td>
+                <td>{{(round($job_tickets->order/12-0.5)).'打'.($job_tickets->order%12)."條"}}</td>
             </tr>
         </table>
 

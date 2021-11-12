@@ -86,15 +86,20 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="manager">派工主管</label>
-                    <input type="text" name="manager" class="form-control" id="manager" placeholder="派工主管"
-                           value="{{$job_tickets->manager}}">
+                    <label for="order_dozen">訂單數量(打)</label>
+                    <input type="text" name="order_dozen" class="form-control" id="order_dozen" placeholder="訂單數量"
+                           value="{{(round($job_tickets->order/12-0.5))}}">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="order">訂單數量</label>
-                    <input type="text" name="order" class="form-control" id="order" placeholder="訂單數量"
-                           value="{{$job_tickets->order}}">
+                    <label for="order_bar">訂單數量(條)</label>
+                    <input type="text" name="order_bar" class="form-control" id="order_bar" placeholder="訂單數量"
+                           value="{{($job_tickets->order%12)}}">
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="manager">派工主管</label>
+                <input type="text" name="manager" class="form-control" id="manager" placeholder="派工主管"
+                       value="{{$job_tickets->manager}}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
