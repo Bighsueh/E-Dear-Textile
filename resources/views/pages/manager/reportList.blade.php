@@ -14,7 +14,7 @@
                         @foreach($queries as $query)
                             <tr>
                                 <td>{{$query->Piping}}</td>
-                                <td>{{$query->piping_order}}</td>
+                                <td>{{(round($query->piping_order/12-0.5)).'打'.($query->piping_order%12)."條"}}</td>
                                 <td>{{$query->updated_at}}</td>
                             </tr>
                         @endforeach
@@ -34,7 +34,7 @@
                 @foreach($queries as $query)
                     <tr>
                         <td>{{$query->user_id}}</td>
-                        <td>{{$query->cut_order}}</td>
+                        <td>{{(round($query->cut_order/12-0.5)).'打'.($query->cut_order%12)."條"}}</td>
                         <td>{{$query->Piping}}</td>
                         <td>{{$query->updated_at}}</td>
                     </tr>
@@ -55,7 +55,7 @@
                 @foreach($queries as $query)
                     <tr>
                         <td>{{$query->user_id}}</td>
-                        <td>{{$query->foldHead_order}}</td>
+                        <td>{{(round($query->foldHead_order/12-0.5)).'打'.($query->foldHead_order%12)."條"}}</td>
                         <td>{{$query->pickTower}}</td>
                         <td>{{$query->updated_at}}</td>
                     </tr>
@@ -75,7 +75,7 @@
                 @foreach($queries as $query)
                     <tr>
                         <td>{{$query->pickTower}}</td>
-                        <td>{{$query->pickTower_order}}</td>
+                        <td>{{(round($query->pickTower_order/12-0.5)).'打'.($query->pickTower_order%12)."條"}}</td>
                         <td>{{$query->updated_at}}</td>
                     </tr>
                 @endforeach
