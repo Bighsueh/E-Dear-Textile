@@ -44,6 +44,13 @@
             let btn_submit = document.getElementById('btn_submit');
             let form_submit = document.getElementById('login-form');
 
+            //若非iphone手機則隱藏掃描器按鈕
+            let agent = navigator.userAgent.toLowerCase();
+            if(!agent.includes("android")){
+                document.getElementById("btn_download_apk").style.display = "none";
+            }
+
+            //submit button
             btn_submit.addEventListener('click', function () {
 
                 form_submit.submit();
