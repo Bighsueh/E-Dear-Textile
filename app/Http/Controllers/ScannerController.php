@@ -26,8 +26,6 @@ class ScannerController extends Controller
         Session::put('method', $method);
         //紀錄跳轉Scanner前使用的單號
         Session::put('ticket_info', $sub_attr);
-
-        return redirect('app://open');
     }
 
     public function AfterScan(Request $request)

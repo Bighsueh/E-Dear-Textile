@@ -44,6 +44,7 @@
                 <li class="nav-item">
                     <a class="text-light nav-link active" aria-current="page"
                        onclick="window.location.href='app://open'">QR code掃描器</a>
+                    <input id="camera_link_for_iphone" type="file" accept="image/*" style="display: none" capture/>
                 </li>
                 <li class="nav-item">
                     <a class="text-secondary nav-link" href="{{Route('download_apk')}}">掃描器下載</a>
@@ -62,6 +63,25 @@
                 function employeeQrcodeButtonClick(){
                     document.getElementById('employeeQrcodeButton').click();
                 }
+
+                //開啟掃描器
+                $("btn_qrcode_scanner").click(function () {
+                    //獲取系統裝置資訊
+                    let agent = navigator.userAgent.toLowerCase();
+
+                    //若裝置為 Android
+                    if (agent.includes("android")){
+                        window.location.href = "app://open";
+                    }
+                    //若裝置為 iphone
+                    else if (agent.includes("iphone")){
+                        $("camera_link_for_iphone").click();
+                    }
+                    //其他裝置
+                    else{
+                        window.alert("此功能僅限於Android或ios裝置使用!");
+                    }
+                })
 
             </script>
         </div>

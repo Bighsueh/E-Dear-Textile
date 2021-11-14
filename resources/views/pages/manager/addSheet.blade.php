@@ -106,8 +106,9 @@
                 </div>
 
                 <div style="width:800px; display: flex;" class="column">
-                    <form action="{{url('/openScanner/ManagerToPiping/'.$id->id)}}">
-                        <input type="submit" class="btn btn-secondary" value="Qrcode授權"/>
+                    <form id="form_open_scanner" action="{{url('/openScanner/ManagerToPiping/'.$id->id)}}">
+                        <input id="btn_open_scanner" type="button" class="btn btn-secondary" value="Qrcode授權"/>
+                        <input id="camera_link_for_iphone" type="file" accept="image/*" style="display: none" capture/>
                     </form>
                     <button style="width: 100px;" type="submit"
                             class="btn_add form-control btn btn-secondary rounded mx-3">
@@ -124,6 +125,25 @@
             const d = new Date()
             const date = document.getElementById("date");
             date.value = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+            document.getElementById("btn_open_scanner").addEventListener("click",function(){
+                //獲取系統裝置資訊
+                let agent = navigator.userAgent.toLowerCase();
+
+                //若裝置為 Android
+                if (agent.includes("android")){
+                    window.location.href = "app://open";
+                    $("form_open_scanner").submit();
+                }
+                //若裝置為 iphone
+                else if (agent.includes("iphone")){
+                    $("camera_link_for_iphone").click();
+                    $("form_open_scanner").submit();
+                }
+                //其他裝置
+                else{
+                    window.alert("此功能僅限於Android或ios裝置使用!");
+                }
+            })
         </script>
 @endsection
 

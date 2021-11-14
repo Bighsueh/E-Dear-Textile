@@ -164,15 +164,37 @@
         </div>
         <form id="form_ManagerToFoldHead" action="{{url('/openScanner/ManagerToFoldHead/'.$job_tickets->id)}}"></form>
         <form id="form_ManagerToPiping" action="{{url('/openScanner/ManagerToPiping/'.$job_tickets->id)}}"></form>
+        <input id="camera_link_for_iphone" type="file" accept="image/*" style="display: none" capture/>
         <script>
             ;(function () {
+                //判斷系統
+                function agent(){
+                    //獲取系統裝置資訊
+                    let agent = navigator.userAgent.toLowerCase();
+
+                    //若裝置為 Android
+                    if (agent.includes("android")){
+                        window.location.href = "app://open";
+                    }
+                    //若裝置為 iphone
+                    else if (agent.includes("iphone")){
+                        $("camera_link_for_iphone").click();
+                    }
+                    //其他裝置
+                    else{
+                        window.alert("此功能僅限於Android或ios裝置使用!");
+                    }
+                }
+
                 //滾邊
                 document.getElementById('btn_piping').addEventListener('click', function () {
+                    agent();
                     document.getElementById('form_ManagerToPiping').submit();
                 });
 
                 //折頭
                 document.getElementById('btn_foldhead').addEventListener('click', function () {
+                    agent();
                     document.getElementById('form_ManagerToFoldHead').submit();
                 });
             })()
