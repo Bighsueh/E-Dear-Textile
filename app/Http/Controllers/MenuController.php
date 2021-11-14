@@ -86,7 +86,7 @@ class MenuController extends Controller
             'cloth' =>$query['cloth'],
             'rollFunc' =>$query['rollFunc'],
             'manager' =>$query['manager'],
-            'order' =>$query['order'],
+            'order' =>$sum,
             'ps' =>$query['ps'],
             'status' =>$query['status'],
         ]);
