@@ -67,6 +67,7 @@ class MenuController extends Controller
     // 修改
     public function patch_patchSheet(Request $request)
     {
+//        dd($request);
         $query = $request->except('_token');
         $sum = $query["order_dozen"] * 12 + $query["order_bar"];
 //        dd($sum);
