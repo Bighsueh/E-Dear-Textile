@@ -53,7 +53,7 @@
                     <a class="text-light nav-link" href="{{Route('get_employeeList')}}">員工列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-secondary nav-link" href="{{Route('download_apk')}}">掃描器下載</a>
+                    <a id="btn_download_scanner_apk" class="text-secondary nav-link" >掃描器下載</a>
                 </li>
                 <li class="nav-item">
                     <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>
@@ -81,6 +81,14 @@
 
 
 </body>
-
-
+<script>
+    document.getElementById("btn_download_scanner_apk").addEventListener("click",function(){
+        let agent = navigator.userAgent.toLowerCase();
+        if (!agent.includes("android")) {
+            if (window.confirm("此掃描器軟體僅安卓(android)手機需要下載，請問仍要下載嗎?")) {
+                window.location.href = "{{route('download_apk')}}";
+            }
+        }
+    })
+</script>
 </html>
