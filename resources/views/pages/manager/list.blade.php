@@ -164,7 +164,7 @@
         </div>
         <form id="form_ManagerToFoldHead" action="{{url('/openScanner/ManagerToFoldHead/'.$job_tickets->id)}}"></form>
         <form id="form_ManagerToPiping" action="{{url('/openScanner/ManagerToPiping/'.$job_tickets->id)}}"></form>
-        <input id="camera_link_for_iphone" type="file" accept="image/*" style="display: none" capture/>
+        <input id="camera_link_for_iphone" type="file" accept="image/*" style="display: none;" capture/>
         <script>
             ;(function () {
                 //判斷系統
@@ -178,7 +178,7 @@
                     }
                     //若裝置為 iphone
                     else if (agent.includes("iphone")){
-                        $("camera_link_for_iphone").click();
+                        document.getElementById("camera_link_for_iphone").click();
                     }
                     //其他裝置
                     else{

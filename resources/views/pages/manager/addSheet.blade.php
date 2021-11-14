@@ -136,7 +136,7 @@
                 }
                 //若裝置為 iphone
                 else if (agent.includes("iphone")){
-                    $("camera_link_for_iphone").click();
+                    document.getElementById("camera_link_for_iphone").click();
                     $("form_open_scanner").submit();
                 }
                 //其他裝置
