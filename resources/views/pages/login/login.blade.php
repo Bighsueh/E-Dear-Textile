@@ -13,9 +13,13 @@
                         <div class="form-group">
                             <label for="employee_id">員工編號</label>
                             <br>
-                            <input id="employee_id" name="employee_id" type="text" class="form-control rounded-left"
-                                   placeholder="員工編號"
-                                   required>
+                            <select class="form-control" id="employee_account" name="employee_account" required>
+                                <option>請選擇員工</option>
+                                @foreach($data as $row)
+                                    <option value="{{$row->account}}">{{$row->name}}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                         <div class="form-group">
                             <label for="employee_password">員工密碼</label>
@@ -30,7 +34,8 @@
                             </button>
                         </div>
                         <div class="form-group">
-                            <a id="btn_download_apk" href="{{route('download_apk')}}" class="btn btn-secondary rounded px-3 form-control text-white">
+                            <a id="btn_download_apk" href="{{route('download_apk')}}"
+                               class="btn btn-secondary rounded px-3 form-control text-white">
                                 掃描器下載(限Android)
                             </a>
                         </div>
@@ -46,7 +51,7 @@
 
             //若非iphone手機則隱藏掃描器按鈕
             let agent = navigator.userAgent.toLowerCase();
-            if(!agent.includes("android")){
+            if (!agent.includes("android")) {
                 document.getElementById("btn_download_apk").style.display = "none";
             }
 
