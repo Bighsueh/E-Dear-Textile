@@ -11,69 +11,87 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-//      幹部
+//      幹部1
         DB::table('users')->insert([
-            'user_id' =>'40841145',
-            'name' =>'yoyo',
-            'account' =>'123',
-            'password' =>'456',
+            'user_id' =>'1',
+            'name' =>'幹部1',
+            'account' =>'m01',
+            'password' =>'m01',
             'level' =>'manager',
         ]);
+//      幹部2
+        DB::table('users')->insert([
+            'user_id' =>'2',
+            'name' =>'幹部2',
+            'account' =>'m02',
+            'password' =>'m02',
+            'level' =>'manager',
+        ]);
+
 //      滾邊
         DB::table('users')->insert([
-            'user_id' =>'408411455piping',
-            'name' =>'yoyooo',
-            'account' =>'piping',
-            'password' =>'piping',
+            'user_id' =>'3',
+            'name' =>'滾邊1',
+            'account' =>'piping1',
+            'password' =>'piping1',
             'level' =>'employee',
         ]);
 //      滾邊2
         DB::table('users')->insert([
-            'user_id' =>'408411455piping2',
-            'name' =>'yoyooo2',
+            'user_id' =>'4',
+            'name' =>'滾邊2',
             'account' =>'piping2',
             'password' =>'piping2',
             'level' =>'employee',
         ]);
 //      剪巾
         DB::table('users')->insert([
-            'user_id' =>'408411455cut',
-            'name' =>'yoyocut',
-            'account' =>'cut',
-            'password' =>'cut',
+            'user_id' =>'5',
+            'name' =>'剪巾1',
+            'account' =>'cut1',
+            'password' =>'cut1',
             'level' =>'employee',
         ]);
 //      剪巾2
         DB::table('users')->insert([
-            'user_id' =>'408411455cut2',
-            'name' =>'yoyocut2',
+            'user_id' =>'6',
+            'name' =>'剪巾2',
             'account' =>'cut2',
             'password' =>'cut2',
             'level' =>'employee',
         ]);
 //      折頭
         DB::table('users')->insert([
-            'user_id' =>'408411455head',
-            'name' =>'yoyohead',
-            'account' =>'head',
-            'password' =>'head',
+            'user_id' =>'7',
+            'name' =>'折頭1',
+            'account' =>'head1',
+            'password' =>'head1',
             'level' =>'employee',
         ]);
 //      折頭2
         DB::table('users')->insert([
-            'user_id' =>'408411455head2',
-            'name' =>'yoyohead2',
+            'user_id' =>'8',
+            'name' =>'折頭1',
             'account' =>'head2',
             'password' =>'head2',
             'level' =>'employee',
         ]);
 //      撿巾
         DB::table('users')->insert([
-            'user_id' =>'408411455pick',
-            'name' =>'yoyopick',
-            'account' =>'pick',
-            'password' =>'pick',
+            'user_id' =>'9',
+            'name' =>'撿巾',
+            'account' =>'pick1',
+            'password' =>'pick1',
             'level' =>'employee',
         ]);
+        //      撿巾
+        DB::table('users')->insert([
+            'user_id' =>'10',
+            'name' =>'撿巾',
+            'account' =>'pick2',
+            'password' =>'pick2',
+            'level' =>'employee',
+        ]);
+
     }
 }
