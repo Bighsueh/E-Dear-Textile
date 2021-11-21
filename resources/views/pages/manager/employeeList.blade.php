@@ -1,5 +1,22 @@
 @extends('layouts.masters.manager')
 @section('content')
+    <div class="container ">
+        <div class="row form-inline form-group">
+            <div class="input-group col-sm-8 col-8">
+                <input type="text" class="form-control" placeholder="搜尋員工關鍵字" aria-label=""
+                       aria-describedby="basic-addon1" name="search_parameter" id="search_parameter">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-dark" type="button" id="btn_search">搜尋</button>
+                </div>
+            </div>
+            <div class="col-sm-4 col-4 row">
+                <button type="button" class="btn btn-outline-secondary mx-1 col col-sm text-center"
+                        data-toggle="modal" data-target="#CreateUserModal">新增員工
+                </button>
+                <button type="button" class="btn btn-outline-secondary mx-1 col col-sm text-center" id="btn_setting">
+                    員工設定
+                </button>
+            </div>
 
     <div style="display: none">
         {{$i=1}}
