@@ -18,17 +18,17 @@
                 </button>
             </div>
 
-    <div style="display: none">
-        {{$i=1}}
+        </div>
+
     </div>
-    <div style="display: flex" class="container">
+    <div style="" class="container">
         <table class="table">
             <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>職位</th>
                 <th>姓名</th>
-                <th>工作明細</th>
+                <th id="th_function">工作明細</th>
             </tr>
             </thead>
             <tbody id="tbody">
@@ -38,26 +38,42 @@
 
     </div>
     <script>
+        let setting_mode = "list";
+
         update_data();
 
-        function update_data() {
+        //資料刷新
+        function update_data(search_parameter = null) {
             let url = '{{route('get_employee_data')}}';
+            if (search_parameter !== null) {
+                url += '?search_parameter=' + search_parameter;
+            }
+
             $.ajax({
                 url: url,
                 method: 'GET',
                 data: '',
                 success: function (res) {
-                    console.log(res)
+                    // console.log(res)
                     let thread = 1;
+                    $("#tbody tr").remove();
                     if (res.length > 0) {
                         res.forEach(function (row) {
                             let row_thread = "<td>" + (thread++) + "</td>";
+                            let row_id = row['user_id'];
                             let row_level = "<td>" + row["level"] + "</td>";
                             let row_name = "<td>" + row["name"] + "</td>";
-                            let row_function = "<td><a class='btn btn-secondary text-white'>查看</a></td>";
-
+                            let row_function = "";
+                            if (setting_mode === "list") {
+                                row_function = "<td><a class='btn btn-outline-secondary'>查看</a></td>";
+                            }
+                            if (setting_mode === "setting") {
+                                row_function =
+                                    `<td class=''><buttun class='btn btn-outline-danger mr-2 btn_remove_user' value='${row_id}' >刪除</buttun>` +
+                                    `<buttun class='btn btn-outline-info btn_edit_user'>修改資訊</buttun></td>`;
+                            }
                             $("tbody").append(
-                                "<tr>"+ row_thread + row_level + row_name + row_function + "</tr>"
+                                "<tr>" + row_thread + row_level + row_name + row_function + "</tr>"
                             );
                         });
                     }
@@ -76,6 +92,21 @@
 
         }
 
+        $("#btn_setting").click(function () {
+            if (setting_mode === "list") {
+                setting_mode = "setting";
+                $("#th_function").text("設定");
+            } else {
+                setting_mode = "list";
+                $("#th_function").text("工作明細");
+            }
+            update_data();
+        });
+
+        $("#btn_search").click(function () {
+            let search_parameter = $("#search_parameter").val();
+            update_data(search_parameter);
+        })
 
 
     </script>
