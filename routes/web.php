@@ -38,7 +38,10 @@ Route::group(['middleware' =>['login']],function(){
     Route::post('/manager/menu/result','MenuController@get_result')->name('get_result');
     Route::get('/manager/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
     Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
+
     Route::get('/manager/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
+    Route::get('/manager/menu/getEmployeeData','MenuController@get_employeeData')->name('get_employee_data');
+    Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
     // 將資料傳入回報的頁面

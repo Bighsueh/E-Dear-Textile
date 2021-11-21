@@ -8,6 +8,21 @@ use Illuminate\Support\Facades\Session;
 
 class MenuController extends Controller
 {
+    public function get_employeeData()
+    {
+        //取得員工列表
+        $data = DB::table('users')->select('user_id', 'name', 'level')->get();
+
+        foreach ($data as $row) {
+            if ($row->level == "manager") {
+                $row->level = "幹部";
+            }
+            if ($row->level == "employee") {
+                $row->level = "員工";
+            }
+        }
+        return $data;
+    }
     public function get_menu()
     {
         // 派遣單查詢
@@ -28,10 +43,16 @@ class MenuController extends Controller
 
     public function get_employeeList()
     {
-        $users = DB::table('users')->get();
+        return view('pages.manager.employeeList');
+    }
+
+    public function get_employeeDetail(Request $request,$id)
+    {
+        $employee = DB::table('users')->where('user_id', $id)->get();
+        $tickets = DB::table('job_tickets');
 
 
-        return view('pages.manager.employeeList',compact('users',$users));
+        return view('pages.manager.employeeDetail');
     }
 
     public function post_create_addSheet(Request $request)
