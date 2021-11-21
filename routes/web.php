@@ -40,8 +40,10 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
 
     Route::get('/manager/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
-    Route::get('/manager/menu/getEmployeeData','MenuController@get_employeeData')->name('get_employee_data');
     Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');
+
+    //幹部-員工資料
+    Route::get('/manager/menu/getEmployeeData','UserController@get_user_data')->name('get_employee_data');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
     // 將資料傳入回報的頁面

@@ -8,21 +8,6 @@ use Illuminate\Support\Facades\Session;
 
 class MenuController extends Controller
 {
-    public function get_employeeData()
-    {
-        //取得員工列表
-        $data = DB::table('users')->select('user_id', 'name', 'level')->get();
-
-        foreach ($data as $row) {
-            if ($row->level == "manager") {
-                $row->level = "幹部";
-            }
-            if ($row->level == "employee") {
-                $row->level = "員工";
-            }
-        }
-        return $data;
-    }
     public function get_menu()
     {
         // 派遣單查詢
