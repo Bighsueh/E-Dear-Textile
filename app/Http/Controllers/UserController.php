@@ -33,5 +33,26 @@ class UserController extends Controller
         return $data;
     }
 
+    public function create_user_data(Request $request)
+    {
+        try {
+            $create_level = $request->create_level;
+            $create_name = $request->create_name;
+            $create_account = $request->create_account;
+            $create_password = $request->create_password;
 
+            $max_of_id = DB::table('users')->groupBy('user_id')->count();
+            DB::table('users')->insert([
+                "user_id" => ($max_of_id) + 1,
+                "name" => $create_name,
+                "account" => $create_account,
+                "password" => $create_password,
+                "level" => $create_level
+            ]);
+            return 'success';
+        } catch (Exception $exception) {
+            return $exception;
+        }
+
+    }
 }
