@@ -55,4 +55,18 @@ class UserController extends Controller
         }
 
     }
+
+    public function get_edit_data(Request $request)
+    {
+
+        try {
+            $user_id = $request->user_id;
+
+            $data = DB::table('users')->where('user_id', $user_id)->first();
+            return $data;
+
+        } catch (Exception $exception) {
+            return $exception;
+        }
+    }
 }
