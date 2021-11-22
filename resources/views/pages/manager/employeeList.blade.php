@@ -129,6 +129,7 @@
         </div>
     </div>
     <script>
+        //設定欄位狀態
         let setting_mode = "list";
 
         update_data();
@@ -185,6 +186,7 @@
             });
         }
 
+        //開啟edit_user_modal ->帶值進去
         function open_edit_user_modal(id) {
             $.ajax({
                 url: '{{route('get_edit_data')}}',
@@ -204,6 +206,7 @@
             })
         }
 
+        //store 以編輯之edit_user_modal
         function store_edit_user_modal() {
             $.ajax({
                 url: '{{route('store_edit_data')}}',
@@ -233,11 +236,14 @@
                 }
             })
         }
+
+        //設定row,編輯按鈕事件
         $("#btn_store_edit_user").click(function () {
             store_edit_user_modal()
             $("#EditUserModal").modal('hide');
         })
 
+        //頁面最上方設定按鈕點擊事件
         $("#btn_setting").click(function () {
             if (setting_mode === "list") {
                 setting_mode = "setting";
@@ -250,11 +256,13 @@
             update_data();
         });
 
+        //頁面最上方搜尋列點擊事件(搜尋功能)
         $("#btn_search").click(function () {
             let search_parameter = $("#search_parameter").val();
             update_data(search_parameter);
         })
 
+        //頁面最上方新增使用者按鈕點擊事件
         $("#btn_create_user").click(function () {
             $.ajax({
                 url: '{{route('create_user_data')}}',
