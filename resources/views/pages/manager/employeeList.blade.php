@@ -74,7 +74,7 @@
                                    placeholder="密碼"/>
                         </div>
                     </div>
-
+                    <input type="hidden" value="" name="edit_id" id="edit_id"/>
 
                 </div>
                 <div class="modal-footer">
@@ -123,7 +123,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success" id="btn_edit_user">儲存編輯</button>
+                    <button type="button" class="btn btn-outline-success" id="btn_store_edit_user">儲存編輯</button>
                 </div>
             </div>
         </div>
@@ -175,7 +175,7 @@
                     }
 
                     //修凱modal
-                    $(".btn_edit_user").click(function(){
+                    $(".btn_edit_user").click(function () {
                         open_edit_user_modal($(this).attr("value"));
                     })
                 },
@@ -185,25 +185,59 @@
             });
         }
 
-        function open_edit_user_modal(id){
+        function open_edit_user_modal(id) {
             $.ajax({
-                url:'{{route('get_edit_data')}}?user_id='+id,
-                method:'get',
-                data:'',
-                success:function (res) {
-                    console.log(res);
-                    // $("#edit_level").val('employee');
-                    // $("#edit_name").val('');
-                    // $("#edit_account").val('');
-                    // $("#edit_password").val('');
+                url: '{{route('get_edit_data')}}',
+                method: 'get',
+                data: {
+                    user_id:id,
+                },
+                success: function (res) {
+                    $("#edit_level").val('employee');
+                    $("#edit_name").val(res[0]["name"]);
+                    $("#edit_account").val(res[0]["account"]);
+                    $("#edit_password").val(res[0]["password"]);
+                    $("#edit_id").val(res[0]["user_id"]);
+                    $("#EditUserModal").modal('show');
                 }
 
             })
         }
 
-        $(".btn_edit_user").click(function(){
-            window.alert('123');
+        function store_edit_user_modal() {
+            $.ajax({
+                url: '{{route('store_edit_data')}}',
+                method: 'post',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    edit_id: $("#edit_id").val(),
+                    edit_level: $("#edit_level").val(),
+                    edit_name: $("#edit_name").val(),
+                    edit_account: $("#edit_account").val(),
+                    edit_password: $("#edit_password").val(),
+                },
+                success: function (res) {
+                    if (res === "success") {
+                        window.alert("儲存成功");
+                    }
+                    $("#edit_level").val('employee');
+                    $("#edit_name").val('');
+                    $("#edit_account").val('');
+                    $("#edit_password").val('');
+                    update_data();
+                },
+                error: function (err) {
+                    window.alert('儲存失敗：\n' + err['responseJSON']["message"]);
+                    console.log(err['responseJSON']["message"]);
+
+                }
+            })
+        }
+        $("#btn_store_edit_user").click(function () {
+            store_edit_user_modal()
+            $("#EditUserModal").modal('hide');
         })
+
         $("#btn_setting").click(function () {
             if (setting_mode === "list") {
                 setting_mode = "setting";
@@ -249,7 +283,6 @@
                 }
             })
         })
-
 
 
     </script>
