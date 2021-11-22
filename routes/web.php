@@ -46,6 +46,7 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/manager/menu/getEmployeeData','UserController@get_user_data')->name('get_employee_data');
     Route::post('/manager/menu/createEmployeeData','UserController@create_user_data')->name('create_user_data');
     Route::get('/manager/menu/getEditEmployeeData','UserController@get_edit_data')->name('get_edit_data');
+    Route::post('/manager/menu/storeEditEmployeeData','UserController@store_edit_data')->name('store_edit_data');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
     // 將資料傳入回報的頁面

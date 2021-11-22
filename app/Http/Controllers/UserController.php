@@ -62,11 +62,35 @@ class UserController extends Controller
         try {
             $user_id = $request->user_id;
 
-            $data = DB::table('users')->where('user_id', $user_id)->first();
+            $data = DB::table('users')->where('user_id', $user_id)->get();
             return $data;
 
         } catch (Exception $exception) {
             return $exception;
         }
+    }
+
+    public function store_edit_data(Request $request)
+    {
+        try {
+            $edit_id = $request->edit_id;
+            $edit_level = $request->edit_level;
+            $edit_name = $request->edit_name;
+            $edit_account = $request->edit_account;
+            $edit_password = $request->edit_password;
+
+            DB::table('users')
+                ->where('user_id',$edit_id)
+                ->update([
+                "name" => $edit_name,
+                "account" => $edit_account,
+                "password" => $edit_password,
+                "level" => $edit_level
+            ]);
+            return 'success';
+        } catch (Exception $exception) {
+            return $exception;
+        }
+
     }
 }
