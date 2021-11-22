@@ -175,9 +175,14 @@
                         );
                     }
 
-                    //修凱modal
+                    //修改modal
                     $(".btn_edit_user").click(function () {
                         open_edit_user_modal($(this).attr("value"));
+                    })
+
+                    //delete user data
+                    $(".btn_remove_user").click(function () {
+                        delete_user_data($(this).attr("value"));
                     })
                 },
                 error: function (err) {
@@ -185,6 +190,21 @@
                 }
             });
         }
+function delete_user_data(id) {
+    $.ajax({
+        url: '{{route('delete_edit_data')}}',
+        method: 'post',
+        data: {
+            _token: "{{ csrf_token() }}",
+            user_id:id,
+        },
+        success: function (res) {
+            update_data();
+        }
+
+    })
+}
+
 
         //開啟edit_user_modal ->帶值進去
         function open_edit_user_modal(id) {

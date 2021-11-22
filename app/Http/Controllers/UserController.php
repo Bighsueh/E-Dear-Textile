@@ -33,6 +33,7 @@ class UserController extends Controller
         return $data;
     }
 
+    //新增使用者api
     public function create_user_data(Request $request)
     {
         try {
@@ -56,6 +57,7 @@ class UserController extends Controller
 
     }
 
+    //read使用者api
     public function get_edit_data(Request $request)
     {
 
@@ -70,6 +72,7 @@ class UserController extends Controller
         }
     }
 
+    //store使用者api
     public function store_edit_data(Request $request)
     {
         try {
@@ -80,17 +83,31 @@ class UserController extends Controller
             $edit_password = $request->edit_password;
 
             DB::table('users')
-                ->where('user_id',$edit_id)
+                ->where('user_id', $edit_id)
                 ->update([
-                "name" => $edit_name,
-                "account" => $edit_account,
-                "password" => $edit_password,
-                "level" => $edit_level
-            ]);
+                    "name" => $edit_name,
+                    "account" => $edit_account,
+                    "password" => $edit_password,
+                    "level" => $edit_level
+                ]);
             return 'success';
         } catch (Exception $exception) {
             return $exception;
         }
 
+    }
+
+    //delete使用者api
+    public function delete_edit_data(Request $request)
+    {
+        try {
+            $user_id = $request->user_id;
+            DB::table('users')
+                ->where('user_id', $user_id)
+                ->delete();
+            return 'success';
+        } catch (Exception $exception) {
+            return $exception;
+        }
     }
 }
