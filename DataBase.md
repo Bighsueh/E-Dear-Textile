@@ -9,11 +9,10 @@
 
 ####資料庫欄位設計
 Users
-1. user_id 使用者id
-2. name 使用者名稱
-3. account 帳號
-4. password 密碼
-5. level 使用者級別
+1. name 使用者名稱
+2. account 帳號
+3. password 密碼
+4. level 使用者級別
 
 job_tickets
 
