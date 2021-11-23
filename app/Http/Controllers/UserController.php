@@ -17,7 +17,7 @@ class UserController extends Controller
 
         //取得員工列表
         $data = DB::table('users')
-            ->select('user_id', 'name', 'level')
+            ->select('id', 'name', 'level')
             ->where('name', 'like', '%' . $search_parameter . '%')
             ->orwhere('level', 'like', '%' . $search_parameter . '%')
             ->get();
@@ -42,9 +42,7 @@ class UserController extends Controller
             $create_account = $request->create_account;
             $create_password = $request->create_password;
 
-            $max_of_id = DB::table('users')->groupBy('user_id')->count();
             DB::table('users')->insert([
-                "user_id" => ($max_of_id) + 1,
                 "name" => $create_name,
                 "account" => $create_account,
                 "password" => $create_password,
@@ -60,11 +58,10 @@ class UserController extends Controller
     //read使用者api
     public function get_edit_data(Request $request)
     {
-
         try {
             $user_id = $request->user_id;
+            $data = DB::table('users')->where('id', $user_id)->get();
 
-            $data = DB::table('users')->where('user_id', $user_id)->get();
             return $data;
 
         } catch (Exception $exception) {
@@ -83,7 +80,7 @@ class UserController extends Controller
             $edit_password = $request->edit_password;
 
             DB::table('users')
-                ->where('user_id', $edit_id)
+                ->where('id', $edit_id)
                 ->update([
                     "name" => $edit_name,
                     "account" => $edit_account,
@@ -103,7 +100,7 @@ class UserController extends Controller
         try {
             $user_id = $request->user_id;
             DB::table('users')
-                ->where('user_id', $user_id)
+                ->where('id', $user_id)
                 ->delete();
             return 'success';
         } catch (Exception $exception) {

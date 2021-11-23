@@ -13,7 +13,6 @@ class UsersTableSeeder extends Seeder
     {
 //      幹部1
         DB::table('users')->insert([
-            'user_id' =>'1',
             'name' =>'幹部1',
             'account' =>'m01',
             'password' =>'m01',
@@ -21,7 +20,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      幹部2
         DB::table('users')->insert([
-            'user_id' =>'2',
             'name' =>'幹部2',
             'account' =>'m02',
             'password' =>'m02',
@@ -30,7 +28,6 @@ class UsersTableSeeder extends Seeder
 
 //      滾邊
         DB::table('users')->insert([
-            'user_id' =>'3',
             'name' =>'滾邊1',
             'account' =>'piping1',
             'password' =>'piping1',
@@ -38,7 +35,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      滾邊2
         DB::table('users')->insert([
-            'user_id' =>'4',
             'name' =>'滾邊2',
             'account' =>'piping2',
             'password' =>'piping2',
@@ -46,7 +42,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      剪巾
         DB::table('users')->insert([
-            'user_id' =>'5',
             'name' =>'剪巾1',
             'account' =>'cut1',
             'password' =>'cut1',
@@ -54,7 +49,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      剪巾2
         DB::table('users')->insert([
-            'user_id' =>'6',
             'name' =>'剪巾2',
             'account' =>'cut2',
             'password' =>'cut2',
@@ -62,7 +56,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      折頭
         DB::table('users')->insert([
-            'user_id' =>'7',
             'name' =>'折頭1',
             'account' =>'head1',
             'password' =>'head1',
@@ -70,7 +63,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      折頭2
         DB::table('users')->insert([
-            'user_id' =>'8',
             'name' =>'折頭1',
             'account' =>'head2',
             'password' =>'head2',
@@ -78,7 +70,6 @@ class UsersTableSeeder extends Seeder
         ]);
 //      撿巾
         DB::table('users')->insert([
-            'user_id' =>'9',
             'name' =>'撿巾',
             'account' =>'pick1',
             'password' =>'pick1',
@@ -86,7 +77,6 @@ class UsersTableSeeder extends Seeder
         ]);
         //      撿巾
         DB::table('users')->insert([
-            'user_id' =>'10',
             'name' =>'撿巾',
             'account' =>'pick2',
             'password' =>'pick2',

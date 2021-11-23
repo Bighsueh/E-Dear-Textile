@@ -152,7 +152,7 @@
                     if (res.length > 0) {
                         res.forEach(function (row) {
                             let row_thread = "<td>" + (thread++) + "</td>";
-                            let row_id = row['user_id'];
+                            let row_id = row['id'];
                             let row_level = "<td>" + row["level"] + "</td>";
                             let row_name = "<td>" + row["name"] + "</td>";
                             let row_function = "";
@@ -190,20 +190,21 @@
                 }
             });
         }
-function delete_user_data(id) {
-    $.ajax({
-        url: '{{route('delete_edit_data')}}',
-        method: 'post',
-        data: {
-            _token: "{{ csrf_token() }}",
-            user_id:id,
-        },
-        success: function (res) {
-            update_data();
-        }
 
-    })
-}
+        function delete_user_data(id) {
+            $.ajax({
+                url: '{{route('delete_edit_data')}}',
+                method: 'post',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    user_id: id,
+                },
+                success: function (res) {
+                    update_data();
+                }
+
+            })
+        }
 
 
         //開啟edit_user_modal ->帶值進去
@@ -212,14 +213,14 @@ function delete_user_data(id) {
                 url: '{{route('get_edit_data')}}',
                 method: 'get',
                 data: {
-                    user_id:id,
+                    user_id: id,
                 },
                 success: function (res) {
                     $("#edit_level").val('employee');
                     $("#edit_name").val(res[0]["name"]);
                     $("#edit_account").val(res[0]["account"]);
                     $("#edit_password").val(res[0]["password"]);
-                    $("#edit_id").val(res[0]["user_id"]);
+                    $("#edit_id").val(res[0]["id"]);
                     $("#EditUserModal").modal('show');
                 }
 

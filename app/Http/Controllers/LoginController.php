@@ -41,8 +41,7 @@ class LoginController extends Controller
 //            使用者權限判斷
             $level = $account_info->level;
             Session::put('level', $level);
-
-            Session::put('user_id', $account_info->user_id);
+            Session::put('user_id', $account_info->id);
             // use get_menu_page function to check level
             return $this->get_menu_page($request);
 

@@ -33,7 +33,7 @@ class MenuController extends Controller
 
     public function get_employeeDetail(Request $request,$id)
     {
-        $employee = DB::table('users')->where('user_id', $id)->get();
+        $employee = DB::table('users')->where('id', $id)->get();
         $tickets = DB::table('job_tickets');
 
 
