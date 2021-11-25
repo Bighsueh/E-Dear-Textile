@@ -25,10 +25,10 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th>#</th>
-                <th>職位</th>
-                <th>姓名</th>
-                <th id="th_function">工作明細</th>
+                <th class="col-sm-2" >#</th>
+                <th class="col-sm-3" >職位</th>
+                <th class="col-sm-3" >姓名</th>
+                <th class="col-sm-4"  id="th_function">工作明細</th>
             </tr>
             </thead>
             <tbody id="tbody">
