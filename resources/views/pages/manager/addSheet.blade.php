@@ -119,7 +119,7 @@
         <script>
             const d = new Date()
             const date = document.getElementById("date");
-            date.value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+            date.value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes();
             document.getElementById("btn_open_scanner").addEventListener("click",function(){
                 //獲取系統裝置資訊
                 let agent = navigator.userAgent.toLowerCase();

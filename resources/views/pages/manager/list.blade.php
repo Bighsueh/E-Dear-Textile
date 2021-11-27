@@ -16,7 +16,7 @@
                 <div class="form-group col-md-6">
                     <label for="date">日期</label>
                     <input type="text" name="date" class="form-control" id="date" placeholder="日期"
-                           value="{{$job_tickets->date}}">
+                           value="{{$job_tickets->created_at}}">
                 </div>
             </div>
             <div class="form-row">
@@ -72,17 +72,10 @@
                            value="{{$job_tickets->colorId2}}">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="cloth">布單數量</label>
-                    <input type="text" name="cloth" class="form-control" id="cloth" placeholder="布單數量"
-                           value="{{$job_tickets->cloth}}">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="rollFunc">滾邊方式</label>
-                    <input type="text" name="rollFunc" class="form-control" id="rollFunc" placeholder="滾邊方式"
-                           value="{{$job_tickets->rollFunc}}">
-                </div>
+            <div class="form-group">
+                <label for="rollFunc">滾邊方式</label>
+                <input type="text" name="rollFunc" class="form-control" id="rollFunc" placeholder="滾邊方式"
+                       value="{{$job_tickets->rollFunc}}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">

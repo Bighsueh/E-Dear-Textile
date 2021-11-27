@@ -10,8 +10,8 @@
                 <th>貨號</th>
                 <th>訂單數量</th>
                 <th>回報</th>
-                <th>狀態</th>
-                <th></th>
+                <th>貨別</th>
+                <th>日期</th>
             </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                             {{$job_ticket->status}}
                         </td>
                         <td>
-
+                            {{$job_ticket->created_at}}
                         </td>
                     </tr>
                 </form>
