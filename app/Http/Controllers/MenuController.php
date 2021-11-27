@@ -52,7 +52,7 @@ class MenuController extends Controller
         $query = $request->except('_token');
         $sum = $query['order_dozen'] * 12 + $query['order_bar'];
         DB::table('job_tickets')->insert([
-            'date' =>$query['date'],
+            'created_at' =>$query['date'],
             'employeeName' =>$query['employeeName'],
             'item' =>$query['item'],
             'itemId' =>$query['itemId'],
@@ -61,7 +61,6 @@ class MenuController extends Controller
             'colorId' =>$query['colorId'],
             'wash' =>$query['wash'],
             'colorId2' =>$query['colorId2'],
-            'cloth' =>$query['cloth'],
             'rollFunc' =>$query['rollFunc'],
             'manager' =>$query['manager'],
             'order' =>$sum,
@@ -87,7 +86,7 @@ class MenuController extends Controller
 //        dd($query);
         DB::table('job_tickets')->where('id',$query['ticket_id'])
             ->update([
-            'date' =>$query['date'],
+            'created_at' =>$query['date'],
             'employeeName' =>$query['employeeName'],
             'item' =>$query['item'],
             'itemId' =>$query['itemId'],
@@ -96,7 +95,6 @@ class MenuController extends Controller
             'colorId' =>$query['colorId'],
             'wash' =>$query['wash'],
             'colorId2' =>$query['colorId2'],
-            'cloth' =>$query['cloth'],
             'rollFunc' =>$query['rollFunc'],
             'manager' =>$query['manager'],
             'order' =>$sum,
