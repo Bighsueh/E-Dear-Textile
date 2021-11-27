@@ -11,7 +11,7 @@
                     <div class="form-group col-md-6">
                         <label for="ticket_id">派遣單編號</label>
                         <input disabled="value" type="text" name="ticket_id" class="form-control" id="ticket_id"
-                               placeholder="派遣單編號" value="{{$id->id+1}}">
+                               placeholder="派遣單編號" value="{{$id+1}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="date">日期</label>
@@ -64,16 +64,11 @@
                         <input type="text" name="colorId2" class="form-control" id="colorId2" placeholder="色線編號" required>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="cloth">布單數量</label>
-                        <input type="text" name="cloth" class="form-control" id="cloth" placeholder="布單數量" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="rollFunc">滾邊方式</label>
-                        <input type="text" name="rollFunc" class="form-control" id="rollFunc" placeholder="滾邊方式" required>
-                    </div>
+                <div class="form-group">
+                    <label for="rollFunc">滾邊方式</label>
+                    <input type="text" name="rollFunc" class="form-control" id="rollFunc" placeholder="滾邊方式" required>
                 </div>
+                {{--        訂單數量未調整        --}}
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="order_dozen">訂單數量(打)</label>
@@ -84,7 +79,7 @@
                         <input type="text" name="order_bar" class="form-control" id="order_bar" placeholder="訂單數量(條)" required>
                     </div>
                 </div>
-                <div class="form-group ">
+                <div class="form-group">
                     <label for="manager">派工主管</label>
                     <input type="text" name="manager" class="form-control" id="manager" placeholder="派工主管" required>
                 </div>
@@ -94,7 +89,7 @@
                         <input type="text" name="ps" class="form-control" id="ps" placeholder="備註">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="status">狀態</label>
+                        <label for="status">貨別</label>
                         <input class="form-control" list="statuslists" name="status" id="status"
                                placeholder="輸入或點擊選取狀態">
                         <datalist id="statuslists">
@@ -106,7 +101,7 @@
                 </div>
 
                 <div style="width:800px; display: flex;" class="column">
-                    <form id="form_open_scanner" action="{{url('/openScanner/ManagerToPiping/'.$id->id)}}">
+                    <form id="form_open_scanner" action="{{url('/openScanner/ManagerToPiping/'.$id)}}">
                         <input id="btn_open_scanner" type="button" class="btn btn-secondary" value="Qrcode授權"/>
                         <input id="camera_link_for_iphone" type="file" accept="image/*" style="display: none" capture/>
                     </form>
@@ -124,7 +119,7 @@
         <script>
             const d = new Date()
             const date = document.getElementById("date");
-            date.value = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+            date.value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
             document.getElementById("btn_open_scanner").addEventListener("click",function(){
                 //獲取系統裝置資訊
                 let agent = navigator.userAgent.toLowerCase();

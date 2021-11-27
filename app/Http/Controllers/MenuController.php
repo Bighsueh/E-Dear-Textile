@@ -16,13 +16,20 @@ class MenuController extends Controller
         //重置Session狀態
         Session::forget('qr_code_status');
         Session::forget('ticket_info');
-
+//        dd($job_tickets);
         return view('pages.manager.menu',compact('job_tickets',$job_tickets));
     }
     // get addSheetUI
     public function get_addSheet()
     {
         $id = DB::table('job_tickets')->select('id')->orderBy("id",'desc')->first();
+        if($id == null)
+        {
+            $id = 0;
+        }
+        else{
+            $id = (int)$id->id;
+        }
         return view('pages.manager.addSheet',compact('id',$id));
     }
 
