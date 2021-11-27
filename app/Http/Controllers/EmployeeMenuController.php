@@ -17,6 +17,7 @@ class EmployeeMenuController extends Controller
             ->where('job_tickets.status','=','排程中')
             ->get();
 //        dd($job_tickets);
+
         //重置Session狀態
         Session::forget('qr_code_status');
         Session::forget('ticket_info');
@@ -33,6 +34,7 @@ class EmployeeMenuController extends Controller
     public function post_employee_report(Request $request)
     {
         $user_id = $request->session()->get('user_id');
+
 //        dd($user_id);
 //        dd($request);
         $job_title = DB::table('job_titles')->select('title')->where('authorized_person', $user_id)->Where('ticket_id',$request->ticket_id)->orderBy('id','desc')->first();
@@ -48,6 +50,7 @@ class EmployeeMenuController extends Controller
         {
             $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
             $sumPipReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('Piping_order');
+
         }
         if($foldHeadReports->count())
         {
@@ -58,7 +61,9 @@ class EmployeeMenuController extends Controller
 
         if($job_title->title == "剪巾"  ) {
             $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
-            $Pipings = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->get();
+            $Pipings = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->Where('authorized_person', $request->authorizer)->get();
+
+            dd($Pipings);
             return view('pages.employee.employeeReport',compact('job_tickets','job_title','Pipings','sumReports','sumPipReports','reports'));
         }
         elseif($job_title->title == "折頭"){

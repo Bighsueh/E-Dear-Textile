@@ -54,11 +54,13 @@
                     </div>
                     <div class="form-group">
                         <label for="Piping">滾邊員</label>
-                        <select class="form-select form-control" name="Piping" id="Piping">
-                            @foreach($Pipings as $Piping)
-                                <option value="{{$Piping->authorized_person}}">{{$Piping->authorized_person}}</option>>
-                            @endforeach
-                        </select>
+{{--                        <select class="form-select form-control" name="Piping" id="Piping" readonly="readonly">--}}
+{{--                            @foreach($Pipings as $Piping)--}}
+{{--                                <option value="{{$Piping->authorized_person}}">{{$Piping->authorized_person}}</option>>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+                        <input type="text" readonly="readonly" name="Piping" class="form-control" id="Piping"
+                               placeholder="滾邊員" value="{{$Pipings->$Piping}}>
                     </div>
                     <div class="form-group">
                         <label for="date">日期</label>

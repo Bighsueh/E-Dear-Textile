@@ -7,6 +7,7 @@
             <tr>
                 <th>客戶名稱</th>
                 <th>派遣單編號</th>
+                <th>授權人</th>
                 <th>貨號</th>
                 <th>訂單數量</th>
                 <th>回報</th>
@@ -22,6 +23,10 @@
                             <td>
                                 <a href="{{Route('get_employee_list',$job_ticket->ticket_id)}}" style="text-decoration: none; color: black;">{{$job_ticket->ticket_id}}</a>
                                 <input type="text" name="ticket_id" style="display: none" class="form-control" value="{{$job_ticket->ticket_id}}"/>
+                            </td>
+                            <td>
+                                {{$job_ticket->authorizer}}
+                                <input type="text" name="authorizer" style="display: none" class="form-control" value="{{$job_ticket->authorizer}}"/>
                             </td>
                             <td>
                                 {{$job_ticket->itemId}}
