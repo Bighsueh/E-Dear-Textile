@@ -15,7 +15,7 @@ class JobTickets extends Migration
     {
         Schema::create('job_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('date');
+            $table->timestamps();
             $table->string('employeeName');
             $table->string('item');
             $table->string('itemId');
@@ -24,12 +24,11 @@ class JobTickets extends Migration
             $table->string('wash');
             $table->string('colorId');
             $table->string('colorId2');
-            $table->string('cloth');
             $table->string('rollFunc');
             $table->string('manager');
             $table->string('order');
-            $table->string('ps');
-            $table->string('status');
+            $table->string('ps')->nullable();
+            $table->string('status')->nullable();
         });
     }
 
