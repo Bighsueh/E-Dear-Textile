@@ -57,7 +57,7 @@
                     if (res.length > 0) {
                         res.forEach(function (row) {
                             let row_name = "<td>" + row["employeeName"] + "</td>";
-                            let row_id = "<td>" + row['id'] + "</td>";
+                            let row_id = `<td> <a class="btn_list text-primary" value='${row['id']}'>${row['id']}</a> </td>`;
                             let row_itemId = "<td>" + row["itemId"] + "</td>";
                             let row_order = "<td>" + row["order"] + "</td>";
                             let row_result = `<td> <button class="btn btn-outline-dark btn_result" value='${row['id']}'>結果</button> </td>`;
@@ -77,7 +77,9 @@
                     $(".btn_result").click(function (){
                         window.location.href="/manager/menu/result/"+$(this).attr("value");
                     })
-
+                    $(".btn_list").click(function (){
+                        window.location.href="/manager/menu/list/"+$(this).attr("value");
+                    })
                 },
                 error: function (err) {
                     console.log(err);
