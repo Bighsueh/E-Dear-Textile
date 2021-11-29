@@ -1,5 +1,10 @@
 @extends('layouts.masters.manager')
 @section('content')
+    <style>
+        *{
+            font-size:20px;
+        }
+    </style>
     <div class="container">
         <div class="row form-inline form-group">
             <div class="input-group col-sm-8 col-8">
@@ -47,7 +52,7 @@
                 method: 'GET',
                 data: '',
                 success: function (res) {
-                    console.log(res)
+                    // console.log(res)
                     $("#tbody tr").remove();
                     if (res.length > 0) {
                         res.forEach(function (row) {
