@@ -19,6 +19,24 @@ class MenuController extends Controller
 //        dd($job_tickets);
         return view('pages.manager.menu',compact('job_tickets',$job_tickets));
     }
+
+    public function get_search_data(Request $request)
+    {
+        $search_parameter = null;
+        if ($request->search_parameter !== $search_parameter) {
+            $search_parameter = $request->search_parameter;
+        }
+
+        //取得員工列表
+        $data = DB::table('job_tickets')
+            ->select('employeeName','id', 'itemId', 'order','status','created_at')
+            ->where('employeeName', 'like', '%' . $search_parameter . '%')
+            ->orwhere('status', 'like', '%' . $search_parameter . '%')
+            ->orwhere('created_at', 'like BINARY', '%' . $search_parameter . '%')
+            ->get();
+        return $data;
+    }
+
     // get addSheetUI
     public function get_addSheet()
     {
@@ -104,10 +122,9 @@ class MenuController extends Controller
         return redirect()->route('get_menu');
     }
 
-    public function get_result(Request $request)
+    public function get_result($id)
     {
-//        dd($request);
-        $ticket_id = $request->except('_token');
+        $ticket_id = $id;
         $job_ticket = DB::table('job_tickets')->where('id',$ticket_id)->first();
         $reports = DB::table('job_reports')->where('ticket_id',$ticket_id)->get();
         $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id',$ticket_id)->get();
