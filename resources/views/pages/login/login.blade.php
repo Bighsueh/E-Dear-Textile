@@ -14,7 +14,6 @@
                             <label for="employee_id">員工編號</label>
                             <br>
                             <select class="form-control" id="employee_account" name="employee_account" required>
-                                <option>請選擇員工</option>
                                 @foreach($data as $row)
                                     <option value="{{$row->account}}">{{$row->name}}</option>
                                 @endforeach
@@ -60,6 +59,8 @@
 
                 form_submit.submit();
             })
+
+            $("#employee_account").editableSelect({efficts: 'slide'})
         })()
     </script>
 @endsection
