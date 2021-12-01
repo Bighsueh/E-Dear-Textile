@@ -7,7 +7,7 @@
     </style>
     <div class="container">
         <div class="row form-inline form-group">
-            <div class="input-group col-sm-8 col-8">
+            <div class="input-group col-sm-12 col-12">
                 <input type="text" class="form-control" placeholder="搜尋派遣單關鍵字" aria-label=""
                        aria-describedby="basic-addon1" name="search_parameter" id="search_parameter">
                 <div class="input-group-append">
