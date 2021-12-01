@@ -51,11 +51,6 @@ class MenuController extends Controller
         return view('pages.manager.addSheet',compact('id',$id));
     }
 
-    public function get_employeeList()
-    {
-        return view('pages.manager.employeeList');
-    }
-
     public function get_employeeDetail(Request $request,$id)
     {
         $employee = DB::table('users')->where('id', $id)->get();
