@@ -118,8 +118,7 @@
         }
 
         function get_job_log(employee_id) {
-            console.log("get_job_log");
-            {{--window.location.replace("{{route('')}}");--}}
+            window.location.href = "{{route('get_working_log_page')}}?employee_id="+employee_id;
         }
 
         //頁面最上方設定按鈕點擊事件

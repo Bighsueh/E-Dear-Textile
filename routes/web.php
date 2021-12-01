@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/report', function () {
+    return view('pages.employee.TaskReportModal');
+});
 
 // 登入
 Route::get('/', 'LoginController@get_login_page')->name('get_login');
@@ -40,15 +43,20 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/manager/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
     Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
 
-    Route::get('/manager/menu/employeeList','MenuController@get_employeeList')->name('get_employeeList');
-    Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');
+
+//    Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');
 
     //幹部-員工資料
-    Route::get('/manager/menu/getEmployeeData','UserController@get_user_data')->name('get_employee_data');
-    Route::post('/manager/menu/createEmployeeData','UserController@create_user_data')->name('create_user_data');
-    Route::get('/manager/menu/getEditEmployeeData','UserController@get_edit_data')->name('get_edit_data');
-    Route::post('/manager/menu/storeEditEmployeeData','UserController@store_edit_data')->name('store_edit_data');
-    Route::post('/manager/menu/deleteEditEmployeeData','UserController@delete_edit_data')->name('delete_edit_data');
+    Route::get('/manager/menu/employeeList','UserController@get_user_page')->name('get_user_page');
+    Route::get('/manager/menu/getUserData','UserController@get_user_data')->name('get_employee_data');
+    Route::post('/manager/menu/createUserData','UserController@create_user_data')->name('create_user_data');
+    Route::get('/manager/menu/getEditUserData','UserController@get_edit_data')->name('get_edit_data');
+    Route::post('/manager/menu/storeEditUserData','UserController@store_edit_data')->name('store_edit_data');
+    Route::post('/manager/menu/deleteEditUserData','UserController@delete_edit_data')->name('delete_edit_data');
+
+    //幹部-員工工作紀錄
+    Route::get('/manager/WorkingLog', 'WorkingLogController@get_working_log_page')->name('get_working_log_page');
+
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
     // 將資料傳入回報的頁面
