@@ -15,11 +15,12 @@ class JobReports extends Migration
     {
         Schema::create('job_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('Piping');
-            $table->string('user_id');
+            $table->string('action');
+            $table->string('operator');
             $table->string('ticket_id');
-            $table->string('piping_order');
-            $table->string('cut_order');
+            $table->float('quantity');
+            $table->string('unit');
+            $table->string('submit_by');
             $table->timestamps();
         });
     }
