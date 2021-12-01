@@ -20,12 +20,11 @@ class ScannerController extends Controller
     }
     public function OpenScanner(Request $request, $method, $sub_attr)
     {
-        $method = '';
-        $ticket_id = '';
         //紀錄跳轉Scanner前使用者的狀態
         Session::put('method', $method);
         //紀錄跳轉Scanner前使用的單號
         Session::put('ticket_info', $sub_attr);
+
     }
 
     public function AfterScan(Request $request)
@@ -59,7 +58,6 @@ class ScannerController extends Controller
         if ($level === 'manager') {
             //若判斷是幹部的話就從 Session 讀取 method 狀態
             $method = $request->session()->get('method');
-
             //判斷是否為幹部掃滾邊員(被授權人,單號)
             if ($method === 'ManagerToPiping') $this->ManagerToPiping($user_id, $ticket_id);
 
@@ -68,7 +66,6 @@ class ScannerController extends Controller
 
             return redirect()->route('get_menu');
         }
-
         if ($level === 'employee') {
 
             if ($request->ticket_id !== '') $ticket_id = $request->ticket_id;
