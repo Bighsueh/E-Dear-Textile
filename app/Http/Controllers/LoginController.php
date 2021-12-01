@@ -15,10 +15,10 @@ class LoginController extends Controller
         Session::flush();
         //重新產生Session ID
         $request->session()->regenerate();
-        $data = DB::table('users')->select('name','account')->get();
+        $data = DB::table('users')->select('name', 'account')->get();
 //        dd($data);
 
-        return view('pages.login.login',compact('data',$data));
+        return view('pages.login.login', compact('data', $data));
     }
 
     public function post_login(Request $request)
@@ -28,6 +28,11 @@ class LoginController extends Controller
         $users_table = DB::table('users')->get();
 
         try {
+            $check_name = $users_table->where('name', $account)->first();
+            if ($check_name) {
+                $account = $check_name->account;
+            }
+
             $account_info = $users_table
                 ->where('account', $account)
                 ->where('password', $employee_password)
