@@ -53,6 +53,11 @@
         //資料刷新
         function update_data(search_parameter = null) {
             let url = '{{route('get_employee_data')}}';
+
+            if (!navigator.userAgent.toLowerCase().includes("windows")) {
+                window.alert('此頁面建議使用電腦觀看，已獲得最佳使用體驗。');
+            }
+
             if (search_parameter !== null) {
                 url += '?search_parameter=' + search_parameter;
             }

@@ -14,7 +14,8 @@
                 <div class="form-control col col-sm text-center">
                     員工：user_id
                 </div>
-                <button type="button" class="btn btn-outline-secondary mx-1 col col-sm text-center" id="btn_export_excel">
+                <button type="button" class="btn btn-outline-secondary mx-1 col col-sm text-center"
+                        id="btn_export_excel">
                     匯出報表
                 </button>
             </div>
@@ -46,5 +47,9 @@
         </table>
 
     </div>
-
+    <script>
+        if (!navigator.userAgent.toLowerCase().includes("windows")) {
+            window.alert('此頁面建議使用電腦觀看，已獲得最佳使用體驗。');
+        }
+    </script>
 @endsection
