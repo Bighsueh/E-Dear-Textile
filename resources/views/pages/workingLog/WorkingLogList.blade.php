@@ -12,13 +12,14 @@
             </div>
             <div class="col-sm-4 col-4 row">
                 <div class="form-control col col-sm text-center">
-                    員工：user_id
+                    員工：{{$data['employee_name']}}
                 </div>
                 <button type="button" class="btn btn-outline-secondary mx-1 col col-sm text-center"
                         id="btn_export_excel">
                     匯出報表
                 </button>
             </div>
+            <input type="hidden" id="employee_id" value="{{$data["employee_id"]}}"/>
 
         </div>
 

@@ -10,14 +10,17 @@ class WorkingLogController extends Controller
 {
     public function get_working_log_page(Request $request)
     {
-        try{
+        try {
             $employee_id = $request->employee_id;
-            $data = DB::table('job_titles')
-                ->join('job_reports', 'job_titles.id', '=', 'job_reports.ticket_id')
-                ->where('job_reports.operator', $employee_id)
-                ->get();
-            return view('pages.workingLog.WorkingLogList',$data);
-        }catch (Exception $exception){
+            $employee_name = DB::table('users')
+                ->where('id', $employee_id)
+                ->first()->name;
+            $data = [
+                'employee_id' => $employee_id,
+                'employee_name' => $employee_name
+            ];
+            return view('pages.workingLog.WorkingLogList', compact('data',$data));
+        } catch (Exception $exception) {
             return $exception;
         }
     }
