@@ -8,6 +8,11 @@ use PHPUnit\Exception;
 
 class UserController extends Controller
 {
+    public function get_user_page()
+    {
+        return view('pages.users.userList');
+    }
+
     public function get_user_data(Request $request)
     {
         $search_parameter = null;
