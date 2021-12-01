@@ -291,6 +291,7 @@
                 })
             }
 
+            //"確認刪除"按鈕
             $("#btn_delete_yes").click(function () {
                 delete_user_data($("#delete_user_id").val());
                 $("#DeleteUserModal").modal('hide');
