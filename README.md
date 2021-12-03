@@ -16,7 +16,11 @@
 5. 資料庫名稱
     > EDearTextile
             >
-
+6. 導入php extension-mysql_xdevapi  
+    [mysql_xdevapi](https://pecl.php.net/package/mysql_xdevapi)  
+7. 導入php extension-mongodb  
+    [mongodb php7.2以前](https://pecl.php.net/package/mongodb/1.5.2/windows)  
+    [mongodb php7.3以後](https://pecl.php.net/package/mongodb/1.11.1/windows)  
 #### 問題解決串
 1. 遇到 "Target class [xxxSeeder] does not exist. 解決辦法"
 > composer dump-autoload
