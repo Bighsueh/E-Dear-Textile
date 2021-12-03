@@ -16,6 +16,7 @@
             <tbody>
             <form action="{{Route('post_employee_report')}}" method="POST">
                 @foreach($job_tickets as $job_ticket)
+                    {{$id=1}}
                         <tr>
                             <td>
                                 {{$job_ticket->employeeName}}
@@ -39,7 +40,7 @@
                                     @csrf
                                     <button type="submit" class="btn btn-secondary">選填</button>
 
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#QRcodeModal-{{$job_ticket->id}}">
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#QRcodeModal-{{$id++}}">
                                     QR Code
                                 </button>
                             </td>
@@ -52,8 +53,9 @@
 
     </div>
     @foreach($job_tickets as $job_ticket)
+        {{$id=1}}
         <!-- Modal -->
-        <div class="modal fade" id="QRcodeModal-{{$job_ticket->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="QRcodeModal-{{$id++}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
@@ -65,9 +67,9 @@
                     <div class="modal-body">
                         <div class="d-flex justify-content-center">
                             <br>
-                            <div id="qrcode-{{$job_ticket->ticket_id}}"></div>
+                            <div id="qrcode-{{$id}}"></div>
                             <script>
-                                $('#qrcode-{{$job_ticket->ticket_id}}').qrcode("{{url('/afterScan')}}?ticket_id={{$job_ticket->ticket_id}}&user_id={{Illuminate\Support\Facades\Session::get('user_id')}}");
+                                $('#qrcode-{{$id}}').qrcode("{{url('/afterScan')}}?ticket_id={{$job_ticket->ticket_id}}&user_id={{Illuminate\Support\Facades\Session::get('user_id')}}");
                             </script>
                         </div>
                     </div>
