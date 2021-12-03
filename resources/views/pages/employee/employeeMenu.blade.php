@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             @csrf
-                            <button type="submit" class="btn btn-secondary">選填</button>
+                            <button type="button" class="btn btn-secondary btn-open-report-detail-modal">選填</button>
 
                             <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
                                 撿金回報
@@ -52,4 +52,23 @@
         </table>
     </div>
     @include('pages.employee.QrCodeModal')
+    @include('pages.employee.ReportDetailModal')
+    @include('pages.employee.TaskReportModal')
+
+    <script>
+        function close_modal(){
+            $(".modal").modal('hide');
+        }
+        $(".close-modal").click(function () {
+            close_modal();
+        })
+        $('.btn-open-report-detail-modal').click(function () {
+            $('#ReportDetailModal').modal('show');
+        })
+
+        $('.btn-report').click(function () {
+            close_modal();
+            $('#TaskReportModal').modal('show');
+        })
+    </script>
 @endsection
