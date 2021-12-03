@@ -82,8 +82,8 @@
                             }
                             if (setting_mode === "setting") {
                                 row_function =
-                                    `<td class=''><buttun class='btn btn-outline-danger mr-2 btn_remove_user' value='${row_id}' >刪除</buttun>` +
-                                    `<buttun class='btn btn-outline-info btn_edit_user' value='${row_id}'>修改資訊</buttun></td>`;
+                                    `<td class=''><button class='btn btn-outline-danger mr-2 btn_remove_user' value='${row_id}' >刪除</button>` +
+                                    `<button class='btn btn-outline-info btn_edit_user' value='${row_id}'>修改資訊</button></td>`;
                             }
                             $("tbody").append(
                                 "<tr>" + row_thread + row_level + row_name + row_function + "</tr>"
