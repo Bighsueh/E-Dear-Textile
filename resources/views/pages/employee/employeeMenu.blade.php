@@ -16,70 +16,40 @@
             <tbody>
             <form action="{{Route('post_employee_report')}}" method="POST">
                 @foreach($job_tickets as $job_ticket)
-                    {{$id=1}}
-                        <tr>
-                            <td>
-                                {{$job_ticket->employeeName}}
-                            </td>
-                            <td>
-                                <a href="{{Route('get_employee_list',$job_ticket->ticket_id)}}" style="text-decoration: none; color: black;">{{$job_ticket->ticket_id}}</a>
-                                <input type="text" name="ticket_id" style="display: none" class="form-control" value="{{$job_ticket->ticket_id}}"/>
-                            </td>
-                            <td>
-                                {{$job_ticket->authorizer}}
-                                <input type="text" name="authorizer" style="display: none" class="form-control" value="{{$job_ticket->authorizer}}"/>
-                            </td>
-                            <td>
-                                {{$job_ticket->itemId}}
-                            </td>
-                            <td>
-                                {{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12)."條"}}
-                            </td>
-                            <td>
+                    <tr>
+                        <td class="employee-name">
+                            {{$job_ticket->employeeName}}
+                        </td>
+                        <td class="ticket-id">
+                            <a class="ticket-id" href="{{Route('get_employee_list',$job_ticket->ticket_id)}}"
+                               style="text-decoration: none; color: black;">{{$job_ticket->ticket_id}}</a>
+                            <input type="text" name="ticket_id" style="display: none" class="form-control"
+                                   value="{{$job_ticket->ticket_id}}"/>
+                        </td>
+                        <td>
+                            {{$job_ticket->authorizer}}
+                            <input type="text" name="authorizer" style="display: none" class="form-control"
+                                   value="{{$job_ticket->authorizer}}"/>
+                        </td>
+                        <td>
+                            {{$job_ticket->itemId}}
+                        </td>
+                        <td>
+                            {{(round($job_ticket->order/12-0.5)).'打'.($job_ticket->order%12)."條"}}
+                        </td>
+                        <td>
+                            @csrf
+                            <button type="submit" class="btn btn-secondary">選填</button>
 
-                                    @csrf
-                                    <button type="submit" class="btn btn-secondary">選填</button>
-
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#QRcodeModal-{{$id++}}">
-                                    QR Code
-                                </button>
-                            </td>
-                        </tr>
+                            <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
+                                撿金回報
+                            </button>
+                        </td>
+                    </tr>
                 @endforeach
             </form>
             </tbody>
-
         </table>
-
     </div>
-    @foreach($job_tickets as $job_ticket)
-        {{$id=1}}
-        <!-- Modal -->
-        <div class="modal fade" id="QRcodeModal-{{$id++}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <h5 class="modal-title" id="exampleModalLabel" style=""> 此QR Code僅供剪巾員進行掃描  </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex justify-content-center">
-                            <br>
-                            <div id="qrcode-{{$id}}"></div>
-                            <script>
-                                $('#qrcode-{{$id}}').qrcode("{{url('/afterScan')}}?ticket_id={{$job_ticket->ticket_id}}&user_id={{Illuminate\Support\Facades\Session::get('user_id')}}");
-                            </script>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        廠商：{{$job_ticket->employeeName}}
-                        {{--                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    @endforeach
+    @include('pages.employee.QrCodeModal')
 @endsection
