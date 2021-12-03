@@ -30,6 +30,9 @@
     <script type="text/javascript" src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.qrcode.min.js') }}"></script>
     <script src="{{ asset('assets/js/qrcode.js') }}"></script>
+    {{-- editable-select   --}}
+    <link href="{{asset('assets/css/jquery-editable-select.css')}}" rel="stylesheet"/>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-editable-select.js') }}"></script>
 
 </head>
 <body class="bg-light h-100">
