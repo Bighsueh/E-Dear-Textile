@@ -52,5 +52,9 @@
         if (!navigator.userAgent.toLowerCase().includes("windows")) {
             window.alert('此頁面建議使用電腦觀看，已獲得最佳使用體驗。');
         }
+
+        $("#btn_export_excel").click(function () {
+            window.location.href = "{{route('working_job_export_excel')}}";
+        })
     </script>
 @endsection
