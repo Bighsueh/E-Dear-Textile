@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\JobReportExport;
 use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkingLogController extends Controller
 {
@@ -23,5 +25,10 @@ class WorkingLogController extends Controller
         } catch (Exception $exception) {
             return $exception;
         }
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new JobReportExport, 'test.xlsx');
     }
 }
