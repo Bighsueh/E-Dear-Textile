@@ -58,6 +58,7 @@ Route::group(['middleware' =>['login']],function(){
 
     //幹部-員工工作紀錄
     Route::get('/manager/WorkingLog', 'WorkingLogController@get_working_log_page')->name('get_working_log_page');
+    Route::get('/manager/getWorkingLogData', 'WorkingLogController@get_working_log_data')->name('get_working_log_data');
 
     //輸出Excel
     Route::get('/excel', 'WorkingLogController@export_excel')->name('working_job_export_excel');
