@@ -83,24 +83,38 @@ class EmployeeMenuController extends Controller
         try{
 
             $user_id = Session::get('user_id');
+            //自己回報的
             $ticket_report = DB::table('job_reports')
-                ->where('ticket_id',1)
+                ->where('ticket_id',$request->ticket_id)
                 ->where('operator',$user_id)
                 ->get();
 
             if($request->action == '剪巾'){
+                //以回報滾邊
                 $piping_report = DB::table('job_reports')
                 ->where('ticket_id',1)
                 ->where('submit_by',$user_id)
                     ->where('action','滾邊')
                     ->get();
+                //授權給自己的滾邊員
+                $pipings = DB::table('job_titles')
+                    ->where('ticket_id',$request->ticket_id)
+                    ->where('authorized_person',$request->ticket_id)
+                    ->get();
+
 
             }
             elseif($request->action == '折頭'){
-                $piping_report = DB::table('job_reports')
+                //以回報撿巾
+                $pick_report = DB::table('job_reports')
                     ->where('ticket_id',1)
                     ->where('submit_by',$user_id)
                     ->where('action','撿巾')
+                    ->get();
+                //自己授權的撿巾員
+                $picks = DB::table('job_titles')
+                    ->where('ticket_id',$request->ticket_id)
+                    ->where('authorizer',$request->ticket_id)
                     ->get();
             }
 
