@@ -53,7 +53,7 @@
         </table>
     </div>
     @include('pages.employee.QrCodeModal')
-    @include('pages.employee.TaskReportModal')
+    @include('pages.employee.CutReportModal')
 
     <script>
         function close_modal() {
