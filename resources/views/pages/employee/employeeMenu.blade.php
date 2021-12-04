@@ -40,10 +40,11 @@
                         <td>
                             @csrf
                             <button type="button" class="btn btn-secondary btn-report">選填</button>
-
-                            <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
-                                剪巾回報
-                            </button>
+                            @if($job_ticket->title === '滾邊')
+                                <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
+                                    剪巾回報
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -55,9 +56,10 @@
     @include('pages.employee.TaskReportModal')
 
     <script>
-        function close_modal(){
+        function close_modal() {
             $(".modal").modal('hide');
         }
+
         $(".close-modal").click(function () {
             close_modal();
         })
