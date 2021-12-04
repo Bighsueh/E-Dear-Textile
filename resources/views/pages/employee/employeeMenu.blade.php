@@ -21,8 +21,8 @@
                             {{$job_ticket->employeeName}}
                         </td>
                         <td class="ticket-id">
-                            <a class="ticket-id" href="{{Route('get_employee_list',$job_ticket->ticket_id)}}"
-                               style="text-decoration: none; color: black;">{{$job_ticket->ticket_id}}</a>
+                            <a class="ticket-id text-primary" href="{{Route('get_employee_list',$job_ticket->ticket_id)}}"
+                               >{{$job_ticket->ticket_id}}</a>
                             <input type="text" name="ticket_id" style="display: none" class="form-control"
                                    value="{{$job_ticket->ticket_id}}"/>
                         </td>
