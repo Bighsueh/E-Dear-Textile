@@ -42,6 +42,8 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/manager/menu/result/{id}','MenuController@get_result')->name('get_result');
     Route::get('/manager/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
     Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
+    //匯出派遣單excel
+    Route::get('/manager/menu/excel', 'MenuController@export')->name('menu_export');
 
 
 //    Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');

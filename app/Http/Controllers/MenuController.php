@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\JobTicketExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MenuController extends Controller
 {
@@ -117,24 +119,24 @@ class MenuController extends Controller
         return redirect()->route('get_menu');
     }
 
-    public function get_result($id)
+    public function get_result(Request $request)
     {
-        $ticket_id = $id;
+        $ticket_id = $request->user_id;
         $job_ticket = DB::table('job_tickets')->where('id',$ticket_id)->first();
         $reports = DB::table('job_reports')->where('ticket_id',$ticket_id)->get();
         $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id',$ticket_id)->get();
 //        計算目前回報總數量
-        if($reports->count())
-        {
-            $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
-            $sumPipReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('Piping_order');
-        }
-        if($foldHeadReports->count())
-        {
-            $sumFoldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('foldHead_order');
-            $sumPickReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('pickTower_order');
-//            dd($sumPickReports);
-        }
+//        if($reports->count())
+//        {
+//            $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
+//            $sumPipReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('Piping_order');
+//        }
+//        if($foldHeadReports->count())
+//        {
+//            $sumFoldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('foldHead_order');
+//            $sumPickReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('pickTower_order');
+////            dd($sumPickReports);
+//        }
 //        dd($sumFoldHeadReports);
         return view('pages.manager.report',
             compact('reports','foldHeadReports','job_ticket','sumReports','sumFoldHeadReports','sumPipReports','sumPickReports'));
@@ -164,5 +166,10 @@ class MenuController extends Controller
         }
 //        dd($queries);
         return view('pages.manager.reportList',compact('id','report','queries'));
+    }
+    //匯出excel
+    public function export()
+    {
+        return Excel::download(new JobTicketExport, 'jobTickets.xlsx');
     }
 }
