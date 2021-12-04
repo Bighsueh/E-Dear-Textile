@@ -54,6 +54,7 @@
     </div>
     @include('pages.employee.QrCodeModal')
     @include('pages.employee.CutReportModal')
+    @include('pages.employee.HeadReportModal')
 
     <script>
         function close_modal() {
