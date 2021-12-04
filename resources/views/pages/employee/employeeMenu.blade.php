@@ -62,7 +62,7 @@
             close_modal();
         })
         $('.btn-report').click(function () {
-            $('#TaskReportModal').modal('show');
+            open_report_modal();
         })
     </script>
 @endsection
