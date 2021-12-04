@@ -35,7 +35,7 @@
 <body class="bg-light h-100">
 <style>
     *{
-        font-size:20px;
+        font-size:15px;
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
