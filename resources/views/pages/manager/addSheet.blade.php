@@ -176,8 +176,7 @@
                                placeholder="輸入或點擊選取狀態">
                             <option value="排程中">排程中</option>
                             <option value="刪單">刪單</option>
-                            <option value="結單">結單</option>
-
+                            <option value="出貨">出貨</option>
                         </select>
                     </div>
                 </div>
