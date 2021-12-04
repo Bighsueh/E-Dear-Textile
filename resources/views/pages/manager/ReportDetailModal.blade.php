@@ -57,8 +57,15 @@
                         let row_item = `<td id="action1" style="vertical-align : middle;text-align:center;" rowspan="${res[0].length}"> ${row["action"]} </td>`;
                         let row_sum_order = `<td style="vertical-align : middle;text-align:center;" rowspan="${res[0].length}" >
                         <a class="btn_list1 text-primary" value='${res[2]}'>${res[2]}${unit}</a> </td>`;
-                        let row_employee = "<td>" + row["operator"] + "</td>";
-                        let row_order = "<td>" + row["quantity"] + "</td>";
+                        let row_employee = "<td>" + row["name"] + "</td>";
+                        let row_order = "";
+                        if(res[3] == "1")
+                        {
+                            row_order = `<td>  ${row["quantity"]}${unit} </td>`;
+                        }
+                        else{
+                            row_order = `<td>  ${Math.round((row["quantity"]/12)*100)/100}${unit} </td>`;
+                        }
                         if (c == 1) {
                             $("#tbody_detail").append(
                                 "<tr>" + row_item + row_sum_order+ row_employee+ row_order + "</tr>"
@@ -78,8 +85,15 @@
                         rowspan="${res[1].length}"> ${row["action"]} </td>`;
                         let row_sum_order = `<td style="vertical-align : middle;text-align:center;" rowspan="${res[1].length}" >
                         <a class="btn_list2 text-primary" value='${res[2]}'>${res[2]}${unit}</a> </td>`;
-                        let row_employee = "<td>" + row["operator"] + "</td>";
-                        let row_order = "<td>" + row["quantity"] + "</td>";
+                        let row_employee = "<td>" + row["name"] + "</td>";
+                        let row_order="";
+                        if(res[3] == "1")
+                        {
+                            row_order = `<td>  ${row["quantity"]}${unit} </td>`;
+                        }
+                        else{
+                            row_order = `<td>  ${Math.round((row["quantity"]/12)*100)/100}${unit} </td>`;
+                        }
                         if (c == 1) {
                             $("#tbody_detail").append(
                                 "<tr>" + row_item + row_sum_order+ row_employee+ row_order + "</tr>"

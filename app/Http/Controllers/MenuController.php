@@ -156,21 +156,29 @@ class MenuController extends Controller
     {
         // 剪巾或折頭的查詢
         $report = DB::table('job_reports')
+            ->join('users','job_reports.operator','users.id')
             ->where('ticket_id', $request->user_id)
-            ->where('action', $request->action)->get();
+            ->where('action', $request->action)
+            ->select('job_reports.action','job_reports.quantity','users.name')
+            ->get();
         $sub_report = null;
         // 帶出需要幫忙回報的人員
         if($request->action =='剪巾'){
             $sub_report = DB::table('job_reports')
-                ->select('action','quantity','operator')
+                ->join('users','job_reports.operator','users.id')
                 ->where('ticket_id', $request->user_id)
-                ->where('action', '滾邊')->get();
+                ->where('action', '滾邊')
+                ->select('job_reports.action','job_reports.quantity','users.name')
+                ->get();
+
         }
         else if($request->action =='折頭'){
             $sub_report = DB::table('job_reports')
-                ->select('action','quantity','operator')
+                ->join('users','job_reports.operator','users.id')
                 ->where('ticket_id', $request->user_id)
-                ->where('action', '撿巾')->get();
+                ->where('action', '撿巾')
+                ->select('job_reports.action','job_reports.quantity','users.name')
+                ->get();
         }
 
         return [$report,$sub_report,$request->num,$request->unit];
