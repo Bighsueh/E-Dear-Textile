@@ -150,11 +150,17 @@ class EmployeeMenuController extends Controller
                     ->where('action', '撿巾')
                     ->get();
                 //自己授權的撿巾員
-                $picks = DB::table('job_titles')
+                $picks_members = DB::table('job_titles')
                     ->where('ticket_id', $request->ticket_id)
                     ->where('authorizer', $user_id)
+                    ->join('users','job_titles.authorized_person','=','users.id')
                     ->get();
-                return 1;
+                $result = [
+                    "ticket_reports" => $ticket_reports,
+                    "pick_reports" => $pick_report,
+                    "picks_members" => $picks_members
+                ];
+                return $result;
 
 
             }
@@ -208,22 +214,27 @@ class EmployeeMenuController extends Controller
                 }
             }else{
                 //撿巾 回報
+
                 foreach ($request->piping_list as $piping_report ){
+
                     $piping = DB::table('job_reports')
                         ->where('ticket_id',$request->ticket_id)
                         ->where('operator',$piping_report[0])
                         ->where('action','撿巾')
                         ->get();
+
                     if($piping->count()){
+
                         DB::table('job_reports')
                             ->where('id',$piping[0]->id)
                             ->update([
-                                'quantity'=>$piping_report[1],
-                                'unit'=>$piping_report[2],
-                                'updated_at'=>$request->updated_at
+                                'quantity' => $piping_report[1],
+                                'unit' => $piping_report[2],
+                                'updated_at' => $request->updated_at
                             ]);
                     }
                     else{
+
                         DB::table('job_reports')
                             ->insert([
                                 'action' => '撿巾',
