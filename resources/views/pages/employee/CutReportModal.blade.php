@@ -211,6 +211,8 @@
         let operator_name = document.getElementById('report-operator-name').value;
         let operator_number = document.getElementById('report_operator_num').value;
         let operator_unit = document.getElementById('report-operator-unit').value;
+        const d = new Date();
+
         $.ajax({
             url:'{{route('store_report_data')}}',
             method: 'GET',
@@ -219,7 +221,8 @@
                 piping_list: piping_list,
                 action: '剪巾',
                 operator_number: operator_number,
-                operator_unit: operator_unit
+                operator_unit: operator_unit,
+                updated_at:d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()
             },
             success: function (res) {
                 console.log(res);

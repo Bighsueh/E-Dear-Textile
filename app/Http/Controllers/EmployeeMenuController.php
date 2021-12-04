@@ -190,6 +190,7 @@ class EmployeeMenuController extends Controller
                             ->update([
                                 'quantity'=>$piping_report[1],
                                 'unit'=>$piping_report[2],
+                                'updated_at'=>$request->updated_at
                             ]);
                     }
                     else{
@@ -200,7 +201,8 @@ class EmployeeMenuController extends Controller
                                 'ticket_id' => $request->ticket_id,
                                 'quantity' => $piping_report[1],
                                 'unit' => $piping_report[2],
-                                'submit_by' => $user_id
+                                'submit_by' => $user_id,
+                                'updated_at'=>$request->updated_at
                             ]);
                     }
                 }
@@ -218,6 +220,7 @@ class EmployeeMenuController extends Controller
                             ->update([
                                 'quantity'=>$piping_report[1],
                                 'unit'=>$piping_report[2],
+                                'updated_at'=>$request->updated_at
                             ]);
                     }
                     else{
@@ -228,7 +231,8 @@ class EmployeeMenuController extends Controller
                                 'ticket_id' => $request->ticket_id,
                                 'quantity' => $piping_report[1],
                                 'unit' => $piping_report[2],
-                                'submit_by' => $user_id
+                                'submit_by' => $user_id,
+                                'updated_at'=>$request->updated_at
                             ]);
                     }
                 }
@@ -248,7 +252,8 @@ class EmployeeMenuController extends Controller
                         ->where('id',$submit_by[0]->id)
                         ->update([
                             'quantity'=>$request->operator_number,
-                            'unit'=>$request->operator_unit
+                            'unit'=>$request->operator_unit,
+                            'updated_at'=>$request->updated_at
                         ]);
                 }
                 else{
@@ -259,7 +264,8 @@ class EmployeeMenuController extends Controller
                             'ticket_id' => $request->ticket_id,
                             'quantity' => $request->operator_number,
                             'unit' => $request->operator_unit,
-                            'submit_by' => $user_id
+                            'submit_by' => $user_id,
+                            'updated_at'=>$request->updated_at
                         ]);
                 }
             }else{
@@ -275,7 +281,8 @@ class EmployeeMenuController extends Controller
                         ->where('id',$submit_by[0]->id)
                         ->update([
                             'quantity'=>$request->operator_number,
-                            'unit'=>$request->operator_unit
+                            'unit'=>$request->operator_unit,
+                            'updated_at'=>$request->updated_at
                         ]);
                 }
                 else{
@@ -286,7 +293,8 @@ class EmployeeMenuController extends Controller
                             'ticket_id' => $request->ticket_id,
                             'quantity' => $request->operator_number,
                             'unit' => $request->operator_unit,
-                            'submit_by' => $user_id
+                            'submit_by' => $user_id,
+                            'updated_at'=>$request->updated_at
                         ]);
                 }
             }
