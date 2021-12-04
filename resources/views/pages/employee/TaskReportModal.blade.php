@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="piping-number col-sm-4 col-6 mx-auto mb-2 form-group">
                                     <input class="form-control " id="report_piping_complete_num"
-                                           placeholder="請輸入數量" type="text"/>
+                                           placeholder="數量" type="text"/>
                                 </td>
                                 <td class="piping-unit col-sm-4 col-6 ml-auto mb-2 form-group">
                                     <select class="form-control">
