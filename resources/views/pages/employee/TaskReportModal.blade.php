@@ -74,8 +74,8 @@
                     </div>
                     <br>
                     <div class="row form-group mx-auto">
-                        <label for="report_time" class="col-sm-4 col-4">最後回報時間</label>
-                        <input class="form-control col-sm-7 col-7" id="report_time" type="text" readonly/>
+                        <label for="report_time" class="col-sm-12 col-12">最後回報時間</label>
+                        <input class="form-control col-sm-12 col-12" id="report_time" type="text" readonly/>
                     </div>
                 </div>
 
