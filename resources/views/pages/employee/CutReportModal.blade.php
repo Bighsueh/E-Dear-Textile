@@ -223,6 +223,8 @@
             },
             success: function (res) {
                 console.log(res);
+                window.alert("回報完成");
+                $("#CutReportModal").modal("hide");
             },
             error: function (err) {
                 console.log(err);
