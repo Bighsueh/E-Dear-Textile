@@ -21,14 +21,14 @@ class WorkingLogController extends Controller
                 'employee_id' => $employee_id,
                 'employee_name' => $employee_name
             ];
-            return view('pages.workingLog.WorkingLogList', compact('data',$data));
+            return view('pages.workingLog.WorkingLogList', compact('data', $data));
         } catch (Exception $exception) {
             return $exception;
         }
     }
 
-    public function export_excel()
+    public function export_excel(Request $request)
     {
-        return Excel::download(new JobReportExport, 'test.xlsx');
+        return Excel::download(new JobReportExport($request->employee_id, $request->search_parameter), $request->employee_name.'.xlsx');
     }
 }

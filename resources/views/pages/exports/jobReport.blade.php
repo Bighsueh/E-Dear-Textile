@@ -2,6 +2,7 @@
     <thead>
     <tr>
         <th>#</th>
+        <th>貨別</th>
         <th>工作類別</th>
         <th>貨單編號</th>
         <th>貨單日期</th>
@@ -16,19 +17,20 @@
     </thead>
     <tbody>
     @if(count($data)>=1)
-        @foreach($data as $row)
+        @foreach($data as $key => $row)
             <tr>
-                <td>#</td>
-                <td>{{ $row->type }}</td>
+                <td>{{$key+1}}</td>
+                <td>{{ $row->action }}</td>
+                <td>{{ $row->status }}</td>
                 <td>{{ $row->ticket_id }}</td>
-                <td>{{ $row->created_at }}</td>
-                <td>{{ $row->customer_name }}</td>
-                <td>{{ $row->stock_id }}</td>
-                <td>-</td>
-                <td>{{ $row->num }}</td>
+                <td>{{ $row->updated_at }}</td>
+                <td>{{ $row->employeeName }}</td>
+                <td>{{ $row->itemId }}</td>
+                <td>{{ $row->rollFunc . $row->item }}</td>
+                <td>{{ $row->quantity }}</td>
                 <td>{{ $row->unit }}</td>
-                <td>{{ $row->unit_price }}</td>
-                <td>{{ $row->total }}</td>
+                <td>-</td>
+                <td>-</td>
             </tr>
         @endforeach
     @endif
