@@ -42,7 +42,7 @@
                             <button type="button" class="btn btn-secondary btn-report">選填</button>
 
                             <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
-                                撿金回報
+                                剪巾回報
                             </button>
                         </td>
                     </tr>
