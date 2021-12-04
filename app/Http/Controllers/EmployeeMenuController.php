@@ -82,7 +82,7 @@ class EmployeeMenuController extends Controller
             //自己回報的
             $ticket_reports = DB::table('job_reports')
                 ->where('ticket_id', $request->ticket_id)
-                ->where('operator', $user_id)
+                ->where('submit_by',$user_id)
                 ->join('job_tickets', 'job_reports.ticket_id', '=', 'job_tickets.id')
                 ->join('users', 'users.id', '=', 'job_reports.operator')
                 ->select(
@@ -91,7 +91,6 @@ class EmployeeMenuController extends Controller
                     'users.name'
                 )
                 ->get();
-
             if ($request->action == '剪巾') {
                 //以回報滾邊
                 $piping_reports = DB::table('job_reports')
