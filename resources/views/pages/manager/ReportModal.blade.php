@@ -37,7 +37,7 @@
                     <div class="row form-group">
                         <label for="reportList_unit" class="col-sm-3 col-5 ">顯示單位</label>
                         <select class="form-select" id="reportList_unit"aria-label="單位選擇">
-                            <option selected value="1">條</option>
+                            <option id="select_option" selected value="1">條</option>
                             <option value="12">打</option>
                         </select>
                     </div>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="row form-group">
                         <label for="reportList_foldHead" class="col-sm-3 col-5 ">折頭 回報</label>
-                        <a class="text-primary" id="reportList_foldHead" value=""></a>
+                        <a class="text-primary" id="reportList_foldHead" data-toggle="modal" data-target="#ReportModal" value=""></a>
                     </div>
                 </div>
             </div>
@@ -68,6 +68,7 @@
                 user_id: id,
             },
             success: function (res) {
+                $("#select_option").selected = true;
                 $("#reportList_name").val(res[0][0]["employeeName"]);
                 $("#reportList_ticket_id").val(res[0][0]["id"]);
                 $("#reportList_itemId").val(res[0][0]["itemId"]);
@@ -131,7 +132,7 @@
     $("#reportList_foldHead").click(function (){
         if($("#reportList_foldHead").text() !== "尚未回報"){
             $("#ReportModal").modal('hide');
-            open_detail_modal($("#reportList_foldHead").val(),$("#reportList_ticket_id").val(),"折頭");
+            open_detail_modal($("#reportList_foldHead").val(),$("#reportList_ticket_id").val(),"折頭",$('#reportList_unit').val());
             $("#ReportDetailModal").modal('show');
         }
     })
