@@ -171,15 +171,12 @@ class MenuController extends Controller
 
     }
 
-    public function get_resultList($id,$report)
+    public function get_resultList(Request $request)
     {
-        if ($report == 'cut' || $report == 'piping') {
-            $queries = DB::table('job_reports')->where('ticket_id', $id)->get();
-        } elseif ($report == 'foldHead' || $report == 'pickTower') {
-            $queries = DB::table('job_foldhead_reports')->where('ticket_id', $id)->get();
-        }
-//        dd($queries);
-        return view('pages.manager.reportList',compact('id','report','queries'));
+        $report = DB::table('job_reports')
+            ->where('action',$request->action)
+            ->where('ticket_id',$request->user_id)->get();
+       return [$report,$request->action];
     }
     //匯出excel
     public function export()

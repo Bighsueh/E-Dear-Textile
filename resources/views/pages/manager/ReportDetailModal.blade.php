@@ -28,6 +28,7 @@
         </div>
     </div>
 </div>
+@include('pages.manager.ReportListModal')
 <script>
     function open_detail_modal(num,id,action,unit) {
         $.ajax({
@@ -49,12 +50,13 @@
                     unit ="打";
                 }
                 let c;
+                //剪巾
                 if (res[0].length > 0) {
                     c = 1;
                     res[0].forEach(function (row) {
-                        let row_item = `<td style="vertical-align : middle;text-align:center;" rowspan="${res[0].length}"> ${row["action"]} </td>`;
+                        let row_item = `<td id="action1" style="vertical-align : middle;text-align:center;" rowspan="${res[0].length}"> ${row["action"]} </td>`;
                         let row_sum_order = `<td style="vertical-align : middle;text-align:center;" rowspan="${res[0].length}" >
-                        <a class="btn_list text-primary" value='${res[2]}'>${res[2]}${unit}</a> </td>`;
+                        <a class="btn_list1 text-primary" value='${res[2]}'>${res[2]}${unit}</a> </td>`;
                         let row_employee = "<td>" + row["operator"] + "</td>";
                         let row_order = "<td>" + row["quantity"] + "</td>";
                         if (c == 1) {
@@ -72,10 +74,10 @@
                 if (res[1].length > 0) {
                     c = 1;
                     res[1].forEach(function (row) {
-                        let row_item = `<td style="vertical-align : middle;text-align:center;"
+                        let row_item = `<td id="action2" style="vertical-align : middle;text-align:center;"
                         rowspan="${res[1].length}"> ${row["action"]} </td>`;
                         let row_sum_order = `<td style="vertical-align : middle;text-align:center;" rowspan="${res[1].length}" >
-                        <a class="btn_list text-primary" value='${res[2]}'>${res[2]}${unit}</a> </td>`;
+                        <a class="btn_list2 text-primary" value='${res[2]}'>${res[2]}${unit}</a> </td>`;
                         let row_employee = "<td>" + row["operator"] + "</td>";
                         let row_order = "<td>" + row["quantity"] + "</td>";
                         if (c == 1) {
@@ -90,9 +92,19 @@
                         c+=1;
                     });
                 }
+                $('.btn_list1').click(function (){
+                    $("#ReportDetailModal").modal('hide');
+                    open_list_modal(id,$("#action1").text().replace(" ",""));
+                    $("#ReportListModal").modal('show');
 
+                })
+                $('.btn_list2').click(function (){
+                    $("#ReportDetailModal").modal('hide');
+                    open_list_modal(id,$("#action2").text().replace(" ",""));
+                    $("#ReportListModal").modal('show');
+
+                })
             }
-
         })
     }
     function close_modal(){

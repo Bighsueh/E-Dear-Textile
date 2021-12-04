@@ -100,7 +100,7 @@
                                     <div class="modal-footer ">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
-                                        <button style="width: 100px;" type="submit" --}}
+                                        <button style="width: 100px;" type="submit"
                                                 class="btn_add form-control btn btn-secondary rounded mx-3">
                                             確認
                                         </button>
@@ -229,7 +229,7 @@
                             </div>
                             <div class="modal-footer ">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button style="width: 100px;" type="submit" --}}
+                                <button style="width: 100px;" type="submit"
                                         class="btn_add form-control btn btn-secondary rounded mx-3">
                                     確認
                                 </button>

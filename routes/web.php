@@ -41,7 +41,7 @@ Route::group(['middleware' =>['login']],function(){
     Route::patch('/manager/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
     Route::get('/manager/menu/result','MenuController@get_result')->name('get_result');
     Route::get('/manager/menu/result/detail','MenuController@get_resultDetail')->name('get_resultDetail');
-    Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
+    Route::get('/manager/menu/result/list','MenuController@get_resultList')->name('get_resultList');
     //匯出派遣單excel
     Route::get('/manager/menu/excel', 'MenuController@export')->name('menu_export');
 
