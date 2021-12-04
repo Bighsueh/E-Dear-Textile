@@ -17,7 +17,7 @@ class ReportTableSeeder extends Seeder
             'operator' =>'3',
             'ticket_id' =>'1',
             'quantity' =>'100',
-            'unit' =>'條',
+            'unit' =>'one',
             'submit_by' =>'5',
         ]);
         DB::table('job_reports')->insert([
@@ -26,7 +26,7 @@ class ReportTableSeeder extends Seeder
             'operator' =>'5',
             'ticket_id' =>'1',
             'quantity' =>'100',
-            'unit' =>'條',
+            'unit' =>'one',
             'submit_by' =>'5',
         ]);
     }
