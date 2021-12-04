@@ -96,7 +96,7 @@ class EmployeeMenuController extends Controller
                 //以回報滾邊
                 $piping_reports = DB::table('job_reports')
                     ->where('ticket_id', $request->ticket_id)
-                    ->where('submit_by', $user_id)
+                    ->where('operator', $user_id)
                     ->where('action', '滾邊')
                     ->select('job_reports.operator','job_reports.quantity','job_reports.unit')
                     ->get();
