@@ -14,6 +14,9 @@
             </tr>
             </thead>
             <tbody>
+            @if(isset($title->title))
+                <input type="hidden" id="title" value="{{$title->title}}" />
+            @endif
             <form action="{{Route('post_employee_report')}}" method="POST">
                 @foreach($job_tickets as $job_ticket)
                     <tr>
@@ -64,8 +67,18 @@
         $(".close-modal").click(function () {
             close_modal();
         })
+
         $('.btn-report').click(function () {
-            open_report_modal($(this).val());
+
+            if($("#title").val() == "剪巾") {
+                open_report_modal($(this).val());
+            }
+            else if($("#title").val() == "折頭"){
+                open_head_modal($(this).val());
+            }
+            else{
+                window.alert("回報僅開放給剪巾及折頭作業員")
+            }
         })
     </script>
 @endsection

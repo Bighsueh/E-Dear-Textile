@@ -16,13 +16,13 @@ class EmployeeMenuController extends Controller
             ->where('job_titles.authorized_person', session()->get('user_id'))
             ->where('job_tickets.status', '=', '排程中')
             ->get();
-//        dd($job_tickets);
-
+        $title = DB::table('job_titles')->select('title')
+            ->where('authorized_person',session()->get('user_id'))->first();
         //重置Session狀態
         Session::forget('qr_code_status');
         Session::forget('ticket_info');
 
-        return view('pages.employee.employeeMenu', compact('job_tickets', $job_tickets));
+        return view('pages.employee.employeeMenu', compact( 'job_tickets','title'));
     }
 
     public function get_employee_list($id)
@@ -154,7 +154,7 @@ class EmployeeMenuController extends Controller
                     ->where('ticket_id', $request->ticket_id)
                     ->where('authorizer', $user_id)
                     ->get();
-
+                return 1;
 
 
             }
