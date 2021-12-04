@@ -56,7 +56,7 @@
                             let row_name = "<td>" + row["employeeName"] + "</td>";
                             let row_id = `<td> <a class="btn_list text-primary" value='${row['id']}'>${row['id']}</a> </td>`;
                             let row_itemId = "<td>" + row["itemId"] + "</td>";
-                            let row_order = "<td>" + row["order"] + "</td>";
+                            let row_order = "<td>" + row["order"] +"條"+"</td>";
                             // let row_result = `<td> <button class="btn btn-outline-dark btn_result" value='${row['id']}'>結果</button> </td>`;
                             let row_result = `<td> <button type="button" class="btn btn-outline-dark btn_result"
                                                 data-toggle="modal" data-target="#ReportModal" value='${row['id']}'>結果</button> </td>`;

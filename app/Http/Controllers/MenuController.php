@@ -65,7 +65,13 @@ class MenuController extends Controller
     public function post_create_addSheet(Request $request)
     {
         $query = $request->except('_token');
-        $sum = $query['order_dozen'] * 12 + $query['order_bar'];
+        if($query['order_unit'] == '1')
+        {
+            $sum = $query['order'];
+        }
+        else{
+            $sum = $query['order'] * 12;
+        }
         DB::table('job_tickets')->insert([
             'created_at' =>$query['date'],
             'employeeName' =>$query['employeeName'],

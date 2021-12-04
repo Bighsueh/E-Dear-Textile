@@ -153,12 +153,15 @@
                 {{--        訂單數量未調整        --}}
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="order_dozen">訂單數量(打)</label>
-                        <input type="text" name="order_dozen" class="form-control" id="order_dozen" placeholder="訂單數量(打)" required>
+                        <label for="order">訂單數量</label>
+                        <input type="text" name="order" class="form-control" id="order" placeholder="訂單數量" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="order_bar">訂單數量(條)</label>
-                        <input type="text" name="order_bar" class="form-control" id="order_bar" placeholder="訂單數量(條)" required>
+                        <label for="order_unit">訂單單位</label>
+                        <select type="text" name="order_unit" class="form-control" id="order_unit" placeholder="單位" required>
+                            <option value="1" selected>條</option>
+                            <option value="12">打</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">

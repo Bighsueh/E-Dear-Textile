@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             @csrf
-                            <button type="button" class="btn btn-secondary btn-report">選填</button>
+                            <button type="button"  class="btn btn-secondary btn-report" value="{{$job_ticket->ticket_id}}">選填</button>
                             @if($job_ticket->title === '滾邊')
                                 <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
                                     剪巾回報
@@ -65,7 +65,7 @@
             close_modal();
         })
         $('.btn-report').click(function () {
-            open_report_modal();
+            open_report_modal($(this).val());
         })
     </script>
 @endsection

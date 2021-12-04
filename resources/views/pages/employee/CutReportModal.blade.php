@@ -108,7 +108,7 @@
     }
 
     //打開report_modal(傳入ticket_id)
-    function open_report_modal(ticket_id = 1) {
+    function open_report_modal(ticket_id) {
         url = "{{route('get_report_data')}}";
         $.ajax({
             url: url,
@@ -118,6 +118,7 @@
                 action: '剪巾',
             },
             success: function (res) {
+                console.log(res);
                 set_report_modal(res);
             },
             error: function (err) {
