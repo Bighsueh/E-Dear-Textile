@@ -63,7 +63,7 @@ class EmployeeMenuController extends Controller
             $job_tickets = DB::table('job_tickets')->where('id', $request->ticket_id)->get();
             $Pipings = DB::table('job_titles')->where('title', "滾邊")->Where('ticket_id', $request->ticket_id)->Where('authorized_person', $request->authorizer)->get();
 
-            dd($Pipings);
+//            dd($Pipings);
             return view('pages.employee.employeeReport',compact('job_tickets','job_title','Pipings','sumReports','sumPipReports','reports'));
         }
         elseif($job_title->title == "折頭"){
@@ -78,6 +78,52 @@ class EmployeeMenuController extends Controller
         }
     }
 
+    public function get_report_data(Request $request)
+    {
+        try{
+
+            $user_id = Session::get('user_id');
+            $ticket_report = DB::table('job_reports')
+                ->where('ticket_id',1)
+                ->where('operator',$user_id)
+                ->get();
+
+            if($request->action == '剪巾'){
+                $piping_report = DB::table('job_reports')
+                ->where('ticket_id',1)
+                ->where('submit_by',$user_id)
+                    ->where('action','滾邊')
+                    ->get();
+
+            }
+            elseif($request->action == '折頭'){
+                $piping_report = DB::table('job_reports')
+                    ->where('ticket_id',1)
+                    ->where('submit_by',$user_id)
+                    ->where('action','撿巾')
+                    ->get();
+            }
+
+
+
+
+
+
+
+        }catch(Exception $exception){
+            return $exception;
+        }
+    }
+    public function store_report_data(Request $request){
+        try{
+//            $ticket_id = $request->;
+
+
+            return ;
+        }catch (Exception $exception){
+            return$exception;
+        }
+    }
     public function post_create_employee_report(Request $request)
     {
 //        dd($request);
@@ -87,7 +133,7 @@ class EmployeeMenuController extends Controller
         {
             DB::table('job_reports')->insert([
                 'Piping'=>$query['Piping'],
-                'piping_order'=>$query['complete_bar_orders']+$query['complete_dozen_orders']*12,
+                'piping_order'=>$query['cut_complete_bar_orders']+$query['cut_complete_dozen_orders']*12,
                 'cut_order' => $query['cut_complete_bar_orders']+$query['cut_complete_dozen_orders']*12,
                 'user_id'=>$request->session()->get('user_id'),
                 'ticket_id' => $query['ticket_id'],
