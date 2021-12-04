@@ -1,10 +1,5 @@
 @extends('layouts.masters.manager')
 @section('content')
-    <style>
-        *{
-            font-size:20px;
-        }
-    </style>
     <div class="container">
         <div class="row form-inline form-group">
             <div class="input-group col-sm-5 col-12">

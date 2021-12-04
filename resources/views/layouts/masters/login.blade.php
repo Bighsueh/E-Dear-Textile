@@ -12,6 +12,11 @@
     <title>益得紡織登入介面</title>
 </head>
 <body class="bg-light">
+<style>
+    *{
+        font-size:20px;
+    }
+</style>
     @yield('content')
 </body>
 <!-- Bootstrap core JavaScript -->
