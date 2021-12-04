@@ -91,7 +91,10 @@
     //滾邊員增加
     let temp_piping_row;
     let emtpy_piping_row = $("#report_piping_list").html();
-
+    //送出回報按鈕
+    $("#btn_store_report").click(function (){
+        store_report_data()
+    })
     //增加滾邊員輸入列
     $("#btn_add_pipings").click(function () {
         create_piping_row();
@@ -203,15 +206,13 @@
 
     //儲存回報結果
     function store_report_data() {
-        let url = "";
-
         let ticket_id = document.getElementById('report_ticket_id').value;
         let piping_list = get_piping_list_array();
         let operator_name = document.getElementById('report-operator-name').value;
         let operator_number = document.getElementById('report_operator_num').value;
         let operator_unit = document.getElementById('report-operator-unit').value;
         $.ajax({
-            url: url,
+            url:'{{route('store_report_data')}}',
             method: 'GET',
             data: {
                 ticket_id: ticket_id,

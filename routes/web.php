@@ -65,6 +65,7 @@ Route::group(['middleware' =>['login']],function(){
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
     Route::get('/employee/menu/getReportData', 'EmployeeMenuController@get_report_data')->name('get_report_data');
+    Route::get('/employee/menu/storeReportData','EmployeeMenuController@store_report_data')->name('store_report_data');
     // 將資料傳入回報的頁面
     Route::post('/employee/menu/report','EmployeeMenuController@post_employee_report')->name('post_employee_report');
     // 將回報結果加入資料庫
