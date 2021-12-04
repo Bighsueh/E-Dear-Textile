@@ -10,13 +10,16 @@ class EmployeeMenuController extends Controller
 {
     public function get_employee_menu()
     {
+
         // 派遣單查詢,join job_titles 檢查權限 增加一行where指令(不確定是否需要)
         $job_tickets = DB::table('job_tickets')
             ->join('job_titles', 'job_tickets.id', "=", 'job_titles.ticket_id')
             ->where('job_titles.authorized_person',session()->get('user_id'))
             ->where('job_tickets.status','=','排程中')
             ->get();
+
 //        dd($job_tickets);
+
 
         //重置Session狀態
         Session::forget('qr_code_status');
