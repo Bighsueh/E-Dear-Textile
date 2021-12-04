@@ -130,10 +130,128 @@ class EmployeeMenuController extends Controller
     }
     public function store_report_data(Request $request){
         try{
-//            $ticket_id = $request->;
+            $user_id = Session::get('user_id');
+
+            //更新的日期好像沒進來
+            // 滾邊/撿巾的回報
+            if($request->action == '剪巾'){
+                //滾邊 回報
+                foreach ($request->piping_list as $piping_report ){
+                    $piping = DB::table('job_reports')
+                        ->where('ticket_id',$request->ticket_id)
+                        ->where('operator',$piping_report[piping_people])
+                        ->where('action','滾邊')
+                        ->get();
+                    if($piping->count()){
+                        DB::table('job_reports')
+                            ->where('id',$piping->id)
+                            ->update([
+                            'quantity'=>$piping_report[piping_number],
+                                'unit'=>$piping_report[piping_unit],
+                        ]);
+                    }
+                    else{
+                        DB::table('job_report')
+                            ->insert([
+                                'action' => '滾邊',
+                                'operator' => $piping_report[piping_people],
+                                'ticket_id' => $request->ticket_id,
+                                'quantity' => $piping_report[piping_number],
+                                'unit' => $piping_report[piping_unit],
+                                'submit_by' => $user_id
+                            ]);
+                    }
+                }
+            }else{
+                //撿巾 回報
+                foreach ($request->piping_list as $piping_report ){
+                    $piping = DB::table('job_reports')
+                        ->where('ticket_id',$request->ticket_id)
+                        ->where('operator',$piping_report[piping_people])
+                        ->where('action','撿巾')
+                        ->get();
+                    if($piping->count()){
+                        DB::table('job_reports')
+                            ->where('id',$piping->id)
+                            ->update([
+                                'quantity'=>$piping_report[piping_number],
+                                'unit'=>$piping_report[piping_unit],
+                            ]);
+                    }
+                    else{
+                        DB::table('job_report')
+                            ->insert([
+                                'action' => '撿巾',
+                                'operator' => $piping_report[piping_people],
+                                'ticket_id' => $request->ticket_id,
+                                'quantity' => $piping_report[piping_number],
+                                'unit' => $piping_report[piping_unit],
+                                'submit_by' => $user_id
+                            ]);
+                    }
+                }
+            }
+
+            // 剪巾/折頭 回報
+            if($request->action == '剪巾'){
+                //剪巾回報
+                $submit_by = DB::table('job_reports')
+                    ->where('ticket_id',$request->operator_number)
+                    ->where('operator',$user_id)
+                    ->where('action','剪巾')
+                    ->get();
+
+                if($submit_by->count()){
+                    DB::table('job_reports')
+                        ->where('id',$submit_by->id)
+                        ->update([
+                            'quantity'=>$request->operator_number,
+                            'unit'=>$request->operator_unit
+                        ]);
+                }
+                else{
+                    DB::table('job_report')
+                        ->insert([
+                            'action' => '剪巾',
+                            'operator' => $user_id,
+                            'ticket_id' => $request->ticket_id,
+                            'quantity' => $request->operator_number,
+                            'unit' => $request->operator_unit,
+                            'submit_by' => $user_id
+                        ]);
+                }
+            }else{
+                //折頭回報
+                $submit_by = DB::table('job_reports')
+                    ->where('ticket_id',$request->operator_number)
+                    ->where('operator',$user_id)
+                    ->where('action','折頭')
+                    ->get();
+
+                if($submit_by->count()){
+                    DB::table('job_reports')
+                        ->where('id',$submit_by->id)
+                        ->update([
+                            'quantity'=>$request->operator_number,
+                            'unit'=>$request->operator_unit
+                        ]);
+                }
+                else{
+                    DB::table('job_report')
+                        ->insert([
+                            'action' => '折頭',
+                            'operator' => $user_id,
+                            'ticket_id' => $request->ticket_id,
+                            'quantity' => $request->operator_number,
+                            'unit' => $request->operator_unit,
+                            'submit_by' => $user_id
+                        ]);
+                }
+            }
 
 
-            return ;
+
+            return success;
         }catch (Exception $exception){
             return$exception;
         }
