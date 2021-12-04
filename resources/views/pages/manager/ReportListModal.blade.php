@@ -44,55 +44,66 @@
                 console.log(res);
 
                 if (res[0].length > 0) {
-                    if(res[1] == "剪巾"){
-                        res[0].forEach(function (row) {
-                            $("#employee").text("滾邊員");
-                            let submit_by = "<td>" + row["submit_by"] + "</td>";
-                            let order = "<td>" + row["quantity"] + "</td>";
-                            let operator = "<td>" + row["operator"] + "</td>";
-                            let time = "<td>" + row["created_at"] + "</td>";
+                    if(res[2] == "剪巾"){
+                        $("#employee").hide();
+                        for(let i = 0; i <res[0].length; i++){
+                            let submit_by = "<td>" + res[1][i]["name"] + "</td>";
+                            let order = "<td>" + res[0][i]["quantity"] + "</td>";
+                            let time = "<td>" + res[0][i]["created_at"] + "</td>";
                             $("#tbody_list").append(
-                                "<tr>" + submit_by + order + operator + time + "</tr>"
+                                "<tr>" + submit_by + order  + time + "</tr>"
                             );
-                        });
+                        }
+
                     }
-                    else if(res[1] == "撿巾")
+                    else if(res[2] == "撿巾")
+                    {
+                        $("#employee").show();
+                        for(let i = 0; i <res[0].length; i++){
+                            let submit_by = "<td>" + res[1][i]["name"] + "</td>";
+                            let order = "<td>" + res[0][i]["quantity"] + "</td>";
+                            let operator = "<td>" + res[0][i]["name"] + "</td>";
+                            let time = "<td>" + res[0][i]["created_at"] + "</td>";
+                            $("#tbody_list").append(
+                                "<tr>" + operator + order + submit_by + time + "</tr>"
+                            );
+                        }
+                    }
+                    else if(res[2] == "滾邊")
+                    {
+                        $("#employee").show();
+
+                        for(let i = 0; i <res[0].length; i++){
+                            let submit_by = "<td>" + res[1][i]["name"] + "</td>";
+                            let order = "<td>" + res[0][i]["quantity"] + "</td>";
+                            let operator = "<td>" + res[0][i]["name"] + "</td>";
+                            let time = "<td>" + res[0][i]["created_at"] + "</td>";
+                            $("#tbody_list").append(
+                                "<tr>" + operator + order + submit_by + time + "</tr>"
+                            );
+                        }
+                        // res[0].forEach(function (row) {
+                        //     $("#employee").text("剪巾員");
+                        //     let submit_by = "<td>" + row["submit_by"] + "</td>";
+                        //     let order = "<td>" + row["quantity"] + "</td>";
+                        //     let operator = "<td>" + row["name"] + "</td>";
+                        //     let time = "<td>" + row["created_at"] + "</td>";
+                        //     $("#tbody_list").append(
+                        //         "<tr>" + operator + order + submit_by +time + "</tr>"
+                        //     );
+                        // });
+                    }
+                    else if(res[2] == "折頭")
                     {
                         $("#employee").hide();
-                        res[0].forEach(function (row) {
-                            let submit_by = "<td>" + row["submit_by"] + "</td>";
-                            let order = "<td>" + row["quantity"] + "</td>";
-                            let operator = "<td>" + row["operator"] + "</td>";
-                            let time = "<td>" + row["created_at"] + "</td>";
+                        for(let i = 0; i <res[0].length; i++){
+                            let submit_by = "<td>" + res[1][i]["name"] + "</td>";
+                            let order = "<td>" + res[0][i]["quantity"] + "</td>";
+                            let time = "<td>" + res[0][i]["created_at"] + "</td>";
                             $("#tbody_list").append(
-                                "<tr>" + submit_by + order + time + "</tr>"
+                                "<tr>" + submit_by + order  + time + "</tr>"
                             );
-                        });
-                    }
-                    else if(res[1] == "滾邊")
-                    {
-                        $("#employee").hide();
-                        res[0].forEach(function (row) {
-                            let submit_by = "<td>" + row["submit_by"] + "</td>";
-                            let order = "<td>" + row["quantity"] + "</td>";
-                            let operator = "<td>" + row["operator"] + "</td>";
-                            let time = "<td>" + row["created_at"] + "</td>";
-                            $("#tbody_list").append(
-                                "<tr>" + submit_by + order + time + "</tr>"
-                            );
-                        });
-                    }
-                    else if(res[1] == "折頭")
-                    {
-                        res[0].forEach(function (row) {
-                            let submit_by = "<td>" + row["submit_by"] + "</td>";
-                            let order = "<td>" + row["quantity"] + "</td>";
-                            let operator = "<td>" + row["operator"] + "</td>";
-                            let time = "<td>" + row["created_at"] + "</td>";
-                            $("#tbody_list").append(
-                                "<tr>" + submit_by + order + operator + time + "</tr>"
-                            );
-                        });
+                        }
                     }
 
                 }

@@ -187,10 +187,20 @@ class MenuController extends Controller
 
     public function get_resultList(Request $request)
     {
+        //operator
         $report = DB::table('job_reports')
+            ->join('users','job_reports.operator','users.id')
             ->where('action',$request->action)
-            ->where('ticket_id',$request->user_id)->get();
-       return [$report,$request->action];
+            ->where('ticket_id',$request->user_id)
+            ->select('users.name','job_reports.quantity','job_reports.created_at')
+            ->get();
+        $submit_by = DB::table('job_reports')
+            ->join('users','job_reports.submit_by','users.id')
+            ->where('action',$request->action)
+            ->where('ticket_id',$request->user_id)
+            ->select('users.name')
+            ->get();
+       return [$report,$submit_by,$request->action];
     }
     //匯出excel
     public function export()
