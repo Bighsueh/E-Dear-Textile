@@ -92,6 +92,34 @@ class EmployeeMenuController extends Controller
                     'users.name'
                 )
                 ->get();
+            if($ticket_reports->count()){
+            }else{
+                DB::table('job_reports')
+                    ->insert([
+                        'action' => $request->action,
+                        'operator' => $user_id,
+                        'ticket_id' => $request->ticket_id,
+                        'quantity' => 0,
+                        'unit' => 'one',
+                        'submit_by' => $user_id,
+                        'created_at'=> null,
+                        'updated_at' => null
+                    ]);
+
+                $ticket_reports = DB::table('job_reports')
+                    ->where('ticket_id', $request->ticket_id)
+                    ->where('submit_by',$user_id)
+                    ->where('action',$request->action)
+                    ->join('job_tickets', 'job_reports.ticket_id', '=', 'job_tickets.id')
+                    ->join('users', 'users.id', '=', 'job_reports.operator')
+                    ->select(
+                        'job_reports.operator', 'job_reports.quantity', 'job_reports.unit','job_reports.ticket_id','job_reports.updated_at',
+                        'job_tickets.employeeName', 'job_tickets.color', 'job_tickets.wash', 'job_tickets.colorId', 'job_tickets.colorId2',
+                        'users.name'
+                    )
+                    ->get();
+
+            }
             if ($request->action == '剪巾') {
                 //以回報滾邊
                 $piping_reports = DB::table('job_reports')
@@ -141,32 +169,37 @@ class EmployeeMenuController extends Controller
         try{
             $user_id = Session::get('user_id');
 
+
             //更新的日期好像沒進來
             // 滾邊/撿巾的回報
+
             if($request->action == '剪巾'){
                 //滾邊 回報
+
                 foreach ($request->piping_list as $piping_report ){
+
                     $piping = DB::table('job_reports')
                         ->where('ticket_id',$request->ticket_id)
-                        ->where('operator',$piping_report[piping_people])
+                        ->where('operator',$piping_report[0])
                         ->where('action','滾邊')
                         ->get();
+
                     if($piping->count()){
                         DB::table('job_reports')
-                            ->where('id',$piping->id)
+                            ->where('id',$piping[0]->id)
                             ->update([
-                                'quantity'=>$piping_report[piping_number],
-                                'unit'=>$piping_report[piping_unit],
+                                'quantity'=>$piping_report[1],
+                                'unit'=>$piping_report[2],
                             ]);
                     }
                     else{
-                        DB::table('job_report')
+                        DB::table('job_reports')
                             ->insert([
                                 'action' => '滾邊',
-                                'operator' => $piping_report[piping_people],
+                                'operator' => $piping_report[0],
                                 'ticket_id' => $request->ticket_id,
-                                'quantity' => $piping_report[piping_number],
-                                'unit' => $piping_report[piping_unit],
+                                'quantity' => $piping_report[1],
+                                'unit' => $piping_report[2],
                                 'submit_by' => $user_id
                             ]);
                     }
@@ -176,25 +209,25 @@ class EmployeeMenuController extends Controller
                 foreach ($request->piping_list as $piping_report ){
                     $piping = DB::table('job_reports')
                         ->where('ticket_id',$request->ticket_id)
-                        ->where('operator',$piping_report[piping_people])
+                        ->where('operator',$piping_report[0])
                         ->where('action','撿巾')
                         ->get();
                     if($piping->count()){
                         DB::table('job_reports')
-                            ->where('id',$piping->id)
+                            ->where('id',$piping[0]->id)
                             ->update([
-                                'quantity'=>$piping_report[piping_number],
-                                'unit'=>$piping_report[piping_unit],
+                                'quantity'=>$piping_report[1],
+                                'unit'=>$piping_report[2],
                             ]);
                     }
                     else{
-                        DB::table('job_report')
+                        DB::table('job_reports')
                             ->insert([
                                 'action' => '撿巾',
-                                'operator' => $piping_report[piping_people],
+                                'operator' => $piping_report[0],
                                 'ticket_id' => $request->ticket_id,
-                                'quantity' => $piping_report[piping_number],
-                                'unit' => $piping_report[piping_unit],
+                                'quantity' => $piping_report[1],
+                                'unit' => $piping_report[2],
                                 'submit_by' => $user_id
                             ]);
                     }
@@ -205,21 +238,21 @@ class EmployeeMenuController extends Controller
             if($request->action == '剪巾'){
                 //剪巾回報
                 $submit_by = DB::table('job_reports')
-                    ->where('ticket_id',$request->operator_number)
+                    ->where('ticket_id',$request->ticket_id)
                     ->where('operator',$user_id)
                     ->where('action','剪巾')
                     ->get();
 
                 if($submit_by->count()){
                     DB::table('job_reports')
-                        ->where('id',$submit_by->id)
+                        ->where('id',$submit_by[0]->id)
                         ->update([
                             'quantity'=>$request->operator_number,
                             'unit'=>$request->operator_unit
                         ]);
                 }
                 else{
-                    DB::table('job_report')
+                    DB::table('job_reports')
                         ->insert([
                             'action' => '剪巾',
                             'operator' => $user_id,
@@ -232,21 +265,21 @@ class EmployeeMenuController extends Controller
             }else{
                 //折頭回報
                 $submit_by = DB::table('job_reports')
-                    ->where('ticket_id',$request->operator_number)
+                    ->where('ticket_id',$request->ticket_id)
                     ->where('operator',$user_id)
                     ->where('action','折頭')
                     ->get();
 
                 if($submit_by->count()){
                     DB::table('job_reports')
-                        ->where('id',$submit_by->id)
+                        ->where('id',$submit_by[0]->id)
                         ->update([
                             'quantity'=>$request->operator_number,
                             'unit'=>$request->operator_unit
                         ]);
                 }
                 else{
-                    DB::table('job_report')
+                    DB::table('job_reports')
                         ->insert([
                             'action' => '折頭',
                             'operator' => $user_id,
@@ -259,8 +292,7 @@ class EmployeeMenuController extends Controller
             }
 
 
-
-            return success;
+            return 'success';
         }catch (Exception $exception){
             return$exception;
         }

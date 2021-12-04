@@ -217,7 +217,7 @@
             data: {
                 ticket_id: ticket_id,
                 piping_list: piping_list,
-                operator_name: operator_name,
+                action: '剪巾',
                 operator_number: operator_number,
                 operator_unit: operator_unit
             },

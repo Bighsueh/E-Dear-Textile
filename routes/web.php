@@ -64,6 +64,7 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/excel', 'WorkingLogController@export_excel')->name('working_job_export_excel');
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
+    // 將資料傳入回報Modal
     Route::get('/employee/menu/getReportData', 'EmployeeMenuController@get_report_data')->name('get_report_data');
     Route::get('/employee/menu/storeReportData','EmployeeMenuController@store_report_data')->name('store_report_data');
     // 將資料傳入回報的頁面
