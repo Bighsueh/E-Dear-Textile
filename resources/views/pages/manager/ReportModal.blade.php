@@ -68,7 +68,6 @@
                 user_id: id,
             },
             success: function (res) {
-                $("#select_option").selected = true;
                 $("#reportList_name").val(res[0][0]["employeeName"]);
                 $("#reportList_ticket_id").val(res[0][0]["id"]);
                 $("#reportList_itemId").val(res[0][0]["itemId"]);
@@ -77,6 +76,7 @@
                 $("#reportList_order").val(res[0][0]["order"]);
                 if(res[1] == 0) {
                     $("#reportList_cut").text("尚未回報");
+                    $("#reportList_cut").val(0);
                 }
                 else{
                     $("#reportList_cut").text(res[1]+"條");
@@ -85,6 +85,7 @@
 
                 if(res[2] == 0) {
                     $("#reportList_foldHead").text("尚未回報");
+                    $("#reportList_foldHead").val(0);
                 }
                 else{
                     $("#reportList_foldHead").text(res[2]+"條");

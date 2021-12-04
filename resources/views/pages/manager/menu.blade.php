@@ -76,6 +76,7 @@
 
                     $(".btn_result").click(function (){
                         open_result_modal($(this).attr("value"))
+                        $("#reportList_unit").val(1)
                     })
                     $(".btn_list").click(function (){
                         window.location.href="/manager/menu/list/"+$(this).attr("value");
