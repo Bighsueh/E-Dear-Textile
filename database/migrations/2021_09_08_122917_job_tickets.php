@@ -26,7 +26,7 @@ class JobTickets extends Migration
             $table->string('colorId2');
             $table->string('rollFunc');
             $table->string('manager');
-            $table->string('order');
+            $table->double('order');
             $table->string('ps')->nullable();
             $table->string('status')->nullable();
         });
