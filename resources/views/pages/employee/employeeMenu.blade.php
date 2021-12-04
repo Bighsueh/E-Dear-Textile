@@ -21,8 +21,8 @@
                             {{$job_ticket->employeeName}}
                         </td>
                         <td class="ticket-id">
-                            <a class="ticket-id" href="{{Route('get_employee_list',$job_ticket->ticket_id)}}"
-                               style="text-decoration: none; color: black;">{{$job_ticket->ticket_id}}</a>
+                            <a class="ticket-id text-primary" href="{{Route('get_employee_list',$job_ticket->ticket_id)}}"
+                               >{{$job_ticket->ticket_id}}</a>
                             <input type="text" name="ticket_id" style="display: none" class="form-control"
                                    value="{{$job_ticket->ticket_id}}"/>
                         </td>
@@ -40,10 +40,11 @@
                         <td>
                             @csrf
                             <button type="button" class="btn btn-secondary btn-report">選填</button>
-
-                            <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
-                                撿金回報
-                            </button>
+                            @if($job_ticket->title === '滾邊')
+                                <button type="button" class="btn btn-secondary btn-open-qrcode-modal">
+                                    剪巾回報
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -52,12 +53,13 @@
         </table>
     </div>
     @include('pages.employee.QrCodeModal')
-    @include('pages.employee.TaskReportModal')
+    @include('pages.employee.CutReportModal')
 
     <script>
-        function close_modal(){
+        function close_modal() {
             $(".modal").modal('hide');
         }
+
         $(".close-modal").click(function () {
             close_modal();
         })

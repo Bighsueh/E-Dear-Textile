@@ -23,7 +23,7 @@ class UserController extends Controller
         //取得員工列表
         $data = DB::table('users')
             ->select('id', 'name', 'level')
-            ->where('name', 'like', '%' . $search_parameter . '%')
+            ->orwhere('name', 'like', '%' . $search_parameter . '%')
             ->orwhere('level', 'like', '%' . $search_parameter . '%')
             ->get();
 

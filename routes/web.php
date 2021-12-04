@@ -39,9 +39,9 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/manager/menu/list/{id}', 'MenuController@get_list')->name('get_list');
     Route::post('/manager/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
     Route::patch('/manager/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
-    Route::get('/manager/menu/result/{id}','MenuController@get_result')->name('get_result');
-    Route::get('/manager/menu/result/{report}/{sum1}/{sum2}/{id}','MenuController@get_resultDetail')->name('get_resultDetail');
-    Route::get('/manager/menu/result/list/{id}/{report}','MenuController@get_resultList')->name('get_resultList');
+    Route::get('/manager/menu/result','MenuController@get_result')->name('get_result');
+    Route::get('/manager/menu/result/detail','MenuController@get_resultDetail')->name('get_resultDetail');
+    Route::get('/manager/menu/result/list','MenuController@get_resultList')->name('get_resultList');
     //匯出派遣單excel
     Route::get('/manager/menu/excel', 'MenuController@export')->name('menu_export');
 
@@ -58,12 +58,13 @@ Route::group(['middleware' =>['login']],function(){
 
     //幹部-員工工作紀錄
     Route::get('/manager/WorkingLog', 'WorkingLogController@get_working_log_page')->name('get_working_log_page');
+    Route::get('/manager/getWorkingLogData', 'WorkingLogController@get_working_log_data')->name('get_working_log_data');
 
     //輸出Excel
     Route::get('/excel', 'WorkingLogController@export_excel')->name('working_job_export_excel');
-
     // 員工
     Route::get('/employee/menu', 'EmployeeMenuController@get_employee_menu')->name('get_employee_menu');
+    Route::get('/employee/menu/getReportData', 'EmployeeMenuController@get_report_data')->name('get_report_data');
     // 將資料傳入回報的頁面
     Route::post('/employee/menu/report','EmployeeMenuController@post_employee_report')->name('post_employee_report');
     // 將回報結果加入資料庫

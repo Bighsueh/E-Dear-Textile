@@ -1,14 +1,9 @@
 @extends('layouts.masters.manager')
 @section('content')
-    <style>
-        *{
-            font-size:20px;
-        }
-    </style>
     <div class="container">
         <div class="row form-inline form-group">
             <div class="input-group col-sm-5 col-12">
-                <input type="text" class="form-control" placeholder="針對客戶名稱、貨別、日期來篩選" aria-label=""
+                <input type="text" class="form-control" placeholder="針對客戶名稱、貨別、日期來篩選" aria-label="搜尋派遣單"
                        aria-describedby="basic-addon1" name="search_parameter" id="search_parameter">
                 <div class="input-group-append">
                     <button class="btn btn-outline-dark" type="button" id="btn_search">搜尋</button>
@@ -39,7 +34,7 @@
         </table>
 
     </div>
-    @include('pages.manager.ReportListModal')
+    @include('pages.manager.ReportModal')
     <script>
         update_data();
         //資料刷新
@@ -64,7 +59,7 @@
                             let row_order = "<td>" + row["order"] + "</td>";
                             // let row_result = `<td> <button class="btn btn-outline-dark btn_result" value='${row['id']}'>結果</button> </td>`;
                             let row_result = `<td> <button type="button" class="btn btn-outline-dark btn_result"
-                                                data-toggle="modal" data-target="#ReportListModal" value='${row['id']}'>結果</button> </td>`;
+                                                data-toggle="modal" data-target="#ReportModal" value='${row['id']}'>結果</button> </td>`;
                             let row_status = "<td>" + row["status"] + "</td>";
                             let row_created_at = "<td>" + row["created_at"] + "</td>";
                             $("tbody").append(
@@ -74,7 +69,7 @@
                         });
                     }
                     if (res.length === 0) {
-                        $("tbody").append(
+                        $("#tbody").append(
                             "<tr><td colspan='7' class='text-center'>查無資料</td></tr>"
                         );
                     }

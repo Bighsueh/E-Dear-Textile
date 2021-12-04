@@ -122,50 +122,61 @@ class MenuController extends Controller
     public function get_result(Request $request)
     {
         $ticket_id = $request->user_id;
-        $job_ticket = DB::table('job_tickets')->where('id',$ticket_id)->first();
-        $reports = DB::table('job_reports')->where('ticket_id',$ticket_id)->get();
-        $foldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id',$ticket_id)->get();
-//        計算目前回報總數量
-//        if($reports->count())
-//        {
-//            $sumReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('cut_order');
-//            $sumPipReports = DB::table('job_reports')->where('ticket_id', $ticket_id)->sum('Piping_order');
-//        }
-//        if($foldHeadReports->count())
-//        {
-//            $sumFoldHeadReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('foldHead_order');
-//            $sumPickReports = DB::table('job_foldhead_reports')->where('ticket_id', $ticket_id)->sum('pickTower_order');
-////            dd($sumPickReports);
-//        }
-//        dd($sumFoldHeadReports);
-        return view('pages.manager.report',
-            compact('reports','foldHeadReports','job_ticket','sumReports','sumFoldHeadReports','sumPipReports','sumPickReports'));
+        $ticket = DB::table('job_tickets')->where('id', $ticket_id)->get();
+
+        $cut_order_dozen = DB::table('job_reports')->where('ticket_id', $ticket_id)
+            ->where('unit','dozen')
+            ->where('action',"剪巾")->sum('quantity');
+        $cut_order_bar = DB::table('job_reports')->where('ticket_id', $ticket_id)
+            ->where('unit','one')
+            ->where('action',"剪巾")->sum('quantity');
+
+        $foldHead_order_bar = DB::table('job_reports')->where('ticket_id', $ticket_id)
+            ->where('action',"折頭")
+            ->where('unit','one')
+            ->sum('quantity');
+        $foldHead_order_dozen = DB::table('job_reports')->where('ticket_id', $ticket_id)
+            ->where('action',"折頭")
+            ->where('unit','dozen')
+            ->sum('quantity');
+
+        $cut_order = $cut_order_dozen*12 + $cut_order_bar;
+        $foldHead = $foldHead_order_dozen*12+$foldHead_order_bar;
+
+        return [$ticket,$cut_order,$foldHead];
     }
 
-    public function get_resultDetail($report,$sum1,$sum2,$id)
+    public function get_resultDetail(Request $request)
     {
-        if($report =="cut"){
-            $queries = DB::table('job_reports')->where('ticket_id',$id)->get();
-//            dd($queries);
-            return view('pages.manager.reportDetail',compact('queries','sum1','sum2','report'));
+        // 剪巾或折頭的查詢
+        $report = DB::table('job_reports')
+            ->where('ticket_id', $request->user_id)
+            ->where('action', $request->action)->get();
+        $sub_report = null;
+        // 帶出需要幫忙回報的人員
+        if($request->action =='剪巾'){
+            $sub_report = DB::table('job_reports')
+                ->select('action','quantity','operator')
+                ->where('ticket_id', $request->user_id)
+                ->where('action', '滾邊')->get();
         }
-        else if($report =="foldHead"){
-            $queries = DB::table('job_foldhead_reports')->where('ticket_id',$id)->get();
-//            dd($query);
-            return view('pages.manager.reportDetail',compact('queries','sum1','sum2','report'));
+        else if($request->action =='折頭'){
+            $sub_report = DB::table('job_reports')
+                ->select('action','quantity','operator')
+                ->where('ticket_id', $request->user_id)
+                ->where('action', '撿巾')->get();
         }
+
+        return [$report,$sub_report,$request->num,$request->unit];
 
     }
 
-    public function get_resultList($id,$report)
+    public function get_resultList(Request $request)
     {
-        if ($report == 'cut' || $report == 'piping') {
-            $queries = DB::table('job_reports')->where('ticket_id', $id)->get();
-        } elseif ($report == 'foldHead' || $report == 'pickTower') {
-            $queries = DB::table('job_foldhead_reports')->where('ticket_id', $id)->get();
-        }
-//        dd($queries);
-        return view('pages.manager.reportList',compact('id','report','queries'));
+        $report = DB::table('job_reports')
+            ->where('action',$request->action)
+            ->where('ticket_id',$request->user_id)->get();
+       return [$report,$request->action];
     }
     //匯出excel
     public function export()

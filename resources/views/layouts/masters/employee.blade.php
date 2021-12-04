@@ -33,6 +33,11 @@
 
 </head>
 <body class="bg-light h-100">
+<style>
+    *{
+        font-size:20px;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">益得紡織-員工介面</a>

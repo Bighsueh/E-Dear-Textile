@@ -63,21 +63,21 @@ class UsersTableSeeder extends Seeder
         ]);
 //      折頭2
         DB::table('users')->insert([
-            'name' =>'折頭1',
+            'name' =>'折頭2',
             'account' =>'head2',
             'password' =>'head2',
             'level' =>'employee',
         ]);
 //      撿巾
         DB::table('users')->insert([
-            'name' =>'撿巾',
+            'name' =>'撿巾1',
             'account' =>'pick1',
             'password' =>'pick1',
             'level' =>'employee',
         ]);
         //      撿巾
         DB::table('users')->insert([
-            'name' =>'撿巾',
+            'name' =>'撿巾2',
             'account' =>'pick2',
             'password' =>'pick2',
             'level' =>'employee',
