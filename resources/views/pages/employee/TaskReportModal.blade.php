@@ -176,25 +176,26 @@
         let piping_last_number = piping_last_row.children('.piping-number > input');
         let piping_last_unit = piping_last_row.children('.piping-unit > select');
 
+        //若piping_reports有資料則寫入
+        if (data["piping_reports"].length !== 0) {
+            //因為第一列已經存在所以直接寫入資料
+            piping_last_number.val(data["piping_reports"][0]["quantity"]);
+            piping_last_unit.val(data["piping_reports"][0]["unit"]);
+            for (let i = 1; i < data["piping_reports"].length; i++) {
+                //產生新的一列
+                create_piping_row();
+                //重新定義最後一行
+                piping_last_row = $("#report_piping_list tr").last().children();
+                piping_last_people = piping_last_row.children('.piping-people > select');
+                piping_last_number = piping_last_row.children('.piping-number > input');
+                piping_last_unit = piping_last_row.children('.piping-unit > select');
+                //寫入資料
+                piping_last_people.val(data["piping_reports"][i]["operator"]);
+                piping_last_number.val(data["piping_reports"][i]["quantity"]);
+                piping_last_unit.val(data["piping_reports"][i]["unit"]);
 
-        //因為第一列已經存在所以直接寫入資料
-        piping_last_number.val(data["piping_reports"][0]["quantity"]);
-        piping_last_unit.val(data["piping_reports"][0]["unit"]);
-        for (let i = 1; i < data["piping_reports"].length; i++) {
-            //產生新的一列
-            create_piping_row();
-            //重新定義最後一行
-            piping_last_row = $("#report_piping_list tr").last().children();
-            piping_last_people = piping_last_row.children('.piping-people > select');
-            piping_last_number = piping_last_row.children('.piping-number > input');
-            piping_last_unit = piping_last_row.children('.piping-unit > select');
-            //寫入資料
-            piping_last_people.val(data["piping_reports"][i]["operator"]);
-            piping_last_number.val(data["piping_reports"][i]["quantity"]);
-            piping_last_unit.val(data["piping_reports"][i]["unit"]);
-
+            }
         }
-
 
         $("#TaskReportModal").modal('show');
     }
