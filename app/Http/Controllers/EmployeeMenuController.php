@@ -99,7 +99,7 @@ class EmployeeMenuController extends Controller
                 //授權給自己的滾邊員
                 $pipings = DB::table('job_titles')
                     ->where('ticket_id',$request->ticket_id)
-                    ->where('authorized_person',$request->ticket_id)
+                    ->where('authorized_person',$user_id)
                     ->get();
 
 
@@ -114,7 +114,7 @@ class EmployeeMenuController extends Controller
                 //自己授權的撿巾員
                 $picks = DB::table('job_titles')
                     ->where('ticket_id',$request->ticket_id)
-                    ->where('authorizer',$request->ticket_id)
+                    ->where('authorizer',$user_id)
                     ->get();
             }
 
