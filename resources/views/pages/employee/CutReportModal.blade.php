@@ -1,9 +1,9 @@
-<div class="modal fade" id="TaskReportModal" tabindex="-1" role="dialog" aria-labelledby="TaskReportModalTitle"
+<div class="modal fade" id="CutReportModal" tabindex="-1" role="dialog" aria-labelledby="CutReportModalTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="TaskReportModalLongTitle">回報任務</h5>
+                <h5 class="modal-title" id="CutReportModalLongTitle">回報任務</h5>
                 <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -197,7 +197,7 @@
             }
         }
 
-        $("#TaskReportModal").modal('show');
+        $("#CutReportModal").modal('show');
     }
 
     //儲存回報結果
