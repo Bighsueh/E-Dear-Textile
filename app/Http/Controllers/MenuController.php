@@ -35,6 +35,7 @@ class MenuController extends Controller
             ->where('employeeName', 'like', '%' . $search_parameter . '%')
             ->orwhere('status', 'like', '%' . $search_parameter . '%')
             ->orwhere('created_at', 'like BINARY', '%' . $search_parameter . '%')
+            ->orwhere('itemId', 'like', '%' . $search_parameter . '%')
             ->get();
         return $data;
     }

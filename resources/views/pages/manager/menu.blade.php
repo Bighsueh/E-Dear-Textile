@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row form-inline form-group">
             <div class="input-group col-sm-5 col-12">
-                <input type="text" class="form-control" placeholder="針對客戶名稱、貨別、日期來篩選" aria-label="搜尋派遣單"
+                <input type="text" class="form-control" placeholder="以客戶名稱、貨別、貨號、日期來篩選" aria-label="搜尋派遣單"
                        aria-describedby="basic-addon1" name="search_parameter" id="search_parameter">
                 <div class="input-group-append">
                     <button class="btn btn-outline-dark" type="button" id="btn_search">搜尋</button>
