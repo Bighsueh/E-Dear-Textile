@@ -41,21 +41,23 @@ class WorkingLogController extends Controller
         }
 
         $user_id = $request->user_id;
-
         $data = DB::table('job_reports')
             ->where('operator', $user_id)
-            ->join('job_tickets', 'job_tickets.id', '=', 'job_reports.ticket_id')
-            ->where('job_tickets.status', '出貨')
-            ->orWhere('job_tickets.status', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_tickets.id', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_tickets.updated_at', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_tickets.employeeName', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_tickets.itemId', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_tickets.rollFunc', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_tickets.item', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_reports.quantity', 'like', '%' . $search_parameter . '%')
-            ->orWhere('job_reports.unit', 'like', '%' . $search_parameter . '%')
+            ->join('job_tickets', function ($join) {
+                $join->on('job_tickets.id', '=', 'job_reports.ticket_id');
+                $join->orWhere('job_tickets.status', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_tickets.id', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_tickets.updated_at', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_tickets.employeeName', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_tickets.itemId', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_tickets.rollFunc', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_tickets.item', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_reports.quantity', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_reports.unit', 'like binary', '%' . $this->search_parameter . '%');
+                $join->orWhere('job_reports.action', 'like binary', '%' . $this->search_parameter . '%');
+            })
             ->get();
+
         return $data;
 
     }
