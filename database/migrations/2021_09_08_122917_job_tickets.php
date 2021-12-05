@@ -22,8 +22,7 @@ class JobTickets extends Migration
             $table->string('factory');
             $table->string('color');
             $table->string('wash');
-            $table->string('colorId');
-            $table->string('colorId2');
+            $table->string('color_line');
             $table->string('rollFunc');
             $table->string('manager');
             $table->double('order');
