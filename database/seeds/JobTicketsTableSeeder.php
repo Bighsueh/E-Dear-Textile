@@ -17,6 +17,7 @@ class JobTicketsTableSeeder extends Seeder
             'item' =>'500',
             'itemId' =>'1150',
             'factory' =>'yoyoyo',
+            'color' => '白',
             'color_line' =>'廣泰-048',
             'rollFunc' =>'f',
             'manager' =>'yo',
