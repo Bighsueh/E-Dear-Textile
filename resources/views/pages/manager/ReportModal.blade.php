@@ -68,10 +68,11 @@
                 user_id: id,
             },
             success: function (res) {
+                console.log(res);
                 $("#reportList_name").val(res[0][0]["employeeName"]);
                 $("#reportList_ticket_id").val(res[0][0]["id"]);
                 $("#reportList_itemId").val(res[0][0]["itemId"]);
-                $("#reportList_colorLine").val(res[0][0]["colorId"]+"-"+res[0][0]["colorId2"]);
+                $("#reportList_colorLine").val(res[0][0]["color_line"]);
                 $("#reportList_wash").val(res[0][0]["wash"]);
                 $("#reportList_order").val(res[0][0]["order"]);
                 if(res[1] == 0) {

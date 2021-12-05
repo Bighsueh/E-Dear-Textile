@@ -98,57 +98,47 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="colorId">色線編號</label>
-                    <select class="form-control" name="colorId" id="colorId" value="{{$job_tickets->colorId}}"
+                    <label for="color_line">色線編號</label>
+                    <select class="form-control" name="color_line" id="color_line" value="{{$job_tickets->color_line}}"
                             placeholder="輸入或點擊選取廠商" required>
-                        <option>聯訪</option>
-                        <option>廣泰</option>
+                        <option>聯訪-048</option>
+                        <option>廣泰-352</option>
                     </select>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="wash">洗標</label>
-                    <select type="text" name="wash" class="form-control" id="wash"
-                            value="{{$job_tickets->wash}}" placeholder="洗標" required>
-                        <option value="織物100%">織物100%</option>
-                        <option value="織物90%">織物90%</option>
-                        <option value="昌和奈米10%">昌和奈米10%</option>
-                        <option value="黑白狗100%">黑白狗100%</option>
-                        <option value="莫利仕">莫利仕</option>
-                        <option value="棉王">棉王</option>
-                        <option value="功夫">功夫</option>
-                        <option value="打勾">打勾</option>
-                        <option value="福維單片">福維單片</option>
-                        <option value="彩虹">彩虹</option>
-                        <option value="領先綠標">領先綠標</option>
-                        <option value="領先咖標">領先咖標</option>
-                        <option value="960標">960標</option>
-                        <option value="140標">140標</option>
-                        <option value="方格">方格</option>
-                        <option value="台製藍標">台製藍標</option>
-                        <option value="台製黑標">台製黑標</option>
-                        <option value="公版標">公版標</option>
-                        <option value="大億">大億</option>
-                        <option value="寶佳">寶佳</option>
-                        <option value="南斯特">南斯特</option>
-                        <option value="南斯特炭標">南斯特炭標</option>
-                        <option value="星紅">星紅</option>
-                        <option value="雙星印標">雙星印標</option>
-                        <option value="雙星織標">雙星織標</option>
-                        <option value="金磚">金磚</option>
-                        <option value="箏緣">箏緣</option>
-                        <option value="本土">本土</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="colorId2">色線編號2</label>
-                    <select type="text" name="colorId2" class="form-control" id="colorId2" placeholder="色線編號"
-                            value="{{$job_tickets->colorId2}}" required>
-                        <option value="048">048</option>
-                        <option value=352">352</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="wash">洗標</label>
+                <select type="text" name="wash" class="form-control" id="wash"
+                        value="{{$job_tickets->wash}}" placeholder="洗標" required>
+                    <option value="織物100%">織物100%</option>
+                    <option value="織物90%">織物90%</option>
+                    <option value="昌和奈米10%">昌和奈米10%</option>
+                    <option value="黑白狗100%">黑白狗100%</option>
+                    <option value="莫利仕">莫利仕</option>
+                    <option value="棉王">棉王</option>
+                    <option value="功夫">功夫</option>
+                    <option value="打勾">打勾</option>
+                    <option value="福維單片">福維單片</option>
+                    <option value="彩虹">彩虹</option>
+                    <option value="領先綠標">領先綠標</option>
+                    <option value="領先咖標">領先咖標</option>
+                    <option value="960標">960標</option>
+                    <option value="140標">140標</option>
+                    <option value="方格">方格</option>
+                    <option value="台製藍標">台製藍標</option>
+                    <option value="台製黑標">台製黑標</option>
+                    <option value="公版標">公版標</option>
+                    <option value="大億">大億</option>
+                    <option value="寶佳">寶佳</option>
+                    <option value="南斯特">南斯特</option>
+                    <option value="南斯特炭標">南斯特炭標</option>
+                    <option value="星紅">星紅</option>
+                    <option value="雙星印標">雙星印標</option>
+                    <option value="雙星織標">雙星織標</option>
+                    <option value="金磚">金磚</option>
+                    <option value="箏緣">箏緣</option>
+                    <option value="本土">本土</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="rollFunc">滾邊方式</label>
@@ -277,8 +267,7 @@
                 $("#wash").editableSelect({efficts: 'slide'})
                 $("#item").editableSelect({efficts: 'slide'})
                 $("#factory").editableSelect({efficts: 'slide'})
-                $("#colorId").editableSelect({efficts: 'slide'})
-                $("#colorId2").editableSelect({efficts: 'slide'})
+                $("#color_line").editableSelect({efficts: 'slide'})
                 $("#rollFunc").editableSelect({efficts: 'slide'})
                 $("#status").editableSelect({efficts: 'slide'})
             })()
