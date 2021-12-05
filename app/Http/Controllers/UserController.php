@@ -19,6 +19,13 @@ class UserController extends Controller
         if ($request->search_parameter !== $search_parameter) {
             $search_parameter = $request->search_parameter;
         }
+        if ($search_parameter == "幹部") {
+            $search_parameter = "manager";
+        }
+        if ($search_parameter == "員工") {
+            $search_parameter = "employee";
+
+        }
 
         //取得員工列表
         $data = DB::table('users')
