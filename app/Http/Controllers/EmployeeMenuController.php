@@ -88,7 +88,7 @@ class EmployeeMenuController extends Controller
                 ->join('users', 'users.id', '=', 'job_reports.operator')
                 ->select(
                     'job_reports.operator', 'job_reports.quantity', 'job_reports.unit','job_reports.ticket_id','job_reports.updated_at',
-                    'job_tickets.employeeName', 'job_tickets.color', 'job_tickets.wash', 'job_tickets.colorId', 'job_tickets.colorId2',
+                    'job_tickets.employeeName', 'job_tickets.color', 'job_tickets.wash', 'job_tickets.color_line',
                     'users.name'
                 )
                 ->get();
@@ -114,11 +114,10 @@ class EmployeeMenuController extends Controller
                     ->join('users', 'users.id', '=', 'job_reports.operator')
                     ->select(
                         'job_reports.operator', 'job_reports.quantity', 'job_reports.unit','job_reports.ticket_id','job_reports.updated_at',
-                        'job_tickets.employeeName', 'job_tickets.color', 'job_tickets.wash', 'job_tickets.colorId', 'job_tickets.colorId2',
+                        'job_tickets.employeeName', 'job_tickets.color', 'job_tickets.wash', 'job_tickets.color_line',
                         'users.name'
                     )
                     ->get();
-
             }
             if ($request->action == '剪巾') {
                 //以回報滾邊
@@ -135,7 +134,6 @@ class EmployeeMenuController extends Controller
                     ->join('users','job_titles.authorizer','=','users.id')
                     ->select('users.name','users.id')
                     ->get();
-
                 $result = [
                     "ticket_reports" => $ticket_reports,
                     "piping_reports" => $piping_reports,
@@ -175,15 +173,12 @@ class EmployeeMenuController extends Controller
         try{
             $user_id = Session::get('user_id');
 
-
             //更新的日期好像沒進來
             // 滾邊/撿巾的回報
-
             if($request->action == '剪巾'){
                 //滾邊 回報
 
                 foreach ($request->piping_list as $piping_report ){
-
                     $piping = DB::table('job_reports')
                         ->where('ticket_id',$request->ticket_id)
                         ->where('operator',$piping_report[0])

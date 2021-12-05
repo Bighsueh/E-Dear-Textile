@@ -131,7 +131,7 @@
                 data['ticket_reports'][0]['employeeName'];
             // //色線編號
             document.getElementById('head_color_cable').value =
-                data['ticket_reports'][0]['colorId'] + data['ticket_reports'][0]['colorId2'];
+                data['ticket_reports'][0]['color_line'];
             // //洗標
             document.getElementById('head_wash_tag').value =
                 data['ticket_reports'][0]['wash'];
@@ -196,13 +196,13 @@
 
     //送出回報按鈕
     $("#btn_head_report").click(function (){
-        store_report_data()
+        store_head_data()
     })
 
 
 
     //儲存回報結果
-    function store_report_data() {
+    function store_head_data() {
         let ticket_id = document.getElementById('head_ticket_id').value;
         let pick_list = get_pick_list_array();
         let operator_name = document.getElementById('head_report-operator-name').value;

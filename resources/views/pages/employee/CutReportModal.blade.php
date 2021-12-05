@@ -121,7 +121,7 @@
                 action: '剪巾',
             },
             success: function (res) {
-                console.log(res);
+                // console.log(res);
                 set_report_modal(res);
             },
             error: function (err) {
@@ -133,6 +133,7 @@
 
     //設置回報頁欄位資訊
     function set_report_modal(data) {
+        console.log(data);
         //派遣單編號
         document.getElementById('report_ticket_id').value =
             data['ticket_reports'][0]['ticket_id'];
@@ -141,7 +142,7 @@
             data['ticket_reports'][0]['employeeName'];
         //色線編號
         document.getElementById('report_color_cable').value =
-            data['ticket_reports'][0]['colorId'] + data['ticket_reports'][0]['colorId2'];
+            data['ticket_reports'][0]['color_line'];
         //洗標
         document.getElementById('report_wash_tag').value =
             data['ticket_reports'][0]['wash'];
@@ -212,7 +213,7 @@
         let operator_number = document.getElementById('report_operator_num').value;
         let operator_unit = document.getElementById('report-operator-unit').value;
         const d = new Date();
-
+        console.log(piping_list);
         $.ajax({
             url:'{{route('store_report_data')}}',
             method: 'GET',
