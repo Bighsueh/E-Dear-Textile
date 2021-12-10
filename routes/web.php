@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/report', function () {
-    return view('pages.employee.TaskReportModal');
+Route::get('/c', function () {
+    return view('pages.customer.customerMenu');
 });
 
 // 登入
@@ -73,6 +73,11 @@ Route::group(['middleware' =>['login']],function(){
     Route::post('/employee/menu/report/create', 'EmployeeMenuController@post_create_employee_report')->name('post_create_employee_report');
     // 查看派遣單細項
     Route::get('/employee/list/{id}', 'EmployeeMenuController@get_employee_list')->name('get_employee_list');
+
+
+    //顧客
+    Route::get('/customer/confirmCustomer', 'CustomerController@confirm_customer')->name('confirm_customer');
+    Route::get('/customer/getTicketsData', 'CustomerController@get_tickets_data')->name('get_tickets_data');
 });
 
 
