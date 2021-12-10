@@ -17,7 +17,6 @@
                         <select class="form-control col-6" id="confirm_customer_name" name="confirm_customer_name"
                                 required>
                             <option value="1">1</option>
-                            <option value="2">2</option>
                         </select>
                         <button type="button" class="btn btn-outline-success ml-2" id="btn_confirm_customer">開始</button>
                     </div>
@@ -32,11 +31,7 @@
 <script>
 
     $(document).ready(function () {
-        //一載入畫面則跳出modal
-        $('#ConfirmIdentity').modal('show');
-
-        //設定editableSelect
-        $("#confirm_customer_name").editableSelect({efficts: 'slide'})
+        var confirm_customer_name = false;
 
         //設定點選modal外部不會關閉
         $("#ConfirmIdentity").modal({
@@ -44,28 +39,69 @@
             keyboard: false
         });
 
-        $("#btn_confirm_customer").click(function(){
+        //設定editableSelect
+        $("#confirm_customer_name").editableSelect({efficts: 'slide'})
+
+
+        //顧客名稱查詢按鈕
+        $("#btn_confirm_customer").click(function () {
             let customer_name = $("#confirm_customer_name").val();
-            confirm_customer_name = confirm_customer_data(customer_name);
-        })
-    });
 
-    function confirm_customer_data(customer_name,search_parameter = null) {
-        let url = ""
-        $.ajax({
-            url : url,
-            method : "post",
-            data:{
-                customer_name : customer_name,
-            },
-            success: function(res){
+            confirm_customer(customer_name);
 
-                console.log(res);
-            },
-            error: function(err){
-                console.log(err);
+
+            if (updated_confirm_customer_name()) {
+                //更新頁面
+                update_tickets_list();
             }
         })
+
+        //物件都設定完則跳出modal1
+        $('#ConfirmIdentity').modal('show');
+    });
+
+    function close_confirm_modal() {
+        $("#ConfirmIdentity").modal('hide');
+    }
+
+    //更新驗證顧客狀態
+    function updated_confirm_customer_name(status = null) {
+        if (status !== null) {
+            confirm_customer_name = status;
+        }
+        return confirm_customer_name;
+    }
+
+
+
+    //判斷顧客是否存在
+    function confirm_customer(customer_name) {
+        let url = "{{route('confirm_customer')}}";
+
+        $.ajax({
+            url: url,
+            method: "GET",
+            async: false,
+            data: {
+                customer_name: customer_name,
+            },
+            success: function (res) {
+                if (res === 'exist') {
+                    console.log('customer exist');
+                    updated_confirm_customer_name(true);
+                }
+                if (res === 'not exist') {
+                    console.log('customer not exist');
+                    updated_confirm_customer_name(false);
+                }
+            },
+            error: function (res) {
+                console.log(res);
+                updated_confirm_customer_name(false);
+            }
+        })
+
+
     }
 
 </script>

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use http\Exception;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
-    public function confirm_customer_name(Request $request)
+    //判斷顧客是否存在
+    public function confirm_customer(Request $request)
     {
         try {
             $customer_name = $request->customer_name;
@@ -16,15 +18,17 @@ class CustomerController extends Controller
             $customer = DB::table('job_tickets')
                 ->where('employeeName', $customer_name)
                 ->first();
+//            dd($customer);
 
-            if(count($customer)>0) {
-                Session::put('user_id', $customer->name);
+            if ($customer !== null) {
+                //判斷session是否存在，是則加入1
+                Session::put('user_id', $customer->employeeName);
+                Session::put('level', 'customer');
                 return 'exist';
             }
-            if (count($customer) == 0) {
+            if ($customer === null) {
                 return 'not exist';
             }
-
 
 
         } catch (Exception $exception) {
@@ -32,10 +36,16 @@ class CustomerController extends Controller
         }
     }
 
-    public function get_cumstomer_data(Request $request)
+
+    public function get_tickets_data(Request $request)
     {
         try {
+            $customer_name = $request->session()->get('user_id');
 
+            $data = DB::table('job_tickets')
+                ->where('employeeName', $customer_name)
+                ->get();
+            return $data;
         } catch (\Exception $exception) {
             return $exception;
         }
