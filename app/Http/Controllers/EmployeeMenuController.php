@@ -148,11 +148,16 @@ class EmployeeMenuController extends Controller
                     ->where('action', '撿巾')
                     ->get();
                 //自己授權的撿巾員
-                $picks_members = DB::table('job_titles')
-                    ->where('ticket_id', $request->ticket_id)
-                    ->where('authorizer', $user_id)
-                    ->join('users','job_titles.authorized_person','=','users.id')
+//                $picks_members = DB::table('job_titles')
+//                    ->where('ticket_id', $request->ticket_id)
+//                    ->where('authorizer', $user_id)
+//                    ->join('users','job_titles.authorized_person','=','users.id')
+//                    ->get();
+                $picks_members = DB::table('users')
+                    ->where('level', 'employee')
+                    ->select('id','name')
                     ->get();
+
                 $result = [
                     "ticket_reports" => $ticket_reports,
                     "pick_reports" => $pick_report,
