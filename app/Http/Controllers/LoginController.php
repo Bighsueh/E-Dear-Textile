@@ -27,6 +27,11 @@ class LoginController extends Controller
         $employee_password = $request->input('employee_password');
         $users_table = DB::table('users')->get();
 
+        if ($account === '客戶') {
+            Session::put('level', 'customer');
+            return redirect()->route('get_customer_page');
+        }
+
         try {
             $check_name = $users_table->where('name', $account)->first();
             if ($check_name) {
