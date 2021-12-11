@@ -24,7 +24,7 @@
                 </table>
             </div>
             <div class="modal-footer align-items-end form-group">
-
+                <button class="btn btn-primary" id="btn-list-close">返回</button>
             </div>
         </div>
     </div>
@@ -59,6 +59,7 @@
                     else if(res[2] == "撿巾")
                     {
                         $("#employee").show();
+                        $("#employee").text("折頭員");
                         for(let i = 0; i <res[0].length; i++){
                             let submit_by = "<td>" + res[1][i]["name"] + "</td>";
                             let order = "<td>" + res[0][i]["quantity"] + "</td>";
@@ -72,7 +73,7 @@
                     else if(res[2] == "滾邊")
                     {
                         $("#employee").show();
-
+                        $("#employee").text("剪巾員");
                         for(let i = 0; i <res[0].length; i++){
                             let submit_by = "<td>" + res[1][i]["name"] + "</td>";
                             let order = "<td>" + res[0][i]["quantity"] + "</td>";
@@ -107,7 +108,10 @@
                     }
 
                 }
-
+                $("#btn-list-close").click(function () {
+                    $("#ReportListModal").modal('hide');
+                    $("#ReportDetailModal").modal('show');
+                });
             }
 
         })

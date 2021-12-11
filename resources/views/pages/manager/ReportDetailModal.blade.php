@@ -1,3 +1,8 @@
+<style>
+    .modal {
+        overflow-y:auto;
+    }
+</style>
 <div id="ReportDetailModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
      aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -24,6 +29,7 @@
                 </table>
             </div>
             <div class="modal-footer align-items-end form-group">
+                <button class="btn btn-primary" id="btn-detail-close">返回</button>
             </div>
         </div>
     </div>
@@ -118,6 +124,11 @@
                     $("#ReportListModal").modal('show');
 
                 })
+                // 返回按鈕
+                $("#btn-detail-close").click(function () {
+                    $("#ReportDetailModal").modal('hide');
+                    $("#ReportModal").modal('show');
+                });
             }
         })
     }
