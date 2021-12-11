@@ -76,6 +76,7 @@ Route::group(['middleware' =>['login']],function(){
 
 
     //顧客
+    Route::get('/customer/get_customer_page', 'CustomerController@get_customer_page')->name('get_customer_page');
     Route::get('/customer/confirmCustomer', 'CustomerController@confirm_customer')->name('confirm_customer');
     Route::get('/customer/getTicketsData', 'CustomerController@get_tickets_data')->name('get_tickets_data');
 });

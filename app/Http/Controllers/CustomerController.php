@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
+    public function get_customer_page()
+    {
+        return view('pages.customer.customerMenu');
+    }
+
     //判斷顧客是否存在
     public function confirm_customer(Request $request)
     {
