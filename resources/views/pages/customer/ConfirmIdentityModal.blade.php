@@ -10,7 +10,10 @@
                 <div class="container">
 
                     <div class="row form-group justify-content-center">
-                        <label class="form-group">請輸入欲查詢顧客名稱</label>
+                        <h5 class="form-group">請輸入欲查詢顧客名稱：</h5>
+                    </div>
+                    <div class="row form-group justify-content-center">
+                        <label id="confirm_msg" class="text-danger"></label>
                     </div>
                     <div class="row form-group justify-content-center">
 
@@ -59,6 +62,9 @@
         //物件都設定完則跳出modal1
         $('#ConfirmIdentity').modal('show');
     });
+    function set_confirm_msg(msg){
+        $("#confirm_msg").text(msg)
+    }
 
     function close_confirm_modal() {
         $("#ConfirmIdentity").modal('hide');
@@ -92,6 +98,9 @@
                 }
                 if (res === 'not exist') {
                     console.log('customer not exist');
+
+                    set_confirm_msg('查無此客戶，請重新輸入!');
+
                     updated_confirm_customer_name(false);
                 }
             },
