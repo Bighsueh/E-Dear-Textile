@@ -14,6 +14,7 @@
                             <label for="employee_id">員工編號</label>
                             <br>
                             <select class="form-control" id="employee_account" name="employee_account" required>
+                                <option value="">客戶</option>
                                 @foreach($data as $row)
                                     <option value="{{$row->account}}">{{$row->name}}</option>
                                 @endforeach
@@ -61,6 +62,18 @@
             })
 
             $("#employee_account").editableSelect({efficts: 'slide'})
+
+            $("#employee_account").on('select.editable-select',function(e){
+                console.log(e);
+                if($("#employee_account").val() == '客戶'){
+                    $("#employee_password").attr('placeholder','客戶不需輸入密碼');
+                    $("#employee_password").prop('disabled',true);
+                }else{
+                    $("#employee_password").attr('placeholder','員工密碼');
+                    $("#employee_password").prop('disabled',false);
+                };
+            }).editableSelect({efficts: 'slide'})
+
         })()
     </script>
 @endsection
