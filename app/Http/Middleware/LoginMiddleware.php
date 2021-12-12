@@ -31,12 +31,23 @@ class LoginMiddleware
 
         //check uri contains string of level and "Scan"
         //strpos函數找到值會回傳字串，找不到會回傳false
-        if (!(strpos($request_uri, $level) === false) and !(strpos($request_uri, "Scan") === false)) {
-            //當level跟"Scan"字眼同時找不到則return get_login
-            return redirect()->route('get_login');
+
+        //若admin則放行
+        if ($level == 'admin') {
+            return $next($request);
         }
 
-        //該有的都有，回傳$next($request)
-        return $next($request);
+        //若為掃描器uri則放行
+        if(strpos($request_uri, "Scan") !== false){
+            return $next($request);
+        }
+
+        //若uri包含level則放行
+        if ((strpos($request_uri, $level) !== false)) {
+            return $next($request);
+        }
+
+        //剩下沒過的都刷掉
+        return redirect()->route('get_login');
     }
 }
