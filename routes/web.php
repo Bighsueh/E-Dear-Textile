@@ -49,12 +49,12 @@ Route::group(['middleware' =>['login']],function(){
 //    Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');
 
     //幹部-員工資料
-    Route::get('/manager/menu/employeeList','UserController@get_user_page')->name('get_user_page');
-    Route::get('/manager/menu/getUserData','UserController@get_user_data')->name('get_employee_data');
-    Route::post('/manager/menu/createUserData','UserController@create_user_data')->name('create_user_data');
-    Route::get('/manager/menu/getEditUserData','UserController@get_edit_data')->name('get_edit_data');
-    Route::post('/manager/menu/storeEditUserData','UserController@store_edit_data')->name('store_edit_data');
-    Route::post('/manager/menu/deleteEditUserData','UserController@delete_edit_data')->name('delete_edit_data');
+    Route::get('/users/menu/employeeList','UserController@get_user_page')->name('get_user_page');
+    Route::get('/users/menu/getUserData','UserController@get_user_data')->name('get_employee_data');
+    Route::post('/users/menu/createUserData','UserController@create_user_data')->name('create_user_data');
+    Route::get('/users/menu/getEditUserData','UserController@get_edit_data')->name('get_edit_data');
+    Route::post('/users/menu/storeEditUserData','UserController@store_edit_data')->name('store_edit_data');
+    Route::post('/users/menu/deleteEditUserData','UserController@delete_edit_data')->name('delete_edit_data');
 
     //幹部-員工工作紀錄
     Route::get('/manager/WorkingLog', 'WorkingLogController@get_working_log_page')->name('get_working_log_page');

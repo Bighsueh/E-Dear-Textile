@@ -54,9 +54,11 @@
                     <a class="text-light nav-link active" aria-current="page"
                        href="{{Route('get_menu')}}">派遣單列表</a>
                 </li>
+                @if(\Illuminate\Support\Facades\Session::get('level') === \App\User::ROLE_ADMIN)
                 <li class="nav-item">
                     <a class="text-light nav-link" href="{{Route('get_user_page')}}">員工列表</a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a id="btn_download_scanner_apk" class="text-secondary nav-link" >掃描器下載</a>
                 </li>
