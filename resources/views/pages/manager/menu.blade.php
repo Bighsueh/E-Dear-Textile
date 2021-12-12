@@ -100,6 +100,11 @@
         $("#btn_refresh").click(function (){
             update_data("");
         })
+        //新增派遣單按鈕
+        $("#btn_add").click(function(){
+            let url = "{{Route('get_addSheet')}}";
+            window.location.href = url;
+        })
     </script>
 
 
