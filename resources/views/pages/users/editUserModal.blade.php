@@ -51,7 +51,7 @@
     })
 
     //開啟edit_user_modal ->帶值進去
-    function open_edit_user_modal(id) {
+    function open_edit_user_modal(id,is_admin) {
         $.ajax({
             url: '{{route('get_edit_data')}}',
             method: 'get',
@@ -64,10 +64,25 @@
                 $("#edit_account").val(res[0]["account"]);
                 $("#edit_password").val(res[0]["password"]);
                 $("#edit_id").val(res[0]["id"]);
+
+
+                if (is_admin) {
+                    $("#edit_level").prop('disabled',true);
+                    $("#edit_name").prop('disabled',true);
+                    $("#edit_account").prop('disabled',true);
+
+                    $("#edit_level").val('admin');
+                }else{
+                    $("#edit_level").prop('disabled',false);
+                    $("#edit_name").prop('disabled',false);
+                    $("#edit_account").prop('disabled',false);
+                }
+
+
                 $("#EditUserModal").modal('show');
             }
 
-        })
+        });
     }
 
     //store 以編輯之edit_user_modal

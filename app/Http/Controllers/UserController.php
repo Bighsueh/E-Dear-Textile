@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use PHPUnit\Exception;
 
 class UserController extends Controller
@@ -35,6 +37,9 @@ class UserController extends Controller
             ->get();
 
         foreach ($data as $row) {
+            if ($row->level == "admin") {
+                $row->level = "系統管理員";
+            }
             if ($row->level == "manager") {
                 $row->level = "幹部";
             }
@@ -91,6 +96,16 @@ class UserController extends Controller
             $edit_account = $request->edit_account;
             $edit_password = $request->edit_password;
 
+            //系統管理員僅可更改密碼
+            if ($edit_name === '系統管理員') {
+                DB::table('users')
+                    ->where('id', $edit_id)
+                    ->update([
+                        "password" => $edit_password,
+                    ]);
+                return 'success';
+            }
+
             DB::table('users')
                 ->where('id', $edit_id)
                 ->update([
@@ -111,9 +126,17 @@ class UserController extends Controller
     {
         try {
             $user_id = $request->user_id;
-            DB::table('users')
+            $is_admin = DB::table('users')
                 ->where('id', $user_id)
-                ->delete();
+                ->where('level', 'admin')
+                ->get();
+
+            if ($is_admin) {
+                return "admin can't be delete";
+            }
+                DB::table('users')
+                    ->where('id', $user_id)
+                    ->delete();
             return 'success';
         } catch (Exception $exception) {
             return $exception;

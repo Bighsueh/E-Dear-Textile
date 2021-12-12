@@ -74,7 +74,7 @@
                         res.forEach(function (row) {
                             let row_thread = "<td>" + (thread++) + "</td>";
                             let row_id = row['id'];
-                            let row_level = "<td>" + row["level"] + "</td>";
+                            let row_level = "<td class='user-level'>" + row["level"] + "</td>";
                             let row_name = "<td class='user-name'>" + row["name"] + "</td>";
                             let row_function = "";
                             if (setting_mode === "list") {
@@ -98,12 +98,22 @@
 
                     //修改modal
                     $(".btn_edit_user").click(function () {
-                        open_edit_user_modal($(this).attr("value"));
+                        let user_level = $(this).parent().parent().find(".user-level").text();
+                        let is_admin = false;
+                        if(user_level === '系統管理員'){
+                            is_admin = true;
+                        }
+                        open_edit_user_modal($(this).attr("value"),is_admin);
                     })
 
                     //delete user data
-                    $(".btn_remove_user").click(function () {
+                    $(".btn_remove_user").click(function (e) {
+                        let user_level = $(this).parent().parent().find(".user-level").text();
                         let delete_user_name = $(this).parent().parent().find(".user-name").text();
+                        if(user_level === '系統管理員'){
+                            window.alert('系統管理員無法被刪除');
+                            return false;
+                        }
                         $("#tag_delete_user_id").text(delete_user_name);
                         $("#delete_user_id").val($(this).attr("value"));
                         $("#DeleteUserModal").modal('show');
