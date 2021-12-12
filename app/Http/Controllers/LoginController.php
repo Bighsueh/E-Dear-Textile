@@ -66,7 +66,7 @@ class LoginController extends Controller
 
 //            get session level
         $level = $request->session()->get('level');
-        if ($level === 'manager') {
+        if ($level === 'manager' or $level === 'admin') {
 //                return 幹部 page
             return redirect()->route('get_menu');
         }
