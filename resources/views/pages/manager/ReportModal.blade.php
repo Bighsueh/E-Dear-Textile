@@ -46,11 +46,11 @@
                     </div>
                     <div class="row form-group">
                         <label for="reportList_cut" class="col-sm-3 col-5 ">剪巾 回報</label>
-                        <a class="text-primary" id="reportList_cut" data-toggle="modal" data-target="#ReportModal" value=""></a>
+                        <a class="text-primary" id="reportList_cut"  value=""></a>
                     </div>
                     <div class="row form-group">
                         <label for="reportList_foldHead" class="col-sm-3 col-5 ">折頭 回報</label>
-                        <a class="text-primary" id="reportList_foldHead" data-toggle="modal" data-target="#ReportModal" value=""></a>
+                        <a class="text-primary" id="reportList_foldHead"  value=""></a>
                     </div>
                 </div>
             </div>

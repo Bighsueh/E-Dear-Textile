@@ -59,7 +59,7 @@
                             let row_order = "<td>" + row["order"] +"條"+"</td>";
                             // let row_result = `<td> <button class="btn btn-outline-dark btn_result" value='${row['id']}'>結果</button> </td>`;
                             let row_result = `<td> <button type="button" class="btn btn-outline-dark btn_result"
-                                                data-toggle="modal" data-target="#ReportModal" value='${row['id']}'>結果</button> </td>`;
+                                              id ="btn_result${row['id']}" value='${row['id']}'>結果</button> </td>`;
                             let row_status = "<td>" + row["status"] + "</td>";
                             let row_created_at = "<td>" + row["created_at"] + "</td>";
                             $("tbody").append(
@@ -75,6 +75,7 @@
                     }
 
                     $(".btn_result").click(function (){
+                        $("#ReportModal").modal('show');
                         open_result_modal($(this).attr("value"))
                         $("#reportList_unit").val(1)
                     })
