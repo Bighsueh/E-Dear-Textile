@@ -36,10 +36,13 @@
                     </div>
                     <div class="row form-group">
                         <label for="reportList_unit" class="col-sm-3 col-5 ">顯示單位</label>
-                        <select class="form-select" id="reportList_unit"aria-label="單位選擇">
-                            <option id="select_option" selected value="1">條</option>
-                            <option value="12">打</option>
-                        </select>
+                        <div class="col-sm-8 col-7">
+                            <select class="form-select form-control" id="reportList_unit"aria-label="單位選擇">
+                                <option id="select_option" selected value="1">條</option>
+                                <option value="12">打</option>
+                            </select>
+                        </div>
+
                     </div>
                     <div class="row form-group">
                         <label for="reportList_cut" class="col-sm-3 col-5 ">剪巾 回報</label>
