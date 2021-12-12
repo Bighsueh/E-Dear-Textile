@@ -92,6 +92,7 @@
     let emtpy_pick_row = $("#report_pick_list").html();
 
     function open_head_modal(ticket_id) {
+        const d = new Date();
         url = "{{route('get_report_data')}}";
         $.ajax({
             url: url,
@@ -99,6 +100,7 @@
             data: {
                 ticket_id: ticket_id,
                 action: '折頭',
+                created_at:d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()
             },
             success: function (res) {
                 console.log(res);

@@ -102,7 +102,7 @@ class EmployeeMenuController extends Controller
                         'quantity' => 0,
                         'unit' => 'one',
                         'submit_by' => $user_id,
-                        'created_at'=> null,
+                        'created_at'=> $request->created_at,
                         'updated_at' => null
                     ]);
 

@@ -112,6 +112,7 @@
 
     //打開report_modal(傳入ticket_id)
     function open_report_modal(ticket_id) {
+        const d = new Date();
         url = "{{route('get_report_data')}}";
         $.ajax({
             url: url,
@@ -119,6 +120,7 @@
             data: {
                 ticket_id: ticket_id,
                 action: '剪巾',
+                created_at:d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()
             },
             success: function (res) {
                 // console.log(res);
