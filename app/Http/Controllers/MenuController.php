@@ -44,6 +44,7 @@ class MenuController extends Controller
     public function get_addSheet()
     {
         $id = DB::table('job_tickets')->select('id')->orderBy("id",'desc')->first();
+        $user_name = DB::table('users')->select('name')->where('id', Session::get('user_id'))->first()->name;
         if($id == null)
         {
             $id = 0;
@@ -51,7 +52,7 @@ class MenuController extends Controller
         else{
             $id = (int)$id->id;
         }
-        return view('pages.manager.addSheet',compact('id',$id));
+        return view('pages.manager.addSheet',compact('id','user_name'));
     }
 
     public function get_employeeDetail(Request $request,$id)
