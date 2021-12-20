@@ -21,8 +21,24 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="employeeName">客戶名稱</label>
-                        <input type="text" name="employeeName" class="form-control" id="employeeName" required
-                               placeholder="客戶名稱">
+                        <select type="text" name="employeeName" class="form-control" id="employeeName" placeholder="客戶名稱" required>
+                            <option value="昌和-CH">昌和-CH</option>
+                            <option value="福維-FW">福維-FW</option>
+                            <option value="彩虹-TW">彩虹-TW</option>
+                            <option value="永達昌-YDC">永達昌-YDC</option>
+                            <option value="方格-WY">方格-WY</option>
+                            <option value="台製-TZ">台製-TZ</option>
+                            <option value="和成-HC">和成-HC</option>
+                            <option value="大億-DY">大億-DY</option>
+                            <option value="寶佳-BJ">寶佳-BJ</option>
+                            <option value="南斯特-NST">南斯特-NST</option>
+                            <option value="星紅-HK">星紅-HK</option>
+                            <option value="森鳴-SM">森鳴-SM</option>
+                            <option value="金磚-GJ">金磚-GJ</option>
+                            <option value="登元-DU">登元-DU</option>
+                            <option value="茂原行-MY">茂原行-MY</option>
+                            <option value="本土-BT">本土-BT</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="item">品項</label>
@@ -157,7 +173,7 @@
                 </div>
                 <div class="form-group">
                     <label for="manager">派工主管</label>
-                    <input type="text" name="manager" class="form-control" id="manager" placeholder="派工主管" required>
+                    <input type="text" name="manager" class="form-control" id="manager" disabled value="{{$user_name}}" placeholder="派工主管" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -168,6 +184,7 @@
                         <label for="status">貨別</label>
                         <select class="form-control" name="status" id="status"
                                placeholder="輸入或點擊選取狀態">
+                            <option value="未開始" selected>未開始</option>
                             <option value="排程中">排程中</option>
                             <option value="刪單">刪單</option>
                             <option value="出貨">出貨</option>
@@ -223,6 +240,8 @@
                 $("#color_line").editableSelect({efficts: 'slide'})
                 $("#rollFunc").editableSelect({efficts: 'slide'})
                 $("#status").editableSelect({efficts: 'slide'})
+                $("#employeeName").editableSelect({efficts: 'slide'})
+
             })()
         </script>
 @endsection
