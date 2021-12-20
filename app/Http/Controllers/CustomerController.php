@@ -44,12 +44,19 @@ class CustomerController extends Controller
 
     public function get_tickets_data(Request $request)
     {
+        $search_parameter = null;
+        if ($request->search_parameter) {
+            $search_parameter = $request->search_parameter;
+        }
+
         try {
             $customer_name = $request->session()->get('user_id');
-
             $data = DB::table('job_tickets')
+                ->orWhere('id', 'like', '%' . $search_parameter . '%')
+                ->orWhere('itemId', 'like', '%' . $search_parameter . '%')
                 ->where('employeeName', $customer_name)
                 ->get();
+
             return $data;
         } catch (\Exception $exception) {
             return $exception;

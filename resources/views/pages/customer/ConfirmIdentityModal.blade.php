@@ -19,7 +19,6 @@
 
                         <select class="form-control col-6" id="confirm_customer_name" name="confirm_customer_name"
                                 required>
-                            <option value="1">1</option>
                         </select>
                         <button type="button" class="btn btn-outline-success ml-2" id="btn_confirm_customer">開始</button>
                     </div>
@@ -55,7 +54,7 @@
 
             if (updated_confirm_customer_name()) {
                 //更新頁面
-                update_tickets_list();
+                update_tickets_list('');
             }
         })
 
