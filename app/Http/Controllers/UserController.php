@@ -126,17 +126,9 @@ class UserController extends Controller
     {
         try {
             $user_id = $request->user_id;
-            $is_admin = DB::table('users')
+            DB::table('users')
                 ->where('id', $user_id)
-                ->where('level', 'admin')
-                ->get();
-
-            if ($is_admin) {
-                return "admin can't be delete";
-            }
-                DB::table('users')
-                    ->where('id', $user_id)
-                    ->delete();
+                ->delete();
             return 'success';
         } catch (Exception $exception) {
             return $exception;

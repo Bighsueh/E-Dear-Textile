@@ -37,6 +37,9 @@
             },
             success: function (res) {
                 update_data();
+            },
+            error: function (err) {
+                console.log(err)
             }
 
         })
