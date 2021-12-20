@@ -21,7 +21,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="employeeName">客戶名稱</label>
-                        <select type="text" name="employeeName" class="form-control" id="employeeName" placeholder="客戶名稱" required>
+                        <select type="text" name="employeeName"  class="form-control" id="employeeName" placeholder="客戶名稱" required>
                             <option value="昌和-CH">昌和-CH</option>
                             <option value="福維-FW">福維-FW</option>
                             <option value="彩虹-TW">彩虹-TW</option>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="form-group">
                     <label for="manager">派工主管</label>
-                    <input type="text" name="manager" class="form-control" id="manager" disabled value="{{$user_name}}" placeholder="派工主管" required>
+                    <input type="text" name="manager" class="form-control" id="manager" readonly value="{{$user_name}}" placeholder="派工主管" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -209,7 +209,17 @@
         </div>
 
         <script>
+
+            $("#employeeName").select(
+                function () {
+                    const str = $("#employeeName").val().split("-")[0];
+                    $("#wash").val(str)
+                    $("#wash").editableSelect('filter');
+
+                }
+            )
             ;(function () {
+
                 const d = new Date()
                 const date = document.getElementById("date");
                 date.value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes();
@@ -232,17 +242,18 @@
                         window.alert("此功能僅限於Android或ios裝置使用!");
                     }
                 })
-                $("#itemId").editableSelect({efficts: 'slide'})
-                $("#color").editableSelect({efficts: 'slide'})
-                $("#wash").editableSelect({efficts: 'slide'})
-                $("#item").editableSelect({efficts: 'slide'})
-                $("#factory").editableSelect({efficts: 'slide'})
-                $("#color_line").editableSelect({efficts: 'slide'})
-                $("#rollFunc").editableSelect({efficts: 'slide'})
-                $("#status").editableSelect({efficts: 'slide'})
-                $("#employeeName").editableSelect({efficts: 'slide'})
-
+                $("#itemId").editableSelect({efficts: 'slide'});
+                $("#color").editableSelect({efficts: 'slide'});
+                $("#wash").editableSelect({efficts: 'slide'});
+                $("#item").editableSelect({efficts: 'slide'});
+                $("#factory").editableSelect({efficts: 'slide'});
+                $("#color_line").editableSelect({efficts: 'slide'});
+                $("#rollFunc").editableSelect({efficts: 'slide'});
+                $("#status").editableSelect({efficts: 'slide'});
+                $("#employeeName").editableSelect({efficts: 'slide'} );
             })()
+
+
         </script>
 @endsection
 
