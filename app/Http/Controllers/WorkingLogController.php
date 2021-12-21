@@ -36,26 +36,30 @@ class WorkingLogController extends Controller
     public function get_working_log_data(Request $request)
     {
         $search_parameter = null;
-        if ($request->search_parameter !== $search_parameter) {
-            $search_parameter = $request->search_parameter;
+        if ($request->get('search_parameter') !== $search_parameter) {
+            $search_parameter = $request->get('search_parameter');
         }
 
-        $user_id = $request->user_id;
-        $data = DB::table('job_reports')
-            ->join('job_tickets', 'job_tickets.id', '=', 'job_reports.ticket_id')
-            ->where('job_reports.operator', $user_id)
-//            ->orWhere('job_tickets.status', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_tickets.id', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_tickets.updated_at', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_tickets.employeeName', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_tickets.itemId', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_tickets.rollFunc', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_tickets.item', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_reports.quantity', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_reports.unit', 'like binary', '%' . $this->search_parameter . '%')
-//            ->orWhere('job_reports.action', 'like binary', '%' . $this->search_parameter . '%')
-            ->get();
+        $user_id = $request->get('user_id');
 
+        $data = DB::table('job_reports')
+            ->join('job_tickets', 'job_tickets.id', '=', 'job_reports.ticket_id');
+
+        if ($search_parameter) {
+            $data = $data
+                ->orWhere('job_tickets.status', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_tickets.id', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_tickets.updated_at', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_tickets.employeeName', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_tickets.itemId', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_tickets.rollFunc', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_tickets.item', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_reports.quantity', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_reports.unit', 'like binary', '%' . $search_parameter . '%')
+                ->orWhere('job_reports.action', 'like binary', '%' . $search_parameter . '%');
+        }
+        $data = $data->where('job_reports.operator', '=', $user_id)->get();
+        dd($data);
         return $data;
 
     }

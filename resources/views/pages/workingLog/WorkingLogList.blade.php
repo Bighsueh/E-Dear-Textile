@@ -62,13 +62,10 @@
             let employee_name = "{{$data['employee_name']}}";
             let search_parameter = document.getElementById("search_parameter").value;
             window.location.href = "{{route('working_job_export_excel')}}" + "?employee_id=" + employee_id + "&search_parameter=" + search_parameter +"&employee_name=" +employee_name;
-            window.location.href = "{{route('working_job_export_excel')}}" + "?employee_id=" + employee_id + "&search_parameter=" + search_parameter +"&employee_name=" +employee_name;
         })
 
         //頁面最上方搜尋列點擊事件(搜尋功能)
         $("#btn_search").click(function () {
-            window.alert('查詢功能維護中');
-            return false;
             let search_parameter = $("#search_parameter").val();
             update_data(search_parameter);
         })
@@ -83,15 +80,12 @@
                 window.alert('此頁面建議使用電腦觀看，已獲得最佳使用體驗。');
             }
 
-            if (search_parameter !== null) {
-                url += '?search_parameter=' + search_parameter;
-            }
-
             $.ajax({
                 url: url,
                 method: 'GET',
                 data: {
                     user_id: $("#employee_id").val(),
+                    search_parameter : search_parameter,
                 },
                 success: function (res) {
                     console.log(res)
