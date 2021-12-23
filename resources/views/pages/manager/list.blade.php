@@ -22,7 +22,8 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="employeeName">客戶名稱</label>
-                    <select type="text" name="employeeName" class="form-control" value="{{$job_tickets->employeeName}}" id="employeeName" placeholder="客戶名稱" required>
+                    <select type="text" name="employeeName" class="form-control" value="{{$job_tickets->employeeName}}"
+                            id="employeeName" placeholder="客戶名稱" required>
                         <option value="昌和-CH">昌和-CH</option>
                         <option value="福維-FW">福維-FW</option>
                         <option value="彩虹-TW">彩虹-TW</option>
@@ -60,8 +61,8 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="itemId">貨號</label>
-                    <select  name="itemId" class="form-control" id="itemId"
-                             value="{{$job_tickets->itemId}}" placeholder="貨號" required>
+                    <select name="itemId" class="form-control" id="itemId"
+                            value="{{$job_tickets->itemId}}" placeholder="貨號" required>
                         <option value="CH-881">CH-881</option>
                         <option value="FW-20780">FW-20780</option>
                         <option value="TW-952">TW-952</option>
@@ -82,7 +83,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="factory">漂染廠</label>
-                    <select type="text" name="factory" class="form-control" id="factory" value="{{$job_tickets->factory}}"
+                    <select type="text" name="factory" class="form-control" id="factory"
+                            value="{{$job_tickets->factory}}"
                             placeholder="漂染廠" required>
                         <option value="國弘">國弘</option>
                         <option value="富竹">富竹</option>
@@ -122,48 +124,50 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="wash">洗標</label>
-                <select type="text" name="wash" class="form-control" id="wash"
-                        value="{{$job_tickets->wash}}" placeholder="洗標" required>
-                    <option value="織物100%">織物100%</option>
-                    <option value="織物90%">織物90%</option>
-                    <option value="昌和奈米10%">昌和奈米10%</option>
-                    <option value="黑白狗100%">黑白狗100%</option>
-                    <option value="莫利仕">莫利仕</option>
-                    <option value="棉王">棉王</option>
-                    <option value="功夫">功夫</option>
-                    <option value="打勾">打勾</option>
-                    <option value="福維單片">福維單片</option>
-                    <option value="彩虹">彩虹</option>
-                    <option value="領先綠標">領先綠標</option>
-                    <option value="領先咖標">領先咖標</option>
-                    <option value="960標">960標</option>
-                    <option value="140標">140標</option>
-                    <option value="方格">方格</option>
-                    <option value="台製藍標">台製藍標</option>
-                    <option value="台製黑標">台製黑標</option>
-                    <option value="公版標">公版標</option>
-                    <option value="大億">大億</option>
-                    <option value="寶佳">寶佳</option>
-                    <option value="南斯特">南斯特</option>
-                    <option value="南斯特炭標">南斯特炭標</option>
-                    <option value="星紅">星紅</option>
-                    <option value="雙星印標">雙星印標</option>
-                    <option value="雙星織標">雙星織標</option>
-                    <option value="金磚">金磚</option>
-                    <option value="箏緣">箏緣</option>
-                    <option value="本土">本土</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="rollFunc">滾邊方式</label>
-                <select type="text" name="rollFunc" class="form-control" id="rollFunc" placeholder="滾邊方式"
-                        value="{{$job_tickets->rollFunc}}" required>
-                    <option value="2線">2線</option>
-                    <option value="5線">5線</option>
-                    <option value="6線">6線</option>
-                </select>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="wash">洗標</label>
+                    <select type="text" name="wash" class="form-control" id="wash"
+                            value="{{$job_tickets->wash}}" placeholder="洗標" required>
+                        <option value="織物100%">織物100%</option>
+                        <option value="織物90%">織物90%</option>
+                        <option value="昌和奈米10%">昌和奈米10%</option>
+                        <option value="黑白狗100%">黑白狗100%</option>
+                        <option value="莫利仕">莫利仕</option>
+                        <option value="棉王">棉王</option>
+                        <option value="功夫">功夫</option>
+                        <option value="打勾">打勾</option>
+                        <option value="福維單片">福維單片</option>
+                        <option value="彩虹">彩虹</option>
+                        <option value="領先綠標">領先綠標</option>
+                        <option value="領先咖標">領先咖標</option>
+                        <option value="960標">960標</option>
+                        <option value="140標">140標</option>
+                        <option value="方格">方格</option>
+                        <option value="台製藍標">台製藍標</option>
+                        <option value="台製黑標">台製黑標</option>
+                        <option value="公版標">公版標</option>
+                        <option value="大億">大億</option>
+                        <option value="寶佳">寶佳</option>
+                        <option value="南斯特">南斯特</option>
+                        <option value="南斯特炭標">南斯特炭標</option>
+                        <option value="星紅">星紅</option>
+                        <option value="雙星印標">雙星印標</option>
+                        <option value="雙星織標">雙星織標</option>
+                        <option value="金磚">金磚</option>
+                        <option value="箏緣">箏緣</option>
+                        <option value="本土">本土</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="rollFunc">滾邊方式</label>
+                    <select type="text" name="rollFunc" class="form-control" id="rollFunc" placeholder="滾邊方式"
+                            value="{{$job_tickets->rollFunc}}" required>
+                        <option value="2線">2線</option>
+                        <option value="5線">5線</option>
+                        <option value="6線">6線</option>
+                    </select>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -192,7 +196,7 @@
 
                     <label for="status">貨別</label>
                     <select class="form-control" name="status" id="status" value="{{$job_tickets->status}}"
-                            placeholder="輸入或點擊選取狀態" >
+                            placeholder="輸入或點擊選取狀態">
                         <option value="未開始">未開始</option>
                         <option value="排程中">排程中</option>
                         <option value="刪單">刪單</option>
@@ -201,19 +205,19 @@
                 </div>
             </div>
 
-            <div style="width:800px; display: flex;" class="column">
+            <div class="column row justify-content-between px-5 mb-5">
 
                 {{--                <input type="button" class="btn btn-secondary" value="Qrcode授權"--}}
                 {{--                       onclick="document.getElementById('btn_qrcode').click()"/>--}}
-                <button type="button" id="QRcodeAuthButton" data-toggle="modal" class="btn btn-secondary"
+                <button type="button" id="QRcodeAuthButton" data-toggle="modal" class="btn btn-secondary col-md mx-1"
                         data-target="#QRcodeAuth">Qrcode授權
                 </button>
-                <button style="width: 100px;" type="submit"
-                        class="btn_add form-control btn btn-secondary rounded mx-3">
+                <button type="submit"
+                        class="btn_add form-control btn btn-secondary rounded col-md mx-1">
                     儲存
                 </button>
-                <button style="width: 100px;" type="button"
-                        class="btn_print form-control btn btn-secondary rounded mx-3" onclick="window.print()">列印
+                <button type="button"
+                        class="btn_print form-control btn btn-secondary rounded col-md mx-1" onclick="window.print()">列印
                 </button>
             </div>
         </form>
@@ -250,20 +254,20 @@
         <script>
             ;(function () {
                 //判斷系統
-                function agent(){
+                function agent() {
                     //獲取系統裝置資訊
                     let agent = navigator.userAgent.toLowerCase();
 
                     //若裝置為 Android
-                    if (agent.includes("android")){
+                    if (agent.includes("android")) {
                         window.location.href = "app://open";
                     }
                     //若裝置為 iphone
-                    else if (agent.includes("iphone")){
+                    else if (agent.includes("iphone")) {
                         document.getElementById("camera_link_for_iphone").click();
                     }
                     //其他裝置
-                    else{
+                    else {
                         window.alert("此功能僅限於Android或ios裝置使用!");
                     }
                 }
@@ -288,6 +292,8 @@
                 $("#rollFunc").editableSelect({efficts: 'slide'})
                 $("#status").editableSelect({efficts: 'slide'})
             })()
+
+
         </script>
     </div>
 @endsection
