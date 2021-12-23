@@ -35,33 +35,18 @@
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">益得紡織-幹部管理介面</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="text-light nav-link active" aria-current="page"
-                       href="{{Route('get_menu')}}">派遣單列表</a>
-                </li>
-                @if(\Illuminate\Support\Facades\Session::get('level') === \App\User::ROLE_ADMIN)
-                <li class="nav-item">
-                    <a class="text-light nav-link" href="{{Route('get_user_page')}}">員工列表</a>
-                </li>
-                @endif
-                <li class="nav-item">
-                    <a id="btn_download_scanner_apk" class="text-secondary nav-link" >掃描器下載</a>
-                </li>
-                <li class="nav-item">
-                    <a class="text-secondary nav-link" href="{{Route('get_login')}}">登出</a>
-                </li>
-                {{--                <li class="nav-item">--}}
-                {{--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
-                {{--                </li>--}}
-            </ul>
+    <a class="navbar-brand" href="#">益得紡織-幹部管理介面</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link text-white" href="{{Route('get_menu')}}">派遣單列表</a>
+            @if(\Illuminate\Support\Facades\Session::get('level') === \App\User::ROLE_ADMIN)
+            <a class="nav-item nav-link text-white" href="{{Route('get_user_page')}}">員工列表</a>
+            @endif
+            <a class="nav-item nav-link" id="btn_download_scanner_apk">掃描器下載</a>
+            <a class="nav-item nav-link" href="{{Route('get_login')}}">登出</a>
         </div>
     </div>
 </nav>
