@@ -184,7 +184,7 @@
             <div class="form-group">
                 <label for="manager">派工主管</label>
                 <input type="text" name="manager" class="form-control" id="manager" placeholder="派工主管"
-                       value="{{$job_tickets->manager}}">
+                       value="{{$job_tickets->manager}}" readonly>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
