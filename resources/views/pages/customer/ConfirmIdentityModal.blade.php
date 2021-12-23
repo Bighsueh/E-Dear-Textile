@@ -17,10 +17,15 @@
                     </div>
                     <div class="row form-group justify-content-center">
 
-                        <select class="form-control col-6" id="confirm_customer_name" name="confirm_customer_name"
+                        <select class="form-control col-8" id="confirm_customer_name" name="confirm_customer_name"
                                 required>
                         </select>
-                        <button type="button" class="btn btn-outline-success ml-2" id="btn_confirm_customer">開始</button>
+
+                    </div>
+                    <div class="row form-group justify-content-center">
+                        <button type="button" class="btn btn-outline-danger mx-2" id="btn_back_to_login">回登入介面</button>
+                        <button type="button" class="btn btn-outline-success mx-2" id="btn_confirm_customer">開始</button>
+
                     </div>
 
                 </div>
@@ -44,6 +49,10 @@
         //設定editableSelect
         $("#confirm_customer_name").editableSelect({efficts: 'slide'})
 
+        //回登入介面按鈕
+        $("#btn_back_to_login").click(function () {
+            window.location.href = "{{route('get_login')}}";
+        })
 
         //顧客名稱查詢按鈕
         $("#btn_confirm_customer").click(function () {
