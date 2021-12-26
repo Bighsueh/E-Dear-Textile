@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DefaultTicketContent;
 use App\Exports\JobTicketExport;
+use App\Imports\DefaultTicketContentImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -202,9 +204,20 @@ class MenuController extends Controller
             ->get();
        return [$report,$submit_by,$request->action];
     }
-    //匯出excel
-    public function export()
+    //匯出派遣單 excel
+    public function export_job_ticket()
     {
         return Excel::download(new JobTicketExport, 'jobTickets.xlsx');
+    }
+
+    public function import_default_ticket_content(Request $request)
+    {
+        $file = $request->file('upload_file');
+
+        DefaultTicketContent::truncate();
+
+       Excel::import(new DefaultTicketContentImport, $file);
+
+        return 'success';
     }
 }

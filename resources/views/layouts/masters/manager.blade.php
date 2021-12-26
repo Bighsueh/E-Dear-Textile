@@ -43,6 +43,7 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link text-white" href="{{Route('get_menu')}}">派遣單列表</a>
             @if(\Illuminate\Support\Facades\Session::get('level') === \App\User::ROLE_ADMIN)
+            <a class="nav-item nav-link text-white" id="navbar_ticket_setting">派遣單資料設定</a>
             <a class="nav-item nav-link text-white" href="{{Route('get_user_page')}}">員工列表</a>
             @endif
             <a class="nav-item nav-link" id="btn_download_scanner_apk">掃描器下載</a>
@@ -63,7 +64,7 @@
 
     </div>
 </div>
-
+@include('pages.manager.TicketSettingModal')
 
 </body>
 <script>
@@ -74,6 +75,9 @@
                 window.location.href = "{{route('download_apk')}}";
             }
         }
+    })
+    $("#navbar_ticket_setting").click(function () {
+        $("#TicketSettingModal").modal('show');
     })
 </script>
 </html>
