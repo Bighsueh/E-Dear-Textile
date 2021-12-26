@@ -44,7 +44,6 @@
             </thead>
             <tbody id="tbody">
             <tr>
-
             </tr>
             </tbody>
 
@@ -66,8 +65,7 @@
 
         //頁面最上方搜尋列點擊事件(搜尋功能)
         $("#btn_search").click(function () {
-            let search_parameter = $("#search_parameter").val();
-            update_data(search_parameter);
+            update_data($("#search_parameter").val());
         })
 
         update_data();
@@ -75,7 +73,6 @@
         //資料刷新
         function update_data(search_parameter = null) {
             let url = '{{route('get_working_log_data')}}';
-
             if (!navigator.userAgent.toLowerCase().includes("windows")) {
                 window.alert('此頁面建議使用電腦觀看，已獲得最佳使用體驗。');
             }
