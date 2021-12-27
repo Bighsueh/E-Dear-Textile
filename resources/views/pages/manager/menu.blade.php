@@ -93,13 +93,6 @@
                             "<tr><td colspan='7' class='text-center'>查無資料</td></tr>"
                         );
                     }
-                    //若存在警示訊息則將備註顯示
-                    if($('.ticket-alert').length>1){
-                        $('#ticket_alert').css('display','show');
-                    }else{
-                        $('#ticket_alert').css('display','none');
-                    }
-
 
                     $(".btn_result").click(function () {
                         $("#ReportModal").modal('show');
