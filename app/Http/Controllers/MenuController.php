@@ -22,7 +22,7 @@ class MenuController extends Controller
         Session::forget('qr_code_status');
         Session::forget('ticket_info');
 //        dd($job_tickets);
-        return view('pages.manager.menu',compact('job_tickets',$job_tickets));
+        return view('pages.manager.menu',compact('job_tickets', $job_tickets));
     }
 
     public function get_search_data(Request $request)
@@ -34,7 +34,7 @@ class MenuController extends Controller
 
         //取得員工列表
         $data = DB::table('job_tickets')
-            ->select('employeeName','id', 'itemId', 'order','status','created_at')
+            ->select('employeeName', 'id', 'itemId', 'order', 'status', 'created_at')
             ->where('employeeName', 'like', '%' . $search_parameter . '%')
             ->orwhere('status', 'like', '%' . $search_parameter . '%')
             ->orwhere('created_at', 'like BINARY', '%' . $search_parameter . '%')
@@ -46,19 +46,17 @@ class MenuController extends Controller
     // get addSheetUI
     public function get_addSheet()
     {
-        $id = DB::table('job_tickets')->select('id')->orderBy("id",'desc')->first();
+        $id = DB::table('job_tickets')->select('id')->orderBy("id", 'desc')->first();
         $user_name = DB::table('users')->select('name')->where('id', Session::get('user_id'))->first()->name;
-        if($id == null)
-        {
+        if ($id == null) {
             $id = 0;
-        }
-        else{
+        } else {
             $id = (int)$id->id;
         }
-        return view('pages.manager.addSheet',compact('id','user_name'));
+        return view('pages.manager.addSheet', compact('id', 'user_name'));
     }
 
-    public function get_employeeDetail(Request $request,$id)
+    public function get_employeeDetail(Request $request, $id)
     {
         $employee = DB::table('users')->where('id', $id)->get();
         $tickets = DB::table('job_tickets');
@@ -70,37 +68,37 @@ class MenuController extends Controller
     public function post_create_addSheet(Request $request)
     {
         $query = $request->except('_token');
-        if($query['order_unit'] == '1')
-        {
+        if ($query['order_unit'] == '1') {
             $sum = $query['order'];
-        }
-        else{
+        } else {
             $sum = $query['order'] * 12;
         }
         DB::table('job_tickets')->insert([
-            'created_at' =>$query['date'],
-            'employeeName' =>$query['employeeName'],
-            'item' =>$query['item'],
-            'itemId' =>$query['itemId'],
-            'factory' =>$query['factory'],
-            'color' =>$query['color'],
-            'wash' =>$query['wash'],
-            'color_line' =>$query['color_line'],
-            'rollFunc' =>$query['rollFunc'],
-            'manager' =>$query['manager'],
-            'order' =>$sum,
-            'ps' =>$query['ps'],
-            'status' =>$query['status'],
+            'created_at' => $query['date'],
+            'employeeName' => $query['employeeName'],
+            'item' => $query['item'],
+            'itemId' => $query['itemId'],
+            'factory' => $query['factory'],
+            'color' => $query['color'],
+            'wash' => $query['wash'],
+            'color_line' => $query['color_line'],
+            'rollFunc' => $query['rollFunc'],
+            'manager' => $query['manager'],
+            'order' => $sum,
+            'ps' => $query['ps'],
+            'status' => $query['status'],
         ]);
         return redirect(route('get_menu'));
     }
+
     // 查詢派遣單
     public function get_list($id)
     {
-        $job_tickets = DB::table('job_tickets')->where('id',$id)->first();
+        $job_tickets = DB::table('job_tickets')->where('id', $id)->first();
 //        dd($job_tickets);
-        return view('pages.manager.list',compact('job_tickets',$job_tickets));
+        return view('pages.manager.list', compact('job_tickets', $job_tickets));
     }
+
     // 修改
     public function patch_patchSheet(Request $request)
     {
@@ -109,22 +107,22 @@ class MenuController extends Controller
         $sum = $query["order_dozen"] * 12 + $query["order_bar"];
 //        dd($sum);
 //        dd($query);
-        DB::table('job_tickets')->where('id',$query['ticket_id'])
+        DB::table('job_tickets')->where('id', $query['ticket_id'])
             ->update([
-            'created_at' =>$query['date'],
-            'employeeName' =>$query['employeeName'],
-            'item' =>$query['item'],
-            'itemId' =>$query['itemId'],
-            'factory' =>$query['factory'],
-            'color' =>$query['color'],
-            'color_line' =>$query['color_line'],
-            'wash' =>$query['wash'],
-            'rollFunc' =>$query['rollFunc'],
-            'manager' =>$query['manager'],
-            'order' =>$sum,
-            'ps' =>$query['ps'],
-            'status' =>$query['status'],
-        ]);
+                'created_at' => $query['date'],
+                'employeeName' => $query['employeeName'],
+                'item' => $query['item'],
+                'itemId' => $query['itemId'],
+                'factory' => $query['factory'],
+                'color' => $query['color'],
+                'color_line' => $query['color_line'],
+                'wash' => $query['wash'],
+                'rollFunc' => $query['rollFunc'],
+                'manager' => $query['manager'],
+                'order' => $sum,
+                'ps' => $query['ps'],
+                'status' => $query['status'],
+            ]);
         return redirect()->route('get_menu');
     }
 
@@ -134,57 +132,56 @@ class MenuController extends Controller
         $ticket = DB::table('job_tickets')->where('id', $ticket_id)->get();
 
         $cut_order_dozen = DB::table('job_reports')->where('ticket_id', $ticket_id)
-            ->where('unit','dozen')
-            ->where('action',"剪巾")->sum('quantity');
+            ->where('unit', 'dozen')
+            ->where('action', "剪巾")->sum('quantity');
         $cut_order_bar = DB::table('job_reports')->where('ticket_id', $ticket_id)
-            ->where('unit','one')
-            ->where('action',"剪巾")->sum('quantity');
+            ->where('unit', 'one')
+            ->where('action', "剪巾")->sum('quantity');
 
         $foldHead_order_bar = DB::table('job_reports')->where('ticket_id', $ticket_id)
-            ->where('action',"折頭")
-            ->where('unit','one')
+            ->where('action', "折頭")
+            ->where('unit', 'one')
             ->sum('quantity');
         $foldHead_order_dozen = DB::table('job_reports')->where('ticket_id', $ticket_id)
-            ->where('action',"折頭")
-            ->where('unit','dozen')
+            ->where('action', "折頭")
+            ->where('unit', 'dozen')
             ->sum('quantity');
 
-        $cut_order = $cut_order_dozen*12 + $cut_order_bar;
-        $foldHead = $foldHead_order_dozen*12+$foldHead_order_bar;
+        $cut_order = $cut_order_dozen * 12 + $cut_order_bar;
+        $foldHead = $foldHead_order_dozen * 12 + $foldHead_order_bar;
 
-        return [$ticket,$cut_order,$foldHead];
+        return [$ticket, $cut_order, $foldHead];
     }
 
     public function get_resultDetail(Request $request)
     {
         // 剪巾或折頭的查詢
         $report = DB::table('job_reports')
-            ->join('users','job_reports.operator','users.id')
+            ->join('users', 'job_reports.operator', 'users.id')
             ->where('ticket_id', $request->user_id)
             ->where('action', $request->action)
-            ->select('job_reports.action','job_reports.quantity','users.name')
+            ->select('job_reports.action', 'job_reports.quantity', 'users.name')
             ->get();
         $sub_report = null;
         // 帶出需要幫忙回報的人員
-        if($request->action =='剪巾'){
+        if ($request->action == '剪巾') {
             $sub_report = DB::table('job_reports')
-                ->join('users','job_reports.operator','users.id')
+                ->join('users', 'job_reports.operator', 'users.id')
                 ->where('ticket_id', $request->user_id)
                 ->where('action', '滾邊')
-                ->select('job_reports.action','job_reports.quantity','users.name')
+                ->select('job_reports.action', 'job_reports.quantity', 'users.name')
                 ->get();
 
-        }
-        else if($request->action =='折頭'){
+        } else if ($request->action == '折頭') {
             $sub_report = DB::table('job_reports')
-                ->join('users','job_reports.operator','users.id')
+                ->join('users', 'job_reports.operator', 'users.id')
                 ->where('ticket_id', $request->user_id)
                 ->where('action', '撿巾')
-                ->select('job_reports.action','job_reports.quantity','users.name')
+                ->select('job_reports.action', 'job_reports.quantity', 'users.name')
                 ->get();
         }
 
-        return [$report,$sub_report,$request->num,$request->unit];
+        return [$report, $sub_report, $request->num, $request->unit];
 
     }
 
@@ -192,32 +189,34 @@ class MenuController extends Controller
     {
         //operator
         $report = DB::table('job_reports')
-            ->join('users','job_reports.operator','users.id')
-            ->where('action',$request->action)
-            ->where('ticket_id',$request->user_id)
-            ->select('users.name','job_reports.quantity','job_reports.created_at')
+            ->join('users', 'job_reports.operator', 'users.id')
+            ->where('action', $request->action)
+            ->where('ticket_id', $request->user_id)
+            ->select('users.name', 'job_reports.quantity', 'job_reports.created_at')
             ->get();
         $submit_by = DB::table('job_reports')
-            ->join('users','job_reports.submit_by','users.id')
-            ->where('action',$request->action)
-            ->where('ticket_id',$request->user_id)
+            ->join('users', 'job_reports.submit_by', 'users.id')
+            ->where('action', $request->action)
+            ->where('ticket_id', $request->user_id)
             ->select('users.name')
             ->get();
-       return [$report,$submit_by,$request->action];
+        return [$report, $submit_by, $request->action];
     }
+
     //匯出派遣單 excel
     public function export_job_ticket()
     {
         return Excel::download(new JobTicketExport, 'jobTickets.xlsx');
     }
 
+    //匯入派遣單預設值(下拉式選單)excel
     public function import_default_ticket_content(Request $request)
     {
         $file = $request->file('upload_file');
 
         DefaultTicketContent::truncate();
 
-       Excel::import(new DefaultTicketContentImport, $file);
+        Excel::import(new DefaultTicketContentImport, $file);
 
         return 'success';
     }
