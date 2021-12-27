@@ -17,6 +17,10 @@
             </button>
         </div>
     </div>
+    <div class="container text-center" id="ticket_alert">
+        <label class="text-center px-auto text-danger"><i class="fas fa-exclamation"></i>表示目前尚有派遣單已超過兩個月未出貨</label>
+        <label class="text-center px-auto text-warning"><i class="fas fa-bell"></i>表示目前尚有派遣單超過兩周未進行排程</label>
+    </div>
     <div class="container">
         <table class="table rwd-table">
             <thead class="thead-dark">
@@ -57,7 +61,19 @@
                     $("#tbody tr").remove();
                     if (res.length > 0) {
                         res.forEach(function (row) {
-                            let row_name = "<td>" + row["employeeName"] + "</td>";
+                            //設定警示功能
+                            console.log(row);
+                            let row_alert = "";
+                            //判斷日期差異，大於兩周且未開始的派遣單將進行警示
+                            if(row['diff_days']>14 && row['status'] === '未開始'){
+                                row_alert = `<i class="ticket-alert fas fa-bell text-warning"></i>`;
+                            }
+                            //判斷月份差異，大於兩個月且未結單的派遣單將進行警示
+                            if(row['diff_months']>2 && row['status'] === '排程中'){
+                                row_alert = `<i class="ticket-alert fas fa-exclamation text-danger"></i>`;
+                            }
+
+                            let row_name = `<td>${row_alert}`+ row["employeeName"] + "</td>";
                             let row_id = `<td> <a class="btn_list text-primary" value='${row['id']}'>${row['id']}</a> </td>`;
                             let row_itemId = "<td>" + row["itemId"] + "</td>";
                             let row_order = "<td>" + row["order"] + "條" + "</td>";
@@ -77,6 +93,13 @@
                             "<tr><td colspan='7' class='text-center'>查無資料</td></tr>"
                         );
                     }
+                    //若存在警示訊息則將備註顯示
+                    if($('.ticket-alert').length>1){
+                        $('#ticket_alert').css('display','show');
+                    }else{
+                        $('#ticket_alert').css('display','none');
+                    }
+
 
                     $(".btn_result").click(function () {
                         $("#ReportModal").modal('show');
@@ -86,7 +109,6 @@
                     $(".btn_list").click(function () {
                         window.location.href = "/manager/menu/list/" + $(this).attr("value");
                     })
-
                     get_status_list();
                 },
                 error: function (err) {

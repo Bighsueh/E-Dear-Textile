@@ -7,6 +7,7 @@ use App\Exports\DefaultTicketContentExport;
 use App\Exports\JobTicketExport;
 use App\Imports\DefaultTicketContentImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,31 +17,52 @@ class MenuController extends Controller
     public function get_menu()
     {
         // 派遣單查詢
-        $job_tickets = DB::table('job_tickets')->get();
+        $job_tickets = DB::table('job_tickets');
 
         //重置Session狀態
         Session::forget('qr_code_status');
         Session::forget('ticket_info');
-//        dd($job_tickets);
-        return view('pages.manager.menu',compact('job_tickets', $job_tickets));
+
+        return view('pages.manager.menu');
     }
 
     public function get_search_data(Request $request)
     {
+        $now = Carbon::now();
+        $result = [];
         $search_parameter = null;
+
+        //設定搜尋值初始值
         if ($request->search_parameter !== $search_parameter) {
             $search_parameter = $request->search_parameter;
         }
 
         //取得員工列表
-        $data = DB::table('job_tickets')
+        $job_tickets = DB::table('job_tickets')
             ->select('employeeName', 'id', 'itemId', 'order', 'status', 'created_at')
             ->where('employeeName', 'like', '%' . $search_parameter . '%')
             ->orwhere('status', 'like', '%' . $search_parameter . '%')
             ->orwhere('created_at', 'like BINARY', '%' . $search_parameter . '%')
             ->orwhere('itemId', 'like', '%' . $search_parameter . '%')
             ->get();
-        return $data;
+
+
+        //設定傳出數值
+        foreach ($job_tickets as $row){
+            array_push($result, [
+                'employeeName' => $row->employeeName,
+                'id'=>$row->id,
+                'itemId'=>$row->itemId,
+                'order'=>$row->order,
+                'status'=>$row->status,
+                'created_at'=>$row->created_at,
+                'diff_days' => Carbon::parse($now)->diff($row->created_at)->days,
+                'diff_months' => Carbon::parse($row->created_at)->diffInMonths($now),
+            ]);
+        }
+
+
+        return $result;
     }
 
     // get addSheetUI
