@@ -99,10 +99,39 @@
     $("#btn_add_pipings").click(function () {
         create_piping_row();
     });
+    //刷新keydown listener
+    function refresh_keydown_listener() {
+        $('.piping-number').off('change paste keyup');
+        $('.piping-unit').off('keydown');
+
+        $('.piping-number').on("change paste keyup", function() {
+            cal_cutting_num_by_piping_num();
+        });
+        $('.piping-unit').keydown(function(){
+            cal_cutting_num_by_piping_num();
+        })
+    }
+
+    //計算剪巾員完成數量
+    function cal_cutting_num_by_piping_num() {
+        let len = $('.piping-number').length;
+        let sum =0.0;
+        console.log(len);
+        for (let i = 0; i < len; i++) {
+            let piping_number = parseFloat($('.piping-number').children('td input').eq(i).val());
+            let piping_unit = $('.piping-unit').children('td input').eq(i).val();
+
+            if(piping_number) return;
+            sum += piping_number;
+        }
+
+        $("#report_operator_num").val(sum);
+    }
 
     //產生新滾邊員列
     function create_piping_row() {
         $("#report_piping_list").append(temp_piping_row);
+        refresh_keydown_listener()
     }
 
     //格式化滾邊員列
@@ -203,6 +232,8 @@
 
             }
         }
+
+        refresh_keydown_listener();
 
         $("#CutReportModal").modal('show');
     }
