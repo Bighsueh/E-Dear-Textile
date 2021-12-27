@@ -115,11 +115,11 @@
 
     <script>
 
-        $("#employeeName").select(
+        $("#customer_name").select(
             function () {
-                const str = $("#employeeName").val().split("-")[0];
-                $("#wash").val(str)
-                $("#wash").editableSelect('filter');
+                const str = $("#customer_name").val().split("-")[0];
+                $("#wash_tag").val(str)
+                $("#wash_tag").editableSelect('filter');
 
             }
         )
