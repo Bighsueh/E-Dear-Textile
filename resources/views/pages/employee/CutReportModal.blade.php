@@ -121,7 +121,7 @@
             let piping_number = parseFloat($('.piping-number').children('td input').eq(i).val());
             let piping_unit = $('.piping-unit').children('td input').eq(i).val();
 
-            if(piping_number) return;
+            if(!piping_number) return;
             sum += piping_number;
         }
 
