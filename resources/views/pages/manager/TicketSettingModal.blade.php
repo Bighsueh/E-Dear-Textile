@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="modal-footer align-items-end form-group">
-                <button class="btn btn-primary" id="btn-list-close">返回</button>
+                <button class="btn btn-outline-secondary" id="btn-list-close">返回</button>
             </div>
         </div>
     </div>
