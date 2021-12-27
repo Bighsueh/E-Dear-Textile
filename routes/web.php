@@ -39,6 +39,7 @@ Route::group(['middleware' =>['login']],function(){
     Route::get('/manager/menu/list/{id}', 'MenuController@get_list')->name('get_list');
     Route::post('/manager/menu/addSheet/create', 'MenuController@post_create_addSheet')->name('post_create_addSheet');
     Route::patch('/manager/menu/patchSheet', 'MenuController@patch_patchSheet')->name('patch_patchSheet');
+    Route::get('manager/menu/default', 'MenuController@get_default')->name('get_default');
     Route::get('/manager/menu/result','MenuController@get_result')->name('get_result');
     Route::get('/manager/menu/result/detail','MenuController@get_resultDetail')->name('get_resultDetail');
     Route::get('/manager/menu/result/list','MenuController@get_resultList')->name('get_resultList');

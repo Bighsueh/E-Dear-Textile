@@ -78,6 +78,13 @@ class MenuController extends Controller
         return view('pages.manager.addSheet', compact('id', 'user_name'));
     }
 
+    public function get_default()
+    {
+        $default = DB::table('default_ticket_content')
+            ->select('customer_name','item_no','color','wash_tag','item'
+                ,'blenching_and_dyeing_factory','color_thread','piping_method','remark','ticket_status')->get();
+        return $default;
+    }
     public function get_employeeDetail(Request $request, $id)
     {
         $employee = DB::table('users')->where('id', $id)->get();
