@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DefaultTicketContent;
+use App\Exports\DefaultTicketContentExport;
 use App\Exports\JobTicketExport;
 use App\Imports\DefaultTicketContentImport;
 use Illuminate\Http\Request;
