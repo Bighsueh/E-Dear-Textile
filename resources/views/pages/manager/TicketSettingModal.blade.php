@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="modal-footer align-items-end form-group">
-                <button class="btn btn-outline-secondary" id="btn-list-close">返回</button>
+                <button class="btn btn-outline-secondary close-modal" id="btn-list-close">返回</button>
             </div>
         </div>
     </div>
@@ -149,58 +149,66 @@
     </div>
 </div>
 <script>
-    $("#navbar_ticket_setting").click(function () {
-        update_ticket_setting_modal();
-        $("#TicketSettingModal").modal('show');
+    $(document).ready(function(){
+        //關閉modal
+        $(".close-modal").click(function(){
+            $('.modal').modal('hide');
+        })
+        $("#navbar_ticket_setting").click(function () {
+            update_ticket_setting_modal();
+            $("#TicketSettingModal").modal('show');
+        })
+
+        $('#btn_ticket_setting_download_excel').click(function () {
+            url = "{{route('export_default_ticket_content')}}";
+
+            window.location.href = url;
+        })
+        $('#btn_ticket_setting_upload_excel').click(function () {
+            $('#TicketSettingUploadModal').modal('show');
+
+        })
+        $('#btn_ticket_setting_upload').click(function () {
+            //取得input_ticket_setting_upload
+            let upload_file = $('#btn_ticket_setting_upload_input_file')[0].files;
+            //取得url
+            let url = "{{route('import_default_ticket_content')}}";
+            let csrf_token = "{{csrf_token()}}";
+
+            //未選取檔案
+            if (upload_file.length <= 0) {
+                window.alert('請先上傳檔案');
+            }
+            //已選取檔案
+            if (upload_file.length > 0) {
+                //先建立formData
+                let form_data = new FormData()
+                form_data.append('upload_file', upload_file[0])
+
+                $.ajax({
+                    url: url + "?_token=" + csrf_token,
+                    method: 'post',
+                    data: form_data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        console.log('upload success');
+                        update_ticket_setting_modal();
+                        $('#TicketSettingUploadModal').modal('hide');
+                    },
+                    error: function (res) {
+                        window.alert('連線失敗!!');
+                        console.log('connect error');
+                        console.log(res);
+
+                        $('#TicketSettingUploadModal').modal('hide');
+                    }
+                })
+            }
+        })
     })
-    $('#btn_ticket_setting_download_excel').click(function () {
-        url = "{{route('export_default_ticket_content')}}";
 
-        window.location.href = url;
-    })
-    $('#btn_ticket_setting_upload_excel').click(function () {
-        $('#TicketSettingUploadModal').modal('show');
-
-    })
-    $('#btn_ticket_setting_upload').click(function () {
-        //取得input_ticket_setting_upload
-        let upload_file = $('#btn_ticket_setting_upload_input_file')[0].files;
-        //取得url
-        let url = "{{route('import_default_ticket_content')}}";
-        let csrf_token = "{{csrf_token()}}";
-
-        //未選取檔案
-        if (upload_file.length <= 0) {
-            window.alert('請先上傳檔案');
-        }
-        //已選取檔案
-        if (upload_file.length > 0) {
-            //先建立formData
-            let form_data = new FormData()
-            form_data.append('upload_file', upload_file[0])
-
-            $.ajax({
-                url: url + "?_token=" + csrf_token,
-                method: 'post',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (res) {
-                    console.log('upload success');
-                    update_ticket_setting_modal();
-                    $('#TicketSettingUploadModal').modal('hide');
-                },
-                error: function (res) {
-                    window.alert('連線失敗!!');
-                    console.log('connect error');
-                    console.log(res);
-
-                    $('#TicketSettingUploadModal').modal('hide');
-                }
-            })
-        }
-    })
 
     //更新modal資料
     function update_ticket_setting_modal() {
