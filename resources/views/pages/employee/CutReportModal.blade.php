@@ -92,22 +92,23 @@
     let temp_piping_row;
     let emtpy_piping_row = $("#report_piping_list").html();
     //送出回報按鈕
-    $("#btn_store_report").click(function (){
+    $("#btn_store_report").click(function () {
         store_report_data()
     })
     //增加滾邊員輸入列
     $("#btn_add_pipings").click(function () {
         create_piping_row();
     });
+
     //刷新keydown listener
     function refresh_keydown_listener() {
         $('.piping-number').off('change paste keyup');
-        $('.piping-unit').off('keydown');
+        $('.piping-unit').off('change paste keyup');
 
-        $('.piping-number').on("change paste keyup", function() {
+        $('.piping-number').on("change paste keyup", function () {
             cal_cutting_num_by_piping_num();
         });
-        $('.piping-unit').keydown(function(){
+        $('.piping-unit').on("change paste keyup",function () {
             cal_cutting_num_by_piping_num();
         })
     }
@@ -115,14 +116,24 @@
     //計算剪巾員完成數量
     function cal_cutting_num_by_piping_num() {
         let len = $('.piping-number').length;
-        let sum =0.0;
+        let sum = 0.0;
         console.log(len);
         for (let i = 0; i < len; i++) {
             let piping_number = parseFloat($('.piping-number').children('td input').eq(i).val());
-            let piping_unit = $('.piping-unit').children('td input').eq(i).val();
+            let piping_unit = $('.piping-unit').children('td select').eq(i).val();
 
-            if(!piping_number) return;
-            sum += piping_number;
+            console.log(piping_unit);
+
+            if (!piping_number) return;
+            if (piping_unit === 'one') {
+                sum += piping_number
+            }
+            ;
+            if (piping_unit === 'dozen') {
+                sum += piping_number * 12
+            }
+            ;
+
         }
 
         $("#report_operator_num").val(sum);
@@ -149,7 +160,7 @@
             data: {
                 ticket_id: ticket_id,
                 action: '剪巾',
-                created_at:d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()
+                created_at: d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes()
             },
             success: function (res) {
                 // console.log(res);
@@ -248,7 +259,7 @@
         const d = new Date();
         console.log(piping_list);
         $.ajax({
-            url:'{{route('store_report_data')}}',
+            url: '{{route('store_report_data')}}',
             method: 'GET',
             data: {
                 ticket_id: ticket_id,
@@ -256,7 +267,7 @@
                 action: '剪巾',
                 operator_number: operator_number,
                 operator_unit: operator_unit,
-                updated_at:d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()+" "+d.getHours()+":"+d.getMinutes()
+                updated_at: d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes()
             },
             success: function (res) {
                 console.log(res);
