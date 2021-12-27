@@ -38,8 +38,8 @@
                 <th class="col-sm-1">品名規格</th>
                 <th class="col-sm-1">數量</th>
                 <th class="col-sm-1">單位</th>
-                <th class="col-sm-1">單價</th>
-                <th class="col-sm-1">金額</th>
+{{--                <th class="col-sm-1">單價</th>--}}
+{{--                <th class="col-sm-1">金額</th>--}}
             </tr>
             </thead>
             <tbody id="tbody">
@@ -107,12 +107,14 @@
                             let row_specification = "<td>" + row["rollFunc"] + row["item"] + "</td>";
                             let row_quantity = "<td>" + row["quantity"] + "</td>";
                             let row_unit = "<td>" + row["unit"] + "</td>";
-                            let row_unit_price = "<td>" + "-" + "</td>";
-                            let row_total_price = "<td>" + "-" + "</td>";
+                            // let row_unit_price = "<td>" + "-" + "</td>";
+                            // let row_total_price = "<td>" + "-" + "</td>";
                             $("#tbody").append(
                                 "<tr>" + row_thread + row_status + row_action + row_ticket_id + row_updated_at +
-                                row_customer_name + row_item_id + row_specification + row_quantity + row_unit +
-                                row_unit_price + row_total_price + "</tr>"
+                                row_customer_name + row_item_id + row_specification + row_quantity +
+                                row_unit + "</tr>"
+                                //  row_unit_price +
+                                // row_total_price +
                             );
                         });
                     }
