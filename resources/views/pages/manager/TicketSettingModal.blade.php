@@ -188,11 +188,14 @@
                 processData: false,
                 success: function (res) {
                     console.log('upload success');
+                    update_ticket_setting_modal();
                     $('#TicketSettingUploadModal').modal('hide');
                 },
                 error: function (res) {
+                    window.alert('連線失敗!!');
                     console.log('connect error');
-                    window.alert('連線失敗：' + res);
+                    console.log(res);
+
                     $('#TicketSettingUploadModal').modal('hide');
                 }
             })
