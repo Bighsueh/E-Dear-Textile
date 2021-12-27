@@ -117,23 +117,17 @@
     function cal_cutting_num_by_piping_num() {
         let len = $('.piping-number').length;
         let sum = 0.0;
-        console.log(len);
         for (let i = 0; i < len; i++) {
             let piping_number = parseFloat($('.piping-number').children('td input').eq(i).val());
             let piping_unit = $('.piping-unit').children('td select').eq(i).val();
 
-            console.log(piping_unit);
-
             if (!piping_number) return;
             if (piping_unit === 'one') {
                 sum += piping_number
-            }
-            ;
+            };
             if (piping_unit === 'dozen') {
                 sum += piping_number * 12
-            }
-            ;
-
+            };
         }
 
         $("#report_operator_num").val(sum);
