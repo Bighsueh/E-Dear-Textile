@@ -21,7 +21,7 @@ class CustomerController extends Controller
             $customer_name = $request->customer_name;
 
             $customer = DB::table('job_tickets')
-                ->where('employeeName', $customer_name)
+                ->where('employeeName', 'like', '%' . $customer_name . '%')
                 ->first();
 //            dd($customer);
 
@@ -51,12 +51,15 @@ class CustomerController extends Controller
 
         try {
             $customer_name = $request->session()->get('user_id');
-            $data = DB::table('job_tickets')
-                ->orWhere('id', 'like', '%' . $search_parameter . '%')
-                ->orWhere('itemId', 'like', '%' . $search_parameter . '%')
-                ->where('employeeName', $customer_name)
-                ->get();
+            $data = DB::table('job_tickets');
 
+
+            $data = $data->where(function ($query) use ($search_parameter) {
+                $query->orWhere('id', 'like binary', '%' . $search_parameter . '%')
+                    ->orWhere('itemId', 'like binary', '%' . $search_parameter . '%');
+            });
+
+            $data = $data->where('employeeName', $customer_name)->get();
             return $data;
         } catch (\Exception $exception) {
             return $exception;
