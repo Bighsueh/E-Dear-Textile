@@ -154,20 +154,24 @@
         $(".close-modal").click(function(){
             $('.modal').modal('hide');
         })
+        //開啟modal
         $("#navbar_ticket_setting").click(function () {
             update_ticket_setting_modal();
             $("#TicketSettingModal").modal('show');
         })
-
+        //下載範例excel檔案
         $('#btn_ticket_setting_download_excel').click(function () {
             url = "{{route('export_default_ticket_content')}}";
 
             window.location.href = url;
         })
+        //開啟上傳modal
         $('#btn_ticket_setting_upload_excel').click(function () {
             $('#TicketSettingUploadModal').modal('show');
 
         })
+
+        //上傳excel修改檔
         $('#btn_ticket_setting_upload').click(function () {
             //取得input_ticket_setting_upload
             let upload_file = $('#btn_ticket_setting_upload_input_file')[0].files;
