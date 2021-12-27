@@ -104,18 +104,18 @@ class MenuController extends Controller
         }
         DB::table('job_tickets')->insert([
             'created_at' => $query['date'],
-            'employeeName' => $query['employeeName'],
+            'employeeName' => $query['customer_name'],
             'item' => $query['item'],
-            'itemId' => $query['itemId'],
-            'factory' => $query['factory'],
+            'itemId' => $query['item_no'],
+            'factory' => $query['blenching_and_dyeing_factory'],
             'color' => $query['color'],
-            'wash' => $query['wash'],
-            'color_line' => $query['color_line'],
-            'rollFunc' => $query['rollFunc'],
+            'wash' => $query['wash_tag'],
+            'color_line' => $query['color_thread'],
+            'rollFunc' => $query['piping_method'],
             'manager' => $query['manager'],
             'order' => $sum,
-            'ps' => $query['ps'],
-            'status' => $query['status'],
+            'ps' => $query['remark'],
+            'status' => $query['ticket_status'],
         ]);
         return redirect(route('get_menu'));
     }
