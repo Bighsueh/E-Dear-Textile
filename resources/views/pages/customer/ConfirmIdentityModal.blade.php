@@ -63,7 +63,7 @@
 
             if (updated_confirm_customer_name()) {
                 //更新頁面
-                update_tickets_list('');
+                update_tickets_list();
             }
         })
 
