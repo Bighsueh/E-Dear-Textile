@@ -76,8 +76,6 @@
             }
         }
     })
-    $("#navbar_ticket_setting").click(function () {
-        $("#TicketSettingModal").modal('show');
-    })
+
 </script>
 </html>

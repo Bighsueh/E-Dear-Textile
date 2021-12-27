@@ -21,7 +21,8 @@
                         <label class="col-sm-2 mx-auto text-right">
                             客戶名稱
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_customer_name">
                             <option>1</option>
                         </select>
                     </div>
@@ -29,7 +30,8 @@
                         <label class="col-sm-2 mx-auto text-right">
                             貨號
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_item_no">
                             <option>1</option>
                         </select>
                     </div>
@@ -37,7 +39,8 @@
                         <label class="col-sm-2 mx-auto text-right">
                             洗標
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_wash_tag">
                             <option>1</option>
                         </select>
                     </div>
@@ -45,7 +48,8 @@
                         <label class="col-sm-2 mx-auto text-right">
                             品項
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_item">
                             <option>1</option>
                         </select>
                     </div>
@@ -53,15 +57,17 @@
                         <label class="col-sm-2 mx-auto text-right">
                             漂染廠
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_blenching_and_dyeing_factory">
                             <option>1</option>
                         </select>
                     </div>
                     <div class="form-group row justify-content-center">
                         <label class="col-sm-2 mx-auto text-right">
-                            色線
+                            顏色
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_color">
                             <option>1</option>
                         </select>
                     </div>
@@ -69,23 +75,18 @@
                         <label class="col-sm-2 mx-auto text-right">
                             色線編號
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_color_thread">
                             <option>1</option>
                         </select>
                     </div>
-                    <div class="form-group row justify-content-center">
-                        <label class="col-sm-2 mx-auto text-right">
-                            洗標
-                        </label>
-                        <select class="col-sm-8 mx-auto form-control">
-                            <option>1</option>
-                        </select>
-                    </div>
+
                     <div class="form-group row justify-content-center">
                         <label class="col-sm-2 mx-auto text-right">
                             滾邊方式
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_piping_method">
                             <option>1</option>
                         </select>
                     </div>
@@ -93,7 +94,8 @@
                         <label class="col-sm-2 mx-auto text-right">
                             備註
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_remark">
                             <option>1</option>
                         </select>
                     </div>
@@ -101,7 +103,8 @@
                         <label class="col-sm-2 mx-auto text-right">
                             狀態
                         </label>
-                        <select class="col-sm-8 mx-auto form-control">
+                        <select class="col-sm-8 mx-auto form-control ticket-setting-select"
+                                id="select_ticket_setting_ticket_status">
                             <option>1</option>
                         </select>
                     </div>
@@ -146,8 +149,14 @@
     </div>
 </div>
 <script>
+    $("#navbar_ticket_setting").click(function () {
+        update_ticket_setting_modal();
+        $("#TicketSettingModal").modal('show');
+    })
     $('#btn_ticket_setting_download_excel').click(function () {
-        window.alert('這邊要下載');
+        url = "{{route('export_default_ticket_content')}}";
+
+        window.location.href = url;
     })
     $('#btn_ticket_setting_upload_excel').click(function () {
         $('#TicketSettingUploadModal').modal('show');
@@ -188,6 +197,88 @@
                 }
             })
         }
-
     })
+
+    //更新modal資料
+    function update_ticket_setting_modal() {
+        let url = "{{route('get_default_ticket_setting_data')}}";
+        $.ajax({
+            url: url,
+            method: 'get',
+            error: function (res) {
+                console.log('error');
+            },
+            success: function (res) {
+                //先清空所有的select
+                $('.ticket-setting-select option').remove();
+
+                //將資料匯入select中
+                $.each(res, function (index, row) {
+                    $.each(row, function (index, value) {
+                        let select_value = undefined; //option內容
+                        let select_name = ""; //要選擇的select name
+                        //顧客名稱
+                        if (value['customer_name']) {
+                            select_name = 'customer_name';
+                            select_value = value['customer_name'];
+                        };
+                        //貨號
+                        if (value['item_no']) {
+                            select_name = 'item_no';
+                            select_value = value['item_no'];
+                        };
+                        //顏色
+                        if (value['color']) {
+                            select_name = 'color';
+                            select_value = value['color'];
+                        };
+                        //洗標
+                        if (value['wash_tag']) {
+                            select_name = 'wash_tag';
+                            select_value = value['wash_tag'];
+                        };
+                        //品項
+                        if (value['item']) {
+                            select_name = 'item';
+                            select_value = value['item'];
+                        };
+                        //漂染廠
+                        if (value['blenching_and_dyeing_factory']) {
+                            select_name = 'blenching_and_dyeing_factory';
+                            select_value = value['blenching_and_dyeing_factory'];
+                        };
+                        //色線編號
+                        if (value['color_thread']) {
+                            select_name = 'color_thread';
+                            select_value = value['color_thread'];
+                        };
+                        //滾邊方式
+                        if (value['piping_method']) {
+                            select_name = 'piping_method';
+                            select_value = value['piping_method'];
+                        };
+                        //備註
+                        if (value['remark']) {
+                            select_name = 'remark';
+                            select_value = value['remark'];
+                        };
+                        //訂單狀態
+                        if (value['ticket_status']) {
+                            select_name = 'ticket_status';
+                            select_value = value['ticket_status'];
+                        };
+
+                        //將options寫入select
+                        if (select_value) {
+                            select_name = "#select_ticket_setting_" + select_name;
+                            $(`${select_name}`).append($('<option>', {
+                                text: select_value,
+                            }));
+                        }
+                    });
+                })
+            }
+
+        })
+    }
 </script>

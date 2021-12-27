@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/c', function () {
-    return view('pages.manager.TicketSetting');
+    return view('pages.customer.customerMenu');
 });
 
 // 登入
@@ -47,6 +47,10 @@ Route::group(['middleware' =>['login']],function(){
 
     //匯入派遣單預設資料
     Route::post('/menager/import/default_ticket_content', 'MenuController@import_default_ticket_content')->name('import_default_ticket_content');
+    //匯出派遣單預設資料
+    Route::get('/menager/export/export_default_ticket_content', 'MenuController@export_default_ticket_content')->name('export_default_ticket_content');
+    //更新派遣單預設值資料
+    Route::get('/menager/get_default_ticket_setting_data', 'MenuController@get_default_ticket_setting_data')->name('get_default_ticket_setting_data');
 
 
 //    Route::get('/manager/menu/employeeDetail/{id}','MenuController@get_employeeDetail')->name('get_employee_detail');

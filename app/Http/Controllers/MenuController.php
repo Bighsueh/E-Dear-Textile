@@ -220,4 +220,32 @@ class MenuController extends Controller
 
         return 'success';
     }
+
+    //匯出派遣單預設值(下拉式選單)excel
+    public function export_default_ticket_content()
+    {
+        $file_name = '內建下拉選單資料.xlsx';
+        return Excel::download(new DefaultTicketContentExport(), $file_name);
+    }
+
+    //取得派遣單預設值(下拉式選單)資料
+    public function get_default_ticket_setting_data()
+    {
+        $table_ticket_content = DB::table('default_ticket_content');
+
+        $data = [
+            'customer_name' => $table_ticket_content->get('customer_name'),
+            'item_no' => $table_ticket_content->get('item_no'),
+            'color' => $table_ticket_content->get('color'),
+            'wash_tag' => $table_ticket_content->get('wash_tag'),
+            'item' => $table_ticket_content->get('item'),
+            'blenching_and_dyeing_factory' => $table_ticket_content->get('blenching_and_dyeing_factory'),
+            'color_thread' => $table_ticket_content->get('color_thread'),
+            'piping_method' => $table_ticket_content->get('piping_method'),
+            'remark' => $table_ticket_content->get('remark'),
+            'ticket_status' => $table_ticket_content->get('ticket_status')
+        ];
+
+        return $data;
+    }
 }
