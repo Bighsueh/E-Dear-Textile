@@ -104,6 +104,7 @@
     function refresh_keydown_listener() {
         $('.piping-number').off('change paste keyup');
         $('.piping-unit').off('change paste keyup');
+        $('#report_operator_num').off('change paste keyup');
 
         $('.piping-number').on("change paste keyup", function () {
             cal_cutting_num_by_piping_num();
@@ -111,6 +112,20 @@
         $('.piping-unit').on("change paste keyup",function () {
             cal_cutting_num_by_piping_num();
         })
+        $('#report_operator_num').on("change paste keyup",function () {
+            cal_piping_num_by_cutting_num();
+        })
+    }
+
+    //計算滾邊員完成數量
+    function cal_piping_num_by_cutting_num() {
+
+        let cutting_number = $('#report_operator_num');
+        let len = $('.piping-number').length;
+        console.log(len);
+        if (len == 1) {
+            $('.piping-number').children('td input').val(cutting_number.val());
+        }
     }
 
     //計算剪巾員完成數量
