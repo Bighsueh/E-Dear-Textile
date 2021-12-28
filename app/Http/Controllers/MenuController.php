@@ -46,18 +46,33 @@ class MenuController extends Controller
             ->orwhere('itemId', 'like', '%' . $search_parameter . '%')
             ->get();
 
+        foreach ($job_tickets as $row) {
+            $ticket_id = $row->id;
+            $report_cutting = 0;
+            $report_head = 0;
+            $unit = 1;
+            $reports = DB::table('job_reports')->where('ticket_id', $ticket_id)->get();
 
-        //設定傳出數值
-        foreach ($job_tickets as $row){
+            //計算剪巾、折頭數量加總
+            foreach ($reports as $report) {
+                if($report->unit === 'one') $unit = 1;
+                if($report->unit === 'dozen') $unit = 12;
+
+                if($report->action === '剪巾') $report_cutting += $report->quantity * $unit;
+                if($report->action === '折頭') $report_head += $report->quantity * $unit;
+            }
+            //設定傳出數值
             array_push($result, [
                 'employeeName' => $row->employeeName,
-                'id'=>$row->id,
-                'itemId'=>$row->itemId,
-                'order'=>$row->order,
-                'status'=>$row->status,
-                'created_at'=>$row->created_at,
+                'id' => $row->id,
+                'itemId' => $row->itemId,
+                'order' => $row->order,
+                'status' => $row->status,
+                'created_at' => $row->created_at,
                 'diff_days' => Carbon::parse($now)->diff($row->created_at)->days,
                 'diff_months' => Carbon::parse($row->created_at)->diffInMonths($now),
+                'report_cutting' => $report_cutting,
+                'report_head' => $report_head
             ]);
         }
 
@@ -81,10 +96,11 @@ class MenuController extends Controller
     public function get_default()
     {
         $default = DB::table('default_ticket_content')
-            ->select('customer_name','item_no','color','wash_tag','item'
-                ,'blenching_and_dyeing_factory','color_thread','piping_method','remark','ticket_status')->get();
+            ->select('customer_name', 'item_no', 'color', 'wash_tag', 'item'
+                , 'blenching_and_dyeing_factory', 'color_thread', 'piping_method', 'remark', 'ticket_status')->get();
         return $default;
     }
+
     public function get_employeeDetail(Request $request, $id)
     {
         $employee = DB::table('users')->where('id', $id)->get();
