@@ -13,8 +13,10 @@ class EmployeeMenuController extends Controller
         // 派遣單查詢,join job_titles 檢查權限 增加一行where指令(不確定是否需要)
         $job_tickets = DB::table('job_tickets')
             ->join('job_titles', 'job_tickets.id', "=", 'job_titles.ticket_id')
+            ->leftJoin('users','users.id','=','job_titles.authorized_person')
             ->where('job_titles.authorized_person', session()->get('user_id'))
             ->where('job_tickets.status', '=', '排程中')
+            ->select('employeeName','ticket_id','authorizer','itemId','order','title','name')
             ->get();
         $title = DB::table('job_titles')->select('title')
             ->where('authorized_person',session()->get('user_id'))->first();
