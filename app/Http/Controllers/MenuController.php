@@ -140,8 +140,8 @@ class MenuController extends Controller
     public function get_list($id)
     {
         $job_tickets = DB::table('job_tickets')->where('id', $id)->first();
-//        dd($job_tickets);
-        return view('pages.manager.list', compact('job_tickets', $job_tickets));
+        $default_ticket_contents =DB::table('default_ticket_content')->get();
+        return view('pages.manager.list', compact('job_tickets', 'default_ticket_contents'));
     }
 
     // 修改
