@@ -1,6 +1,7 @@
 @extends('layouts.masters.employee')
 
 @section('content')
+{{--    {{dd($job_tickets)}}--}}
     <div style="display: flex" class="container">
         <table class="table">
             <thead class="thead-dark">
@@ -30,9 +31,9 @@
                                    value="{{$job_ticket->ticket_id}}"/>
                         </td>
                         <td>
-                            {{$job_ticket->authorizer}}
+                            {{$job_ticket->name}}
                             <input type="text" name="authorizer" style="display: none" class="form-control"
-                                   value="{{$job_ticket->authorizer}}"/>
+                                   value="{{$job_ticket->name}}"/>
                         </td>
                         <td>
                             {{$job_ticket->itemId}}
