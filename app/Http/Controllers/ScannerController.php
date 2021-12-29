@@ -55,7 +55,7 @@ class ScannerController extends Controller
             $ticket_id = $request->session()->get('ticket_info');
         }
 
-        if ($level === 'manager') {
+        if ($level === 'manager' or $level ==='admin') {
             //若判斷是幹部的話就從 Session 讀取 method 狀態
             $method = $request->session()->get('method');
             //判斷是否為幹部掃滾邊員(被授權人,單號)
