@@ -28,7 +28,7 @@
                 <th class="col-sm-2">#</th>
                 <th class="col-sm-3">職位</th>
                 <th class="col-sm-3">姓名</th>
-                <th class="col-sm-4" id="th_function">工作明細</th>
+                <th class="col-sm-4" id="th_function">功能</th>
             </tr>
             </thead>
             <tbody id="tbody">
@@ -37,7 +37,25 @@
         </table>
 
     </div>
+{{--    QR Code Modal--}}
+    <div class="modal" tabindex="-1" id="qrcode_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrcode_modal_name">員工名稱</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div id="qrcode_container"></div>
+                    </div>
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal" >關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @include('pages.users.createUserModal')
     @include('pages.users.editUserModal')
     @include('pages.users.deleteUserModal')
@@ -78,7 +96,9 @@
                             let row_name = "<td class='user-name'>" + row["name"] + "</td>";
                             let row_function = "";
                             if (setting_mode === "list") {
-                                row_function = `<td><button class='btn btn-outline-secondary btn-work-log' value='${row_id}'>查看</button></td>`;
+                                row_function =
+                                    `<td><button class='btn btn-outline-secondary btn-work-log' value='${row_id}'>查看工作明細</button>
+                                    <button class='btn btn-outline-secondary btn-qrcode' value='${row_id}'>查看QRCode</button></td>`;
                             }
                             if (setting_mode === "setting") {
                                 row_function =
@@ -125,6 +145,11 @@
                         get_job_log(employee_id);
 
                     });
+                    $(".btn-qrcode").click(function () {
+                        let employee_id = $(this).val();
+                        let employee_name = $(this).parent().parent().find(".user-name").text();
+                        open_qrcode_modal(employee_id,employee_name);
+                    })
                 },
                 error: function (err) {
                     console.log(err);
@@ -136,6 +161,14 @@
             window.location.href = "{{route('get_working_log_page')}}?employee_id="+employee_id;
         }
 
+        // 開啟qrcode modal
+        function open_qrcode_modal(employee_id,employee_name){
+            $("#qrcode_container").html('');
+            $("#qrcode_modal_name").text(employee_name);
+            $("#qrcode_container").qrcode('{{url('/afterScan?user_id=')}}' + employee_id);
+            $("#qrcode_modal").modal('show');
+        }
+
         //頁面最上方設定按鈕點擊事件
         $("#btn_setting").click(function () {
             if (setting_mode === "list") {
@@ -143,7 +176,7 @@
                 $("#th_function").text("設定");
             } else {
                 setting_mode = "list";
-                $("#th_function").text("工作明細");
+                $("#th_function").text("功能");
 
             }
             update_data();
@@ -153,6 +186,11 @@
         $("#btn_search").click(function () {
             let search_parameter = $("#search_parameter").val();
             update_data(search_parameter);
+        })
+
+        //關閉modal的按鈕
+        $(".close-modal").click(function(){
+            $(".modal").modal('hide');
         })
     </script>
 @endsection
