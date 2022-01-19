@@ -117,10 +117,12 @@
 
         $("#customer_name").select(
             function () {
-                const str = $("#customer_name").val().split("-")[0];
-                $("#wash_tag").val(str)
+                const chinese = $("#customer_name").val().split("-")[0];
+                const eng = $("#customer_name").val().split("-")[1];
+                $("#wash_tag").val(chinese);
+                $("#item_no").val(eng);
                 $("#wash_tag").editableSelect('filter');
-
+                $("#item_no").editableSelect('filter');
             }
         )
         show_default_value();
@@ -130,11 +132,8 @@
                 url: url,
                 method: 'get',
                 success: function (res) {
-                    console.log(res);
                     $.each(res, function (index, row) {
-                        console.log(index, row);
                         $.each(row, function (index, value) {
-                            console.log(index, value);
                             if (value != null) {
                                 $("#"+index).append($('<option>', {
                                     text: value,
