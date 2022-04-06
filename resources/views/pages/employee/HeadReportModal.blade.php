@@ -25,6 +25,10 @@
                         <label for="head_wash_tag" class="col-sm-3 col-5 ">洗標</label>
                         <input class="form-control col-sm-8 col-7" id="head_wash_tag" type="text" readonly/>
                     </div>
+                    <div class="row form-group">
+                        <label for="head_item" class="col-sm-3 col-5 ">品項</label>
+                        <input class="form-control col-sm-8 col-7" id="head_item" type="text" readonly/>
+                    </div>
                     <br>
                     <div class="row form-group">
                         <label class="col-sm-12 col-12">折頭員完成數量</label>
@@ -137,6 +141,9 @@
             // //洗標
             document.getElementById('head_wash_tag').value =
                 data['ticket_reports'][0]['wash'];
+            // //品項
+            document.getElementById('head_item').value =
+                data['ticket_reports'][0]['item'];
 
             //折頭員名稱
             document.getElementById('head_report-operator-name').value =

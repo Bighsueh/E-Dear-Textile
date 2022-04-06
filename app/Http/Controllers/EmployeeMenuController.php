@@ -91,7 +91,7 @@ class EmployeeMenuController extends Controller
                 ->select(
                     'job_reports.operator', 'job_reports.quantity', 'job_reports.unit','job_reports.ticket_id','job_reports.updated_at',
                     'job_tickets.employeeName', 'job_tickets.color', 'job_tickets.wash', 'job_tickets.color_line',
-                    'users.name'
+                    'users.name','job_tickets.item'
                 )
                 ->get();
             if($ticket_reports->count()){
