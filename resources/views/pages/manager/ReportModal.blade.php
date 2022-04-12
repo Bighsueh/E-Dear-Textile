@@ -31,6 +31,14 @@
                         <input class="form-control col-sm-8 col-7" id="reportList_wash" type="text" value="" readonly/>
                     </div>
                     <div class="row form-group">
+                        <label for="reportList_item" class="col-sm-3 col-5 ">品項</label>
+                        <input class="form-control col-sm-8 col-7" id="reportList_item" type="text" value="" readonly/>
+                    </div>
+                    <div class="row form-group">
+                        <label for="reportList_color" class="col-sm-3 col-5 ">顏色</label>
+                        <input class="form-control col-sm-8 col-7" id="reportList_color" type="text" value="" readonly/>
+                    </div>
+                    <div class="row form-group">
                         <label for="reportList_order" class="col-sm-3 col-5 ">訂單數量</label>
                         <input class="form-control col-sm-8 col-7" id="reportList_order" type="text" value="" readonly/>
                     </div>
@@ -78,6 +86,8 @@
                 $("#reportList_colorLine").val(res[0][0]["color_line"]);
                 $("#reportList_wash").val(res[0][0]["wash"]);
                 $("#reportList_order").val(res[0][0]["order"]);
+                $("#reportList_item").val(res[0][0]["item"]);
+                $("#reportList_color").val(res[0][0]["color"]);
                 if(res[1] == 0) {
                     $("#reportList_cut").text("尚未回報");
                     $("#reportList_cut").val(0);

@@ -39,7 +39,7 @@ class MenuController extends Controller
 
         //取得員工列表
         $job_tickets = DB::table('job_tickets')
-            ->select('employeeName', 'id', 'itemId', 'order', 'status', 'created_at')
+            ->select('employeeName', 'id', 'itemId', 'order', 'status', 'created_at','item','color')
             ->where('employeeName', 'like', '%' . $search_parameter . '%')
             ->orwhere('status', 'like', '%' . $search_parameter . '%')
             ->orwhere('created_at', 'like BINARY', '%' . $search_parameter . '%')
@@ -65,6 +65,8 @@ class MenuController extends Controller
             array_push($result, [
                 'employeeName' => $row->employeeName,
                 'id' => $row->id,
+                'item' => $row->item,
+                'color' => $row->color,
                 'itemId' => $row->itemId,
                 'order' => $row->order,
                 'status' => $row->status,
